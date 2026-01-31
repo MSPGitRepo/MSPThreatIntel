@@ -10,7 +10,7 @@ CISA_URL = "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulne
 OUTPUT_DIR = "public"
 OUTPUT_FILE = os.path.join(OUTPUT_DIR, "index.html")
 
-# 1. VENDORS TO TRACK (CISA)
+# 1. VENDORS TO TRACK
 VENDORS = {
     'Microsoft': ['microsoft'],
     'Cisco': ['cisco'],
@@ -20,7 +20,7 @@ VENDORS = {
     'Fortinet': ['fortinet', 'fortigate']
 }
 
-# 2. EXTENDED LIFECYCLE TRACKING
+# 2. LIFECYCLE TRACKING
 EOL_SLUGS = {
     'Windows Desktop': 'windows',
     'Windows Server': 'windows-server',
@@ -31,32 +31,32 @@ EOL_SLUGS = {
     'SharePoint Server': 'sharepoint'
 }
 
-# 3. NEWS SOURCES (RSS)
+# 3. NEWS SOURCES
 NEWS_FEEDS = [
     {"name": "BleepingComputer", "url": "https://www.bleepingcomputer.com/feed/"},
     {"name": "The Hacker News", "url": "https://feeds.feedburner.com/TheHackersNews"},
     {"name": "Dark Reading", "url": "https://www.darkreading.com/rss.xml"}
 ]
-
 NEWS_TRIGGERS = ['cve-', 'zero-day', 'exploit', 'rce', 'critical', 'patch', 'vulnerability', 'backdoor']
+
+# 4. STATUS SOURCES (No Auth Required)
+AZURE_STATUS_RSS = "https://azure.status.microsoft/en-gb/status/feed/"
+# Scrapes Microsoft Learn for "Known Issues" in Windows
+WINDOWS_HEALTH_RSS = "https://learn.microsoft.com/api/search/rss?search=%22known%20issue%22&locale=en-us&scopename=Windows%20Release%20Health"
 
 def fetch_cisa_data():
     try:
         r = requests.get(CISA_URL)
         r.raise_for_status()
         data = r.json()
-        
         relevant_vulns = []
         for v in data.get('vulnerabilities', []):
             vendor_field = v.get('vendorProject', '').lower()
-            product_field = v.get('product', '').lower()
-            
             assigned_vendor = None
             for category, keywords in VENDORS.items():
                 if any(k in vendor_field for k in keywords):
                     assigned_vendor = category
                     break
-            
             if assigned_vendor:
                 v['ui_category'] = assigned_vendor
                 v['link'] = f"https://nvd.nist.gov/vuln/detail/{v.get('cveID')}"
@@ -65,7 +65,6 @@ def fetch_cisa_data():
                 else:
                     v['kql'] = None
                 relevant_vulns.append(v)
-                
         return sorted(relevant_vulns, key=lambda x: x['dateAdded'], reverse=True)[:60]
     except Exception as e:
         print(f"Error fetching CISA: {e}")
@@ -74,38 +73,24 @@ def fetch_cisa_data():
 def fetch_eol_data():
     items = []
     today = datetime.date.today()
-    
     for friendly_name, slug in EOL_SLUGS.items():
         try:
             r = requests.get(f"https://endoflife.date/api/{slug}.json")
             if r.status_code != 200: continue
-            
             versions = r.json()[:5]
             for v in versions:
                 eol = v.get('eol')
                 if not eol or eol == False: continue
-                
                 try:
                     eol_dt = datetime.datetime.strptime(eol, "%Y-%m-%d").date()
-                except:
-                    continue
-                    
+                except: continue
                 days_left = (eol_dt - today).days
-                
                 if days_left > -730: 
                     status = "ok"
                     if days_left < 0: status = "expired"
                     elif days_left < 365: status = "warning"
-                    
-                    items.append({
-                        'product': f"{friendly_name} {v.get('cycle')}",
-                        'eol': eol,
-                        'status': status,
-                        'sort_date': eol_dt
-                    })
-        except:
-            continue
-            
+                    items.append({'product': f"{friendly_name} {v.get('cycle')}", 'eol': eol, 'status': status, 'sort_date': eol_dt})
+        except: continue
     return sorted(items, key=lambda x: x['sort_date'])
 
 def fetch_security_news():
@@ -114,73 +99,103 @@ def fetch_security_news():
         try:
             r = requests.get(source['url'], timeout=5)
             root = ET.fromstring(r.content)
-            
             for item in root.findall('./channel/item')[:10]:
                 title = item.find('title').text
                 link = item.find('link').text
                 desc = item.find('description').text if item.find('description') is not None else ""
-                
                 combined_text = (title + " " + desc).lower()
                 if any(trigger in combined_text for trigger in NEWS_TRIGGERS):
-                    news_items.append({
-                        "source": source['name'],
-                        "title": title,
-                        "link": link,
-                        "date": item.find('pubDate').text[:16] if item.find('pubDate') is not None else ""
-                    })
-        except Exception as e:
-            print(f"Skipping {source['name']}: {e}")
-            continue
-            
+                    news_items.append({"source": source['name'], "title": title, "link": link, "date": item.find('pubDate').text[:16] if item.find('pubDate') is not None else ""})
+        except Exception as e: continue
     return news_items[:15]
 
-def generate_html(vulns, eol, news):
-    # --- PRE-CALCULATE HTML PARTS TO AVOID F-STRING ERRORS ---
+def fetch_status_updates():
+    status_items = []
     
-    # 1. Generate Vendor Buttons HTML
-    vendor_buttons_html = f'<button id="btn-All" class="filter-btn active" onclick="filter(\'All\')">All Vendors</button>'
-    for k in VENDORS.keys():
-        vendor_buttons_html += f'<button id="btn-{k}" class="filter-btn" onclick="filter(\'{k}\')">{k}</button>'
+    # 1. Fetch Azure Status (Global Outages)
+    try:
+        r = requests.get(AZURE_STATUS_RSS, timeout=5)
+        root = ET.fromstring(r.content)
+        for item in root.findall('./channel/item')[:5]:
+            status_items.append({
+                "type": "Azure Outage",
+                "title": item.find('title').text,
+                "desc": item.find('description').text,
+                "date": item.find('pubDate').text[:16],
+                "link": item.find('link').text,
+                "severity": "critical" 
+            })
+    except Exception as e: print(f"Azure RSS Error: {e}")
 
-    # 2. Generate EOL List HTML
-    eol_list_html = ""
+    # 2. Fetch Windows Known Issues (Microsoft Learn)
+    try:
+        r = requests.get(WINDOWS_HEALTH_RSS, timeout=5)
+        root = ET.fromstring(r.content)
+        for item in root.findall('./channel/item')[:8]:
+            title = item.find('title').text
+            # Only keep if it looks like a known issue article
+            if "known issue" in title.lower() or "status" in title.lower():
+                status_items.append({
+                    "type": "Known Issue",
+                    "title": title,
+                    "desc": item.find('description').text[:200] + "...",
+                    "date": item.find('pubDate').text[:16],
+                    "link": item.find('link').text,
+                    "severity": "warning"
+                })
+    except Exception as e: print(f"Windows RSS Error: {e}")
+            
+    return status_items
+
+def generate_html(vulns, eol, news, status):
+    # --- PRE-CALCULATE HTML TO AVOID F-STRING ERRORS ---
+    vendor_buttons = f'<button id="btn-All" class="filter-btn active" onclick="filter(\'All\')">All Vendors</button>'
+    for k in VENDORS.keys():
+        vendor_buttons += f'<button id="btn-{k}" class="filter-btn" onclick="filter(\'{k}\')">{k}</button>'
+
+    eol_list = ""
     for i in eol:
-        eol_list_html += f'<div class="eol-item st-{i["status"]}"><span>{i["product"]}</span><span class="eol-date">{i["eol"]}</span></div>'
+        eol_list += f'<div class="eol-item st-{i["status"]}"><span>{i["product"]}</span><span class="eol-date">{i["eol"]}</span></div>'
 
     css = """
-        :root { --bg: #f0f2f5; --sidebar: #0f172a; --card: #ffffff; --text: #334155; --accent: #2563eb; --critical: #d13438; }
+        :root { --bg: #f1f5f9; --sidebar: #0f172a; --card: #ffffff; --text: #334155; --accent: #2563eb; }
         body { font-family: 'Segoe UI', system-ui, sans-serif; margin: 0; padding: 0; background: var(--bg); color: var(--text); display: flex; min-height: 100vh; }
         .sidebar { width: 300px; background: var(--sidebar); color: #e2e8f0; padding: 2rem; position: fixed; height: 100%; overflow-y: auto; flex-shrink: 0; }
-        .sidebar h1 { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2rem; border-bottom: 1px solid #334155; padding-bottom: 1rem; color: #fff; }
-        .section-label { font-size: 0.75rem; color: #94a3b8; margin: 20px 0 10px 0; font-weight: bold; letter-spacing: 0.5px; }
-        .filter-btn { display: block; width: 100%; padding: 10px; margin-bottom: 5px; background: #1e293b; border: 1px solid #334155; color: #cbd5e1; text-align: left; cursor: pointer; border-radius: 6px; transition: 0.2s; }
+        .sidebar h1 { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2rem; border-bottom: 1px solid #334155; padding-bottom: 1rem; color: white; }
+        .section-label { font-size: 0.75rem; color: #94a3b8; margin: 20px 0 10px 0; font-weight: bold; }
+        .filter-btn { display: block; width: 100%; padding: 10px; margin-bottom: 5px; background: #1e293b; border: 1px solid #334155; color: #cbd5e1; text-align: left; cursor: pointer; border-radius: 6px; }
         .filter-btn:hover, .filter-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
-        .eol-item { font-size: 0.85rem; padding: 8px 0; border-bottom: 1px solid #334155; display: flex; justify-content: space-between; align-items: center; }
+        .eol-item { font-size: 0.85rem; padding: 8px 0; border-bottom: 1px solid #334155; display: flex; justify-content: space-between; }
         .eol-date { font-family: monospace; opacity: 0.8; font-size: 0.8rem; }
         .st-warning { color: #f59e0b; } .st-expired { text-decoration: line-through; opacity: 0.5; } .st-ok { color: #10b981; }
+        
         .main { margin-left: 300px; padding: 2rem 3rem; width: 100%; }
         .tab-nav { display: flex; gap: 20px; margin-bottom: 20px; border-bottom: 2px solid #e2e8f0; }
         .tab-btn { padding: 10px 20px; cursor: pointer; font-weight: 600; color: #64748b; border-bottom: 3px solid transparent; }
         .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
+        
         .grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); }
-        .card { background: var(--card); padding: 1.5rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); border-left: 5px solid #ccc; transition: transform 0.2s; position: relative; }
-        .card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .card { background: var(--card); padding: 1.5rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); border-left: 5px solid #ccc; position: relative; }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: 0.2s; }
         .card.vendor-Microsoft { border-left-color: #0078d4; }
         .card.vendor-Cisco { border-left-color: #1ba0d7; }
         .card.vendor-Citrix { border-left-color: #d13438; }
         .tag { background: #f1f5f9; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: #475569; }
         .cve-title { display: block; color: var(--accent); font-weight: 700; font-size: 1.05rem; margin: 10px 0; text-decoration: none; }
-        .cve-title:hover { text-decoration: underline; }
         .kql-box { margin-top: 15px; background: #f8fafc; padding: 10px; border: 1px solid #e2e8f0; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; }
         .kql-code { font-family: monospace; font-size: 0.75rem; color: #334155; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 80%; }
         .copy-btn { background: white; border: 1px solid #cbd5e1; cursor: pointer; padding: 4px 8px; font-size: 0.7rem; border-radius: 4px; }
-        .copy-btn:hover { background: #e2e8f0; }
-        .news-item { background: white; padding: 15px; margin-bottom: 10px; border-radius: 6px; border-left: 3px solid #334155; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
-        .news-source { font-size: 0.7rem; font-weight: bold; color: #64748b; text-transform: uppercase; }
-        .news-link { text-decoration: none; color: #1e293b; font-weight: 600; font-size: 1.1rem; display: block; margin: 5px 0; }
-        .news-link:hover { color: var(--accent); }
+        
+        /* Status & News Items */
+        .list-item { background: white; padding: 15px; margin-bottom: 10px; border-radius: 6px; border-left: 4px solid #334155; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+        .status-critical { border-left-color: #ef4444; }
+        .status-warning { border-left-color: #f59e0b; }
+        .meta { font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: bold; margin-bottom: 5px; display: block; }
+        .item-link { text-decoration: none; color: #1e293b; font-weight: 600; font-size: 1.1rem; display: block; margin-bottom: 5px; }
+        .item-desc { font-size: 0.9rem; color: #475569; line-height: 1.5; }
+        
         @media (max-width: 1000px) { body { display: block; } .sidebar { width: auto; position: relative; height: auto; } .main { margin: 0; padding: 1rem; } }
     """
 
@@ -209,93 +224,77 @@ def generate_html(vulns, eol, news):
             function copyKql(cve) {{
                 const query = "DeviceTvmSoftwareVulnerabilities | where CveId == '" + cve + "' | summarize count() by DeviceName";
                 navigator.clipboard.writeText(query);
-                alert("KQL Copied for " + cve);
+                alert("KQL Copied");
             }}
         </script>
     </head>
     <body>
         <div class="sidebar">
             <h1>MSP Threat Intel</h1>
-            
             <div class="section-label">VULNERABILITY FILTER</div>
-            {vendor_buttons_html}
-            
+            {vendor_buttons}
             <div class="section-label">LIFECYCLE TRACKER</div>
-            {eol_list_html}
+            {eol_list}
         </div>
         
         <div class="main">
             <div class="tab-nav">
-                <div id="tab-btn-vulns" class="tab-btn active" onclick="switchTab('vulns')">Active Exploits (CISA)</div>
-                <div id="tab-btn-news" class="tab-btn" onclick="switchTab('news')">Latest Intel (No Fluff)</div>
+                <div id="tab-btn-vulns" class="tab-btn active" onclick="switchTab('vulns')">Active Exploits</div>
+                <div id="tab-btn-status" class="tab-btn" onclick="switchTab('status')">Outages & Known Issues</div>
+                <div id="tab-btn-news" class="tab-btn" onclick="switchTab('news')">Intel Feed</div>
             </div>
             
             <div id="vulns" class="tab-content active">
                 <div class="grid">
     """
     
-    # Generate Vulnerability Cards
     for v in vulns:
         v_cls = v['ui_category'].split()[0] if v['ui_category'] else 'Other'
-        kql_block = ""
+        kql = ""
         if v.get('kql'):
-            kql_block = f"""
-            <div class="kql-box">
-                <div class="kql-code">KQL: {v['kql']}</div>
-                <button class="copy-btn" onclick="copyKql('{v['cveID']}')">Copy</button>
-            </div>
-            """
-            
+            kql = f'<div class="kql-box"><div class="kql-code">KQL: {v["kql"]}</div><button class="copy-btn" onclick="copyKql(\'{v["cveID"]}\')">Copy</button></div>'
         html += f"""
         <div class="card vendor-{v_cls}" data-vendor="{v['ui_category']}">
-            <span class="tag">{v['ui_category']}</span>
-            <span class="tag" style="float:right">{v['dateAdded']}</span>
+            <span class="tag">{v['ui_category']}</span><span class="tag" style="float:right">{v['dateAdded']}</span>
             <a href="{v['link']}" target="_blank" class="cve-title">{v['vulnerabilityName']} ({v['cveID']}) ↗</a>
             <p style="font-size:0.9rem; color:#475569;">{v['shortDescription']}</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
-                <strong>ACTION:</strong> {v['requiredAction']}
-            </div>
-            {kql_block}
-        </div>
-        """
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> {v['requiredAction']}</div>
+            {kql}
+        </div>"""
 
-    html += """
-                </div>
-            </div>
-            
-            <div id="news" class="tab-content">
-                <h3 style="color:#0f172a; margin-top:0;">Curated Cyber Security News (Filtered)</h3>
-    """
+    html += """</div></div><div id="status" class="tab-content"><h3>Live Service Status (Public Feeds)</h3>"""
     
-    # Generate News Items
+    # Status Items
+    if not status: html += "<p>No active major outages or known issues found.</p>"
+    for s in status:
+        html += f"""
+        <div class="list-item status-{s['severity']}">
+            <span class="meta" style="color:{'#ef4444' if s['severity']=='critical' else '#f59e0b'}">{s['type']} • {s['date']}</span>
+            <a href="{s['link']}" target="_blank" class="item-link">{s['title']} ↗</a>
+            <div class="item-desc">{s['desc']}</div>
+        </div>"""
+
+    html += """</div><div id="news" class="tab-content"><h3>Curated Security News</h3>"""
+    
+    # News Items
     for n in news:
         html += f"""
-        <div class="news-item">
-            <div class="news-source">{n['source']} • {n['date']}</div>
-            <a href="{n['link']}" target="_blank" class="news-link">{n['title']} ↗</a>
-        </div>
-        """
+        <div class="list-item">
+            <span class="meta">{n['source']} • {n['date']}</span>
+            <a href="{n['link']}" target="_blank" class="item-link">{n['title']} ↗</a>
+        </div>"""
 
-    html += """
-            </div>
-        </div>
-    </body>
-    </html>
-    """
+    html += "</div></div></body></html>"
     return html
 
 if __name__ == "__main__":
     if not os.path.exists(OUTPUT_DIR): os.makedirs(OUTPUT_DIR)
-    
-    print("Fetching CISA...")
+    print("Fetching Data...")
     vulns = fetch_cisa_data()
-    
-    print("Fetching EOL...")
     eol = fetch_eol_data()
-    
-    print("Fetching News...")
     news = fetch_security_news()
+    status = fetch_status_updates()
     
     with open(OUTPUT_FILE, 'w') as f:
-        f.write(generate_html(vulns, eol, news))
-    print("Done.")
+        f.write(generate_html(vulns, eol, news, status))
+    print("Dashboard Updated.")
