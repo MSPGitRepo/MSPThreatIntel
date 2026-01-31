@@ -1,0 +1,24 @@
+name: Update Threat Intel
+
+on:
+  schedule:
+    - cron: '0 */4 * * *' # Updates every 4 hours
+  workflow_dispatch:      # Allows manual "Run Now" button
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - run: pip install -r requirements.txt
+      - run: python scripts/generate.py
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
