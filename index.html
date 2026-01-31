@@ -6,806 +6,971 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>MSP Threat Intel</title>
         <style>
-        :root { --bg: #f8f9fa; --sidebar: #1e293b; --card: #ffffff; --text: #334155; --accent: #0f172a; --highlight: #2563eb; --critical: #ef4444; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background: var(--bg); color: var(--text); display: flex; min-height: 100vh; }
-        
-        /* Sidebar */
-        .sidebar { width: 280px; background: var(--sidebar); color: white; padding: 2rem; position: fixed; height: 100%; overflow-y: auto; }
-        .sidebar h1 { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2rem; border-bottom: 1px solid #334155; padding-bottom: 1rem; }
-        .filter-btn { display: block; width: 100%; padding: 12px; margin-bottom: 8px; background: #334155; border: none; color: white; text-align: left; cursor: pointer; border-radius: 6px; transition: 0.2s; }
-        .filter-btn:hover, .filter-btn.active { background: var(--highlight); }
-        .eol-section { margin-top: 3rem; }
-        .eol-item { font-size: 0.85rem; padding: 8px 0; border-bottom: 1px solid #334155; }
-        .eol-date { display: block; font-size: 0.75rem; opacity: 0.7; margin-top: 2px; }
+        :root { --bg: #f0f2f5; --sidebar: #0f172a; --card: #ffffff; --text: #334155; --accent: #2563eb; --critical: #d13438; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; margin: 0; padding: 0; background: var(--bg); color: var(--text); display: flex; min-height: 100vh; }
+        .sidebar { width: 300px; background: var(--sidebar); color: #e2e8f0; padding: 2rem; position: fixed; height: 100%; overflow-y: auto; flex-shrink: 0; }
+        .sidebar h1 { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2rem; border-bottom: 1px solid #334155; padding-bottom: 1rem; color: #fff; }
+        .section-label { font-size: 0.75rem; color: #94a3b8; margin: 20px 0 10px 0; font-weight: bold; letter-spacing: 0.5px; }
+        .filter-btn { display: block; width: 100%; padding: 10px; margin-bottom: 5px; background: #1e293b; border: 1px solid #334155; color: #cbd5e1; text-align: left; cursor: pointer; border-radius: 6px; transition: 0.2s; }
+        .filter-btn:hover, .filter-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
+        .eol-item { font-size: 0.85rem; padding: 8px 0; border-bottom: 1px solid #334155; display: flex; justify-content: space-between; align-items: center; }
+        .eol-date { font-family: monospace; opacity: 0.8; font-size: 0.8rem; }
         .st-warning { color: #f59e0b; } .st-expired { text-decoration: line-through; opacity: 0.5; } .st-ok { color: #10b981; }
-
-        /* Main Content */
-        .main { margin-left: 280px; padding: 2rem 3rem; width: 100%; }
-        .header { margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; }
-        .last-updated { font-size: 0.9rem; color: #64748b; }
-        
-        /* Cards */
-        .grid { display: grid; gap: 1.5rem; }
-        .card { background: var(--card); padding: 1.5rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border-left: 4px solid var(--highlight); transition: transform 0.2s; }
-        .card:hover { transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .main { margin-left: 300px; padding: 2rem 3rem; width: 100%; }
+        .tab-nav { display: flex; gap: 20px; margin-bottom: 20px; border-bottom: 2px solid #e2e8f0; }
+        .tab-btn { padding: 10px 20px; cursor: pointer; font-weight: 600; color: #64748b; border-bottom: 3px solid transparent; }
+        .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); }
+        .card { background: var(--card); padding: 1.5rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); border-left: 5px solid #ccc; transition: transform 0.2s; position: relative; }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
         .card.vendor-Microsoft { border-left-color: #0078d4; }
         .card.vendor-Cisco { border-left-color: #1ba0d7; }
         .card.vendor-Citrix { border-left-color: #d13438; }
-        .card.vendor-Palo { border-left-color: #f97316; }
-        
-        .card-header { display: flex; justify-content: space-between; margin-bottom: 1rem; }
-        .tag { background: #f1f5f9; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
-        .cve-link { color: var(--highlight); text-decoration: none; font-weight: 700; font-size: 1.1rem; }
-        .cve-link:hover { text-decoration: underline; }
-        .desc { font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem; color: #475569; }
-        .action { background: #eff6ff; padding: 12px; border-radius: 6px; font-size: 0.9rem; border: 1px solid #dbeafe; }
-        
-        /* Mobile */
-        @media (max-width: 900px) { body { display: block; } .sidebar { position: relative; width: auto; height: auto; } .main { margin: 0; padding: 1rem; } }
+        .tag { background: #f1f5f9; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: #475569; }
+        .cve-title { display: block; color: var(--accent); font-weight: 700; font-size: 1.05rem; margin: 10px 0; text-decoration: none; }
+        .cve-title:hover { text-decoration: underline; }
+        .kql-box { margin-top: 15px; background: #f8fafc; padding: 10px; border: 1px solid #e2e8f0; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; }
+        .kql-code { font-family: monospace; font-size: 0.75rem; color: #334155; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 80%; }
+        .copy-btn { background: white; border: 1px solid #cbd5e1; cursor: pointer; padding: 4px 8px; font-size: 0.7rem; border-radius: 4px; }
+        .copy-btn:hover { background: #e2e8f0; }
+        .news-item { background: white; padding: 15px; margin-bottom: 10px; border-radius: 6px; border-left: 3px solid #334155; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+        .news-source { font-size: 0.7rem; font-weight: bold; color: #64748b; text-transform: uppercase; }
+        .news-link { text-decoration: none; color: #1e293b; font-weight: 600; font-size: 1.1rem; display: block; margin: 5px 0; }
+        .news-link:hover { color: var(--accent); }
+        @media (max-width: 1000px) { body { display: block; } .sidebar { width: auto; position: relative; height: auto; } .main { margin: 0; padding: 1rem; } }
     </style>
         <script>
             function filter(vendor) {
-                const cards = document.querySelectorAll('.card');
-                const buttons = document.querySelectorAll('.filter-btn');
-                
-                // Update buttons
-                buttons.forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
                 document.getElementById('btn-'+vendor).classList.add('active');
-                
-                // Filter cards
-                cards.forEach(card => {
-                    if (vendor === 'All' || card.dataset.vendor === vendor) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
+                document.querySelectorAll('.card').forEach(card => {
+                    card.style.display = (vendor === 'All' || card.dataset.vendor === vendor) ? 'block' : 'none';
                 });
+            }
+            function switchTab(tabId) {
+                document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.getElementById(tabId).classList.add('active');
+                document.getElementById('tab-btn-'+tabId).classList.add('active');
+            }
+            function copyKql(cve) {
+                const query = "DeviceTvmSoftwareVulnerabilities | where CveId == '" + cve + "' | summarize count() by DeviceName";
+                navigator.clipboard.writeText(query);
+                alert("KQL Copied for " + cve);
             }
         </script>
     </head>
     <body>
         <div class="sidebar">
-            <h1>Threat Intel</h1>
+            <h1>MSP Threat Intel</h1>
             
-            <p style="color:#94a3b8; font-size:0.8rem; margin-bottom:10px;">VULNERABILITY FILTER</p>
-            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors</button>
-            <button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft</button>
-            <button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco</button>
-            <button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix</button>
-            <button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto</button>
+            <div class="section-label">VULNERABILITY FILTER</div>
+            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors</button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft</button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco</button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix</button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto</button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point</button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet</button>
             
-            <div class="eol-section">
-                <p style="color:#94a3b8; font-size:0.8rem; margin-bottom:10px;">LIFECYCLE (MICROSOFT)</p>
-                <div class="eol-item st-expired"><strong>Office / M365 Apps 2019</strong><span class="eol-date">2025-10-14</span></div><div class="eol-item st-expired"><strong>Office / M365 Apps 2016</strong><span class="eol-date">2025-10-14</span></div><div class="eol-item st-expired"><strong>Windows Server 23h2-ac</strong><span class="eol-date">2025-10-24</span></div><div class="eol-item st-warning"><strong>Office / M365 Apps 2021</strong><span class="eol-date">2026-10-13</span></div><div class="eol-item st-ok"><strong>Windows Desktop 11-25h2-w</strong><span class="eol-date">2027-10-12</span></div><div class="eol-item st-ok"><strong>Windows Desktop 11-24h2-e</strong><span class="eol-date">2027-10-12</span></div><div class="eol-item st-ok"><strong>Windows Desktop 11-25h2-e</strong><span class="eol-date">2028-10-10</span></div><div class="eol-item st-ok"><strong>Windows Desktop 11-24h2-e-lts</strong><span class="eol-date">2029-10-09</span></div><div class="eol-item st-ok"><strong>Office / M365 Apps 2024</strong><span class="eol-date">2029-10-09</span></div><div class="eol-item st-ok"><strong>Office / M365 Apps 2024-ltsc</strong><span class="eol-date">2029-10-09</span></div><div class="eol-item st-ok"><strong>Windows Server 2022</strong><span class="eol-date">2031-10-14</span></div><div class="eol-item st-ok"><strong>Windows Desktop 11-24h2-iot-lts</strong><span class="eol-date">2034-10-10</span></div><div class="eol-item st-ok"><strong>Windows Server 2025</strong><span class="eol-date">2034-10-10</span></div>
-            </div>
+            <div class="section-label">LIFECYCLE TRACKER</div>
+            <div class="eol-item st-expired"><span>Office / M365 2019</span><span class="eol-date">2025-10-14</span></div><div class="eol-item st-expired"><span>Office / M365 2016</span><span class="eol-date">2025-10-14</span></div><div class="eol-item st-expired"><span>Windows Server 23h2-ac</span><span class="eol-date">2025-10-24</span></div><div class="eol-item st-warning"><span>SharePoint Server 2019</span><span class="eol-date">2026-07-14</span></div><div class="eol-item st-warning"><span>SharePoint Server 2016</span><span class="eol-date">2026-07-14</span></div><div class="eol-item st-warning"><span>Office / M365 2021</span><span class="eol-date">2026-10-13</span></div><div class="eol-item st-ok"><span>Windows Desktop 11-25h2-w</span><span class="eol-date">2027-10-12</span></div><div class="eol-item st-ok"><span>Windows Desktop 11-24h2-e</span><span class="eol-date">2027-10-12</span></div><div class="eol-item st-ok"><span>Windows Desktop 11-25h2-e</span><span class="eol-date">2028-10-10</span></div><div class="eol-item st-ok"><span>Windows Desktop 11-24h2-e-lts</span><span class="eol-date">2029-10-09</span></div><div class="eol-item st-ok"><span>Office / M365 2024</span><span class="eol-date">2029-10-09</span></div><div class="eol-item st-ok"><span>Office / M365 2024-ltsc</span><span class="eol-date">2029-10-09</span></div><div class="eol-item st-ok"><span>Windows Server 2022</span><span class="eol-date">2031-10-14</span></div><div class="eol-item st-ok"><span>Windows Desktop 11-24h2-iot-lts</span><span class="eol-date">2034-10-10</span></div><div class="eol-item st-ok"><span>Windows Server 2025</span><span class="eol-date">2034-10-10</span></div>
         </div>
         
         <div class="main">
-            <div class="header">
-                <h2>Active Exploitations (CISA KEV)</h2>
-                <div class="last-updated">Updated: 2026-01-31 12:00 UTC</div>
+            <div class="tab-nav">
+                <div id="tab-btn-vulns" class="tab-btn active" onclick="switchTab('vulns')">Active Exploits (CISA)</div>
+                <div id="tab-btn-news" class="tab-btn" onclick="switchTab('news')">Latest Intel (No Fluff)</div>
             </div>
             
-            <div class="grid">
+            <div id="vulns" class="tab-content active">
+                <div class="grid">
     
+        <div class="card vendor-Fortinet" data-vendor="Fortinet">
+            <span class="tag">Fortinet</span>
+            <span class="tag" style="float:right">2026-01-27</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-24858" target="_blank" class="cve-title">Fortinet Multiple Products Authentication Bypass Using an Alternate Path or Channel Vulnerability (CVE-2026-24858) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Fortinet FortiAnalyzer, FortiManager, FortiOS, and FortiProxy contain an authentication bypass using an alternate path or channel that could allow an attacker with a FortiCloud account and a registered device to log into other devices registered to other accounts, if FortiCloud SSO authentication is enabled on those devices.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            </div>
+            
+        </div>
+        
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2026-01-26</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2026-01-26</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-21509" target="_blank" class="cve-title">Microsoft Office Security Feature Bypass Vulnerability (CVE-2026-21509) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Office contains a security feature bypass vulnerability in which reliance on untrusted inputs in a security decision in Microsoft Office could allow an unauthorized attacker to bypass a security feature locally. Some of the impacted product(s) could be end-of-life (EoL) and/or end-of-service (EoS). Users are advised to discontinue use and/or transition to a supported version.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-21509" target="_blank" class="cve-link">Microsoft Office Security Feature Bypass Vulnerability (CVE-2026-21509) ↗</a>
-            <p class="desc">Microsoft Office contains a security feature bypass vulnerability in which reliance on untrusted inputs in a security decision in Microsoft Office could allow an unauthorized attacker to bypass a security feature locally. Some of the impacted product(s) could be end-of-life (EoL) and/or end-of-service (EoS). Users are advised to discontinue use and/or transition to a supported version.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2026-21509' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2026-21509')">Copy</button>
             </div>
+            
         </div>
         
         <div class="card vendor-Cisco" data-vendor="Cisco">
-            <div class="card-header">
-                <span class="tag">Cisco</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2026-01-21</span>
+            <span class="tag">Cisco</span>
+            <span class="tag" style="float:right">2026-01-21</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20045" target="_blank" class="cve-title">Cisco Unified Communications Products Code Injection Vulnerability (CVE-2026-20045) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Cisco Unified Communications Manager (Unified CM), Cisco Unified Communications Manager Session Management Edition (Unified CM SME), Cisco Unified Communications Manager IM & Presence Service (Unified CM IM&P), Cisco Unity Connection, and Cisco Webex Calling Dedicated Instance contain a code injection vulnerability that could allow the attacker to obtain user-level access to the underlying operating system and then elevate privileges to root.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20045" target="_blank" class="cve-link">Cisco Unified Communications Products Code Injection Vulnerability (CVE-2026-20045) ↗</a>
-            <p class="desc">Cisco Unified Communications Manager (Unified CM), Cisco Unified Communications Manager Session Management Edition (Unified CM SME), Cisco Unified Communications Manager IM & Presence Service (Unified CM IM&P), Cisco Unity Connection, and Cisco Webex Calling Dedicated Instance contain a code injection vulnerability that could allow the attacker to obtain user-level access to the underlying operating system and then elevate privileges to root.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
-            </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2026-01-13</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2026-01-13</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20805" target="_blank" class="cve-title">Microsoft Windows Information Disclosure Vulnerability (CVE-2026-20805) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows Desktop Windows Manager contains an information disclosure vulnerability that allows an authorized attacker to disclose information locally.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20805" target="_blank" class="cve-link">Microsoft Windows Information Disclosure Vulnerability (CVE-2026-20805) ↗</a>
-            <p class="desc">Microsoft Windows Desktop Windows Manager contains an information disclosure vulnerability that allows an authorized attacker to disclose information locally.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2026-20805' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2026-20805')">Copy</button>
             </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2026-01-07</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2026-01-07</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2009-0556" target="_blank" class="cve-title">Microsoft Office PowerPoint Code Injection Vulnerability (CVE-2009-0556) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Office PowerPoint contains a code injection vulnerability that allows remote attackers to execute arbitrary code via a PowerPoint file with an OutlineTextRefAtom containing an invalid index value that triggers memory corruption.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2009-0556" target="_blank" class="cve-link">Microsoft Office PowerPoint Code Injection Vulnerability (CVE-2009-0556) ↗</a>
-            <p class="desc">Microsoft Office PowerPoint contains a code injection vulnerability that allows remote attackers to execute arbitrary code via a PowerPoint file with an OutlineTextRefAtom containing an invalid index value that triggers memory corruption.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2009-0556' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2009-0556')">Copy</button>
             </div>
+            
         </div>
         
         <div class="card vendor-Cisco" data-vendor="Cisco">
-            <div class="card-header">
-                <span class="tag">Cisco</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-12-17</span>
+            <span class="tag">Cisco</span>
+            <span class="tag" style="float:right">2025-12-17</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-20393" target="_blank" class="cve-title">Cisco Multiple Products Improper Input Validation Vulnerability (CVE-2025-20393) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Cisco Secure Email Gateway, Secure Email, AsyncOS Software, and Web Manager appliances contains an improper input validation vulnerability that allows threat actors to execute arbitrary commands with root privileges on the underlying operating system of an affected appliance.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-20393" target="_blank" class="cve-link">Cisco Multiple Products Improper Input Validation Vulnerability (CVE-2025-20393) ↗</a>
-            <p class="desc">Cisco Secure Email Gateway, Secure Email, AsyncOS Software, and Web Manager appliances contains an improper input validation vulnerability that allows threat actors to execute arbitrary commands with root privileges on the underlying operating system of an affected appliance.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+        </div>
+        
+        <div class="card vendor-Fortinet" data-vendor="Fortinet">
+            <span class="tag">Fortinet</span>
+            <span class="tag" style="float:right">2025-12-16</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-59718" target="_blank" class="cve-title">Fortinet Multiple Products Improper Verification of Cryptographic Signature Vulnerability (CVE-2025-59718) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Fortinet FortiOS, FortiSwitchMaster, FortiProxy, and FortiWeb contain an improper verification of cryptographic signature vulnerability that may allow an unauthenticated attacker to bypass the FortiCloud SSO login authentication via a crafted SAML message. Please be aware that CVE-2025-59719 pertains to the same problem and is mentioned in the same vendor advisory. Ensure to apply all patches mentioned in the advisory.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-12-09</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2025-12-09</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-62221" target="_blank" class="cve-title">Microsoft Windows Use After Free Vulnerability (CVE-2025-62221) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows Cloud Files Mini Filter Driver contains a use after free vulnerability that can allow an authorized attacker to elevate privileges locally.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-62221" target="_blank" class="cve-link">Microsoft Windows Use After Free Vulnerability (CVE-2025-62221) ↗</a>
-            <p class="desc">Microsoft Windows Cloud Files Mini Filter Driver contains a use after free vulnerability that can allow an authorized attacker to elevate privileges locally.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2025-62221' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2025-62221')">Copy</button>
             </div>
+            
+        </div>
+        
+        <div class="card vendor-Fortinet" data-vendor="Fortinet">
+            <span class="tag">Fortinet</span>
+            <span class="tag" style="float:right">2025-11-18</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-58034" target="_blank" class="cve-title">Fortinet FortiWeb OS Command Injection Vulnerability (CVE-2025-58034) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Fortinet FortiWeb contains an OS command Injection vulnerability that may allow an authenticated attacker to execute unauthorized code on the underlying system via crafted HTTP requests or CLI commands.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            </div>
+            
+        </div>
+        
+        <div class="card vendor-Fortinet" data-vendor="Fortinet">
+            <span class="tag">Fortinet</span>
+            <span class="tag" style="float:right">2025-11-14</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-64446" target="_blank" class="cve-title">Fortinet FortiWeb Path Traversal Vulnerability (CVE-2025-64446) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Fortinet FortiWeb contains a relative path traversal vulnerability that may allow an unauthenticated attacker to execute administrative commands on the system via crafted HTTP or HTTPS requests.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-11-12</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2025-11-12</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-62215" target="_blank" class="cve-title">Microsoft Windows Race Condition Vulnerability (CVE-2025-62215) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows Kernel contains a race condition vulnerability that allows a local attacker with low-level privileges to escalate privileges. Successful exploitation of this vulnerability could enable the attacker to gain SYSTEM-level access.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-62215" target="_blank" class="cve-link">Microsoft Windows Race Condition Vulnerability (CVE-2025-62215) ↗</a>
-            <p class="desc">Microsoft Windows Kernel contains a race condition vulnerability that allows a local attacker with low-level privileges to escalate privileges. Successful exploitation of this vulnerability could enable the attacker to gain SYSTEM-level access.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2025-62215' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2025-62215')">Copy</button>
             </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-10-24</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2025-10-24</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-59287" target="_blank" class="cve-title">Microsoft Windows Server Update Service (WSUS) Deserialization of Untrusted Data Vulnerability (CVE-2025-59287) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows Server Update Service (WSUS) contains a deserialization of untrusted data vulnerability that allows for remote code execution.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-59287" target="_blank" class="cve-link">Microsoft Windows Server Update Service (WSUS) Deserialization of Untrusted Data Vulnerability (CVE-2025-59287) ↗</a>
-            <p class="desc">Microsoft Windows Server Update Service (WSUS) contains a deserialization of untrusted data vulnerability that allows for remote code execution.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2025-59287' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2025-59287')">Copy</button>
             </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-10-20</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2025-10-20</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-33073" target="_blank" class="cve-title">Microsoft Windows SMB Client Improper Access Control Vulnerability (CVE-2025-33073) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows SMB Client contains an improper access control vulnerability that could allow for privilege escalation. An attacker could execute a specially crafted malicious script to coerce the victim machine to connect back to the attack system using SMB and authenticate.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-33073" target="_blank" class="cve-link">Microsoft Windows SMB Client Improper Access Control Vulnerability (CVE-2025-33073) ↗</a>
-            <p class="desc">Microsoft Windows SMB Client contains an improper access control vulnerability that could allow for privilege escalation. An attacker could execute a specially crafted malicious script to coerce the victim machine to connect back to the attack system using SMB and authenticate.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2025-33073' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2025-33073')">Copy</button>
             </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-10-14</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2025-10-14</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-24990" target="_blank" class="cve-title">Microsoft Windows Untrusted Pointer Dereference Vulnerability (CVE-2025-24990) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows Agere Modem Driver contains an untrusted pointer dereference vulnerability that allows for privilege escalation. An attacker who successfully exploited this vulnerability could gain administrator privileges.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-24990" target="_blank" class="cve-link">Microsoft Windows Untrusted Pointer Dereference Vulnerability (CVE-2025-24990) ↗</a>
-            <p class="desc">Microsoft Windows Agere Modem Driver contains an untrusted pointer dereference vulnerability that allows for privilege escalation. An attacker who successfully exploited this vulnerability could gain administrator privileges.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2025-24990' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2025-24990')">Copy</button>
             </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-10-14</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2025-10-14</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-59230" target="_blank" class="cve-title">Microsoft Windows Improper Access Control Vulnerability (CVE-2025-59230) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows contains an improper access control vulnerability in Windows Remote Access Connection Manager which could allow an authorized attacker to elevate privileges locally.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-59230" target="_blank" class="cve-link">Microsoft Windows Improper Access Control Vulnerability (CVE-2025-59230) ↗</a>
-            <p class="desc">Microsoft Windows contains an improper access control vulnerability in Windows Remote Access Connection Manager which could allow an authorized attacker to elevate privileges locally.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2025-59230' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2025-59230')">Copy</button>
             </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-10-06</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2025-10-06</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2010-3962" target="_blank" class="cve-title">Microsoft Internet Explorer Uninitialized Memory Corruption Vulnerability (CVE-2010-3962) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Internet Explorer contains an uninitialized memory corruption vulnerability that could allow for remote code execution. The impacted product could be end-of-life (EoL) and/or end-of-service (EoS). Users should discontinue product utilization.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2010-3962" target="_blank" class="cve-link">Microsoft Internet Explorer Uninitialized Memory Corruption Vulnerability (CVE-2010-3962) ↗</a>
-            <p class="desc">Microsoft Internet Explorer contains an uninitialized memory corruption vulnerability that could allow for remote code execution. The impacted product could be end-of-life (EoL) and/or end-of-service (EoS). Users should discontinue product utilization.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2010-3962' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2010-3962')">Copy</button>
             </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-10-06</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2025-10-06</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2021-43226" target="_blank" class="cve-title">Microsoft Windows Privilege Escalation Vulnerability (CVE-2021-43226) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows Common Log File System Driver contains a privilege escalation vulnerability that could allow a local, privileged attacker to bypass certain security mechanisms.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2021-43226" target="_blank" class="cve-link">Microsoft Windows Privilege Escalation Vulnerability (CVE-2021-43226) ↗</a>
-            <p class="desc">Microsoft Windows Common Log File System Driver contains a privilege escalation vulnerability that could allow a local, privileged attacker to bypass certain security mechanisms.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2021-43226' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2021-43226')">Copy</button>
             </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-10-06</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2025-10-06</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2013-3918" target="_blank" class="cve-title">Microsoft Windows Out-of-Bounds Write Vulnerability (CVE-2013-3918) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows contains an out-of-bounds write vulnerability in the InformationCardSigninHelper Class ActiveX control, icardie.dll. An attacker could exploit the vulnerability by constructing a specially crafted webpage. When a user views the webpage, the vulnerability could allow remote code execution. An attacker who successfully exploited this vulnerability could gain the same user rights as the current user. The impacted product could be end-of-life (EoL) and/or end-of-service (EoS). Users should discontinue product utilization.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2013-3918" target="_blank" class="cve-link">Microsoft Windows Out-of-Bounds Write Vulnerability (CVE-2013-3918) ↗</a>
-            <p class="desc">Microsoft Windows contains an out-of-bounds write vulnerability in the InformationCardSigninHelper Class ActiveX control, icardie.dll. An attacker could exploit the vulnerability by constructing a specially crafted webpage. When a user views the webpage, the vulnerability could allow remote code execution. An attacker who successfully exploited this vulnerability could gain the same user rights as the current user. The impacted product could be end-of-life (EoL) and/or end-of-service (EoS). Users should discontinue product utilization.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2013-3918' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2013-3918')">Copy</button>
             </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-10-06</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2025-10-06</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2011-3402" target="_blank" class="cve-title">Microsoft Windows Remote Code Execution Vulnerability (CVE-2011-3402) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows Kernel contains an unspecified vulnerability in the TrueType font parsing engine in win32k.sys in the kernel-mode drivers that allows remote attackers to execute arbitrary code via crafted font data in a Word document or web page.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2011-3402" target="_blank" class="cve-link">Microsoft Windows Remote Code Execution Vulnerability (CVE-2011-3402) ↗</a>
-            <p class="desc">Microsoft Windows Kernel contains an unspecified vulnerability in the TrueType font parsing engine in win32k.sys in the kernel-mode drivers that allows remote attackers to execute arbitrary code via crafted font data in a Word document or web page.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2011-3402' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2011-3402')">Copy</button>
             </div>
+            
         </div>
         
         <div class="card vendor-Cisco" data-vendor="Cisco">
-            <div class="card-header">
-                <span class="tag">Cisco</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-09-29</span>
+            <span class="tag">Cisco</span>
+            <span class="tag" style="float:right">2025-09-29</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-20352" target="_blank" class="cve-title">Cisco IOS and IOS XE Software SNMP Denial of Service and Remote Code Execution Vulnerability (CVE-2025-20352) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Cisco IOS and IOS XE contains a stack-based buffer overflow vulnerability in the Simple Network Management Protocol (SNMP) subsystem that could allow for denial of service or remote code execution. A successful exploit could allow a low-privileged attacker to cause the affected system to reload, resulting in a DoS condition, or allow a high-privileged attacker to execute arbitrary code as the root user and obtain full control of the affected system.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-20352" target="_blank" class="cve-link">Cisco IOS and IOS XE Software SNMP Denial of Service and Remote Code Execution Vulnerability (CVE-2025-20352) ↗</a>
-            <p class="desc">Cisco IOS and IOS XE contains a stack-based buffer overflow vulnerability in the Simple Network Management Protocol (SNMP) subsystem that could allow for denial of service or remote code execution. A successful exploit could allow a low-privileged attacker to cause the affected system to reload, resulting in a DoS condition, or allow a high-privileged attacker to execute arbitrary code as the root user and obtain full control of the affected system.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
-            </div>
+            
         </div>
         
         <div class="card vendor-Cisco" data-vendor="Cisco">
-            <div class="card-header">
-                <span class="tag">Cisco</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-09-25</span>
+            <span class="tag">Cisco</span>
+            <span class="tag" style="float:right">2025-09-25</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-20362" target="_blank" class="cve-title">Cisco Secure Firewall Adaptive Security (ASA) Appliance and Secure Firewall Threat Defense (FTD) Missing Authorization Vulnerability (CVE-2025-20362) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Cisco Secure Firewall Adaptive Security (ASA) Appliance and Secure Firewall Threat Defense (FTD) Software VPN Web Server contain a missing authorization vulnerability. This vulnerability could be chained with CVE-2025-20333.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> The KEV due date refers to the deadline by which FCEB agencies are expected to review and begin implementing the guidance outlined in Emergency Directive (ED) 25-03 (URL listed below in Notes). Agencies must follow the mitigation steps provided by CISA (URL listed below in Notes) and vendor’s instructions (URL listed below in Notes). Adhere to the applicable BOD 22-01 guidance for cloud services or discontinue use of the product if mitigations are not available.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-20362" target="_blank" class="cve-link">Cisco Secure Firewall Adaptive Security (ASA) Appliance and Secure Firewall Threat Defense (FTD) Missing Authorization Vulnerability (CVE-2025-20362) ↗</a>
-            <p class="desc">Cisco Secure Firewall Adaptive Security (ASA) Appliance and Secure Firewall Threat Defense (FTD) Software VPN Web Server contain a missing authorization vulnerability. This vulnerability could be chained with CVE-2025-20333.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> The KEV due date refers to the deadline by which FCEB agencies are expected to review and begin implementing the guidance outlined in Emergency Directive (ED) 25-03 (URL listed below in Notes). Agencies must follow the mitigation steps provided by CISA (URL listed below in Notes) and vendor’s instructions (URL listed below in Notes). Adhere to the applicable BOD 22-01 guidance for cloud services or discontinue use of the product if mitigations are not available.
-            </div>
+            
         </div>
         
         <div class="card vendor-Cisco" data-vendor="Cisco">
-            <div class="card-header">
-                <span class="tag">Cisco</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-09-25</span>
+            <span class="tag">Cisco</span>
+            <span class="tag" style="float:right">2025-09-25</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-20333" target="_blank" class="cve-title">Cisco Secure Firewall Adaptive Security Appliance (ASA) and Secure Firewall Threat Defense (FTD) Buffer Overflow Vulnerability (CVE-2025-20333) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Cisco Secure Firewall Adaptive Security (ASA) Appliance and Secure Firewall Threat Defense (FTD) Software VPN Web Server contain a buffer overflow vulnerability that allows for remote code execution. This vulnerability could be chained with CVE-2025-20362.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> The KEV due date refers to the deadline by which FCEB agencies are expected to review and begin implementing the guidance outlined in Emergency Directive (ED) 25-03 (URL listed below in Notes). Agencies must follow the mitigation steps provided by CISA (URL listed below in Notes) and vendor’s instructions (URL listed below in Notes). Adhere to the applicable BOD 22-01 guidance for cloud services or discontinue use of the product if mitigations are not available.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-20333" target="_blank" class="cve-link">Cisco Secure Firewall Adaptive Security Appliance (ASA) and Secure Firewall Threat Defense (FTD) Buffer Overflow Vulnerability (CVE-2025-20333) ↗</a>
-            <p class="desc">Cisco Secure Firewall Adaptive Security (ASA) Appliance and Secure Firewall Threat Defense (FTD) Software VPN Web Server contain a buffer overflow vulnerability that allows for remote code execution. This vulnerability could be chained with CVE-2025-20362.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> The KEV due date refers to the deadline by which FCEB agencies are expected to review and begin implementing the guidance outlined in Emergency Directive (ED) 25-03 (URL listed below in Notes). Agencies must follow the mitigation steps provided by CISA (URL listed below in Notes) and vendor’s instructions (URL listed below in Notes). Adhere to the applicable BOD 22-01 guidance for cloud services or discontinue use of the product if mitigations are not available.
-            </div>
+            
         </div>
         
         <div class="card vendor-Citrix" data-vendor="Citrix">
-            <div class="card-header">
-                <span class="tag">Citrix</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-08-26</span>
+            <span class="tag">Citrix</span>
+            <span class="tag" style="float:right">2025-08-26</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-7775" target="_blank" class="cve-title">Citrix NetScaler Memory Overflow Vulnerability (CVE-2025-7775) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Citrix NetScaler ADC and NetScaler Gateway contain a memory overflow vulnerability that could allow for remote code execution and/or denial of service.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-7775" target="_blank" class="cve-link">Citrix NetScaler Memory Overflow Vulnerability (CVE-2025-7775) ↗</a>
-            <p class="desc">Citrix NetScaler ADC and NetScaler Gateway contain a memory overflow vulnerability that could allow for remote code execution and/or denial of service.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
-            </div>
+            
         </div>
         
         <div class="card vendor-Citrix" data-vendor="Citrix">
-            <div class="card-header">
-                <span class="tag">Citrix</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-08-25</span>
+            <span class="tag">Citrix</span>
+            <span class="tag" style="float:right">2025-08-25</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2024-8068" target="_blank" class="cve-title">Citrix Session Recording Improper Privilege Management Vulnerability (CVE-2024-8068) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Citrix Session Recording contains an improper privilege management vulnerability that could allow for privilege escalation to NetworkService Account access. An attacker must be an authenticated user in the same Windows Active Directory domain as the session recording server domain.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2024-8068" target="_blank" class="cve-link">Citrix Session Recording Improper Privilege Management Vulnerability (CVE-2024-8068) ↗</a>
-            <p class="desc">Citrix Session Recording contains an improper privilege management vulnerability that could allow for privilege escalation to NetworkService Account access. An attacker must be an authenticated user in the same Windows Active Directory domain as the session recording server domain.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
-            </div>
+            
         </div>
         
         <div class="card vendor-Citrix" data-vendor="Citrix">
-            <div class="card-header">
-                <span class="tag">Citrix</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-08-25</span>
+            <span class="tag">Citrix</span>
+            <span class="tag" style="float:right">2025-08-25</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2024-8069" target="_blank" class="cve-title">Citrix Session Recording Deserialization of Untrusted Data Vulnerability (CVE-2024-8069) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Citrix Session Recording contains a deserialization of untrusted data vulnerability that allows limited remote code execution with privilege of a NetworkService Account access. Attacker must be an authenticated user on the same intranet as the session recording server.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2024-8069" target="_blank" class="cve-link">Citrix Session Recording Deserialization of Untrusted Data Vulnerability (CVE-2024-8069) ↗</a>
-            <p class="desc">Citrix Session Recording contains a deserialization of untrusted data vulnerability that allows limited remote code execution with privilege of a NetworkService Account access. Attacker must be an authenticated user on the same intranet as the session recording server.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
-            </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-08-12</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2025-08-12</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2007-0671" target="_blank" class="cve-title">Microsoft Office Excel Remote Code Execution Vulnerability (CVE-2007-0671) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Office Excel contains a remote code execution vulnerability that can be exploited when a specially crafted Excel file is opened. This malicious file could be delivered as an email attachment or hosted on a malicious website. An attacker could leverage this vulnerability by creating a specially crafted Excel file, which, when opened, allowing an attacker to execute remote code on the affected system.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2007-0671" target="_blank" class="cve-link">Microsoft Office Excel Remote Code Execution Vulnerability (CVE-2007-0671) ↗</a>
-            <p class="desc">Microsoft Office Excel contains a remote code execution vulnerability that can be exploited when a specially crafted Excel file is opened. This malicious file could be delivered as an email attachment or hosted on a malicious website. An attacker could leverage this vulnerability by creating a specially crafted Excel file, which, when opened, allowing an attacker to execute remote code on the affected system.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2007-0671' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2007-0671')">Copy</button>
             </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-08-12</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2025-08-12</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2013-3893" target="_blank" class="cve-title">Microsoft Internet Explorer Resource Management Errors Vulnerability (CVE-2013-3893) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Internet Explorer contains a memory corruption vulnerability that allows for remote code execution. The impacted products could be end-of-life (EoL) and/or end-of-service (EoS). Users should discontinue product utilization.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2013-3893" target="_blank" class="cve-link">Microsoft Internet Explorer Resource Management Errors Vulnerability (CVE-2013-3893) ↗</a>
-            <p class="desc">Microsoft Internet Explorer contains a memory corruption vulnerability that allows for remote code execution. The impacted products could be end-of-life (EoL) and/or end-of-service (EoS). Users should discontinue product utilization.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2013-3893' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2013-3893')">Copy</button>
             </div>
+            
         </div>
         
         <div class="card vendor-Cisco" data-vendor="Cisco">
-            <div class="card-header">
-                <span class="tag">Cisco</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-07-28</span>
+            <span class="tag">Cisco</span>
+            <span class="tag" style="float:right">2025-07-28</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-20337" target="_blank" class="cve-title">Cisco Identity Services Engine Injection Vulnerability (CVE-2025-20337) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Cisco Identity Services Engine contains an injection vulnerability in a specific API of Cisco ISE and Cisco ISE-PIC due to insufficient validation of user-supplied input allowing an attacker to exploit this vulnerability by submitting a crafted API request. Successful exploitation could allow an attacker to perform remote code execution and obtaining root privileges on an affected device.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-20337" target="_blank" class="cve-link">Cisco Identity Services Engine Injection Vulnerability (CVE-2025-20337) ↗</a>
-            <p class="desc">Cisco Identity Services Engine contains an injection vulnerability in a specific API of Cisco ISE and Cisco ISE-PIC due to insufficient validation of user-supplied input allowing an attacker to exploit this vulnerability by submitting a crafted API request. Successful exploitation could allow an attacker to perform remote code execution and obtaining root privileges on an affected device.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
-            </div>
+            
         </div>
         
         <div class="card vendor-Cisco" data-vendor="Cisco">
-            <div class="card-header">
-                <span class="tag">Cisco</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-07-28</span>
+            <span class="tag">Cisco</span>
+            <span class="tag" style="float:right">2025-07-28</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-20281" target="_blank" class="cve-title">Cisco Identity Services Engine Injection Vulnerability (CVE-2025-20281) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Cisco Identity Services Engine contains an injection vulnerability in a specific API of Cisco ISE and Cisco ISE-PIC due to insufficient validation of user-supplied input allowing an attacker to exploit this vulnerability by submitting a crafted API request. Successful exploitation could allow an attacker to perform remote code execution and obtaining root privileges on an affected device.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-20281" target="_blank" class="cve-link">Cisco Identity Services Engine Injection Vulnerability (CVE-2025-20281) ↗</a>
-            <p class="desc">Cisco Identity Services Engine contains an injection vulnerability in a specific API of Cisco ISE and Cisco ISE-PIC due to insufficient validation of user-supplied input allowing an attacker to exploit this vulnerability by submitting a crafted API request. Successful exploitation could allow an attacker to perform remote code execution and obtaining root privileges on an affected device.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
-            </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-07-22</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2025-07-22</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-49704" target="_blank" class="cve-title">Microsoft SharePoint Code Injection Vulnerability (CVE-2025-49704) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft SharePoint contains a code injection vulnerability that could allow an authorized attacker to execute code over a network. This vulnerability could be chained with CVE-2025-49706. CVE-2025-53770 is a patch bypass for CVE-2025-49704, and the updates for CVE-2025-53770 include more robust protection than those for CVE-2025-49704.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Disconnect public-facing versions of SharePoint Server that have reached their end-of-life (EOL) or end-of-service (EOS) to include SharePoint Server 2013 and earlier versions. For supported versions, please follow the mitigations according to CISA (URL listed below in Notes) and vendor instructions (URL listed below in Notes). Adhere to the applicable BOD 22-01 guidance for cloud services or discontinue use of the product if mitigations are not available.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-49704" target="_blank" class="cve-link">Microsoft SharePoint Code Injection Vulnerability (CVE-2025-49704) ↗</a>
-            <p class="desc">Microsoft SharePoint contains a code injection vulnerability that could allow an authorized attacker to execute code over a network. This vulnerability could be chained with CVE-2025-49706. CVE-2025-53770 is a patch bypass for CVE-2025-49704, and the updates for CVE-2025-53770 include more robust protection than those for CVE-2025-49704.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Disconnect public-facing versions of SharePoint Server that have reached their end-of-life (EOL) or end-of-service (EOS) to include SharePoint Server 2013 and earlier versions. For supported versions, please follow the mitigations according to CISA (URL listed below in Notes) and vendor instructions (URL listed below in Notes). Adhere to the applicable BOD 22-01 guidance for cloud services or discontinue use of the product if mitigations are not available.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2025-49704' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2025-49704')">Copy</button>
             </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-07-22</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2025-07-22</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-49706" target="_blank" class="cve-title">Microsoft SharePoint Improper Authentication Vulnerability (CVE-2025-49706) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft SharePoint contains an improper authentication vulnerability that allows an authorized attacker to perform spoofing over a network. Successfully exploitation could allow an attacker to view sensitive information and make some changes to disclosed information. This vulnerability could be chained with CVE-2025-49704. CVE-2025-53771 is a patch bypass for CVE-2025-49706, and the updates for CVE-2025-53771 include more robust protection than those for CVE-2025-49706.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Disconnect public-facing versions of SharePoint Server that have reached their end-of-life (EOL) or end-of-service (EOS) to include SharePoint Server 2013 and earlier versions. For supported versions, please follow the mitigations according to CISA (URL listed below in Notes) and vendor instructions (URL listed below in Notes). Adhere to the applicable BOD 22-01 guidance for cloud services or discontinue use of the product if mitigations are not available.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-49706" target="_blank" class="cve-link">Microsoft SharePoint Improper Authentication Vulnerability (CVE-2025-49706) ↗</a>
-            <p class="desc">Microsoft SharePoint contains an improper authentication vulnerability that allows an authorized attacker to perform spoofing over a network. Successfully exploitation could allow an attacker to view sensitive information and make some changes to disclosed information. This vulnerability could be chained with CVE-2025-49704. CVE-2025-53771 is a patch bypass for CVE-2025-49706, and the updates for CVE-2025-53771 include more robust protection than those for CVE-2025-49706.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Disconnect public-facing versions of SharePoint Server that have reached their end-of-life (EOL) or end-of-service (EOS) to include SharePoint Server 2013 and earlier versions. For supported versions, please follow the mitigations according to CISA (URL listed below in Notes) and vendor instructions (URL listed below in Notes). Adhere to the applicable BOD 22-01 guidance for cloud services or discontinue use of the product if mitigations are not available.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2025-49706' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2025-49706')">Copy</button>
             </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-07-20</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2025-07-20</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-53770" target="_blank" class="cve-title">Microsoft SharePoint Deserialization of Untrusted Data Vulnerability (CVE-2025-53770) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft SharePoint Server on-premises contains a deserialization of untrusted data vulnerability that could allow an unauthorized attacker to execute code over a network. This vulnerability could be chained with CVE-2025-53771. CVE-2025-53770 is a patch bypass for CVE-2025-49704, and the updates for CVE-2025-53770 include more robust protection than those for CVE-2025-49704.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Disconnect public-facing versions of SharePoint Server that have reached their end-of-life (EOL) or end-of-service (EOS) to include SharePoint Server 2013 and earlier versions. For supported versions, please follow the mitigations according to CISA (URL listed below in Notes) and vendor instructions (URL listed below in Notes). Adhere to the applicable BOD 22-01 guidance for cloud services or discontinue use of the product if mitigations are not available.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-53770" target="_blank" class="cve-link">Microsoft SharePoint Deserialization of Untrusted Data Vulnerability (CVE-2025-53770) ↗</a>
-            <p class="desc">Microsoft SharePoint Server on-premises contains a deserialization of untrusted data vulnerability that could allow an unauthorized attacker to execute code over a network. This vulnerability could be chained with CVE-2025-53771. CVE-2025-53770 is a patch bypass for CVE-2025-49704, and the updates for CVE-2025-53770 include more robust protection than those for CVE-2025-49704.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Disconnect public-facing versions of SharePoint Server that have reached their end-of-life (EOL) or end-of-service (EOS) to include SharePoint Server 2013 and earlier versions. For supported versions, please follow the mitigations according to CISA (URL listed below in Notes) and vendor instructions (URL listed below in Notes). Adhere to the applicable BOD 22-01 guidance for cloud services or discontinue use of the product if mitigations are not available.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2025-53770' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2025-53770')">Copy</button>
             </div>
+            
+        </div>
+        
+        <div class="card vendor-Fortinet" data-vendor="Fortinet">
+            <span class="tag">Fortinet</span>
+            <span class="tag" style="float:right">2025-07-18</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-25257" target="_blank" class="cve-title">Fortinet FortiWeb SQL Injection Vulnerability (CVE-2025-25257) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Fortinet FortiWeb contains a SQL injection vulnerability that may allow an unauthenticated attacker to execute unauthorized SQL code or commands via crafted HTTP or HTTPs requests.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            </div>
+            
         </div>
         
         <div class="card vendor-Citrix" data-vendor="Citrix">
-            <div class="card-header">
-                <span class="tag">Citrix</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-07-10</span>
+            <span class="tag">Citrix</span>
+            <span class="tag" style="float:right">2025-07-10</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-5777" target="_blank" class="cve-title">Citrix NetScaler ADC and Gateway Out-of-Bounds Read Vulnerability (CVE-2025-5777) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Citrix NetScaler ADC and Gateway contain an out-of-bounds read vulnerability due to insufficient input validation. This vulnerability can lead to memory overread when the NetScaler is configured as a Gateway (VPN virtual server, ICA Proxy, CVPN, RDP Proxy) OR AAA virtual server.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-5777" target="_blank" class="cve-link">Citrix NetScaler ADC and Gateway Out-of-Bounds Read Vulnerability (CVE-2025-5777) ↗</a>
-            <p class="desc">Citrix NetScaler ADC and Gateway contain an out-of-bounds read vulnerability due to insufficient input validation. This vulnerability can lead to memory overread when the NetScaler is configured as a Gateway (VPN virtual server, ICA Proxy, CVPN, RDP Proxy) OR AAA virtual server.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
-            </div>
+            
         </div>
         
         <div class="card vendor-Citrix" data-vendor="Citrix">
-            <div class="card-header">
-                <span class="tag">Citrix</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-06-30</span>
+            <span class="tag">Citrix</span>
+            <span class="tag" style="float:right">2025-06-30</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-6543" target="_blank" class="cve-title">Citrix NetScaler ADC and Gateway Buffer Overflow Vulnerability (CVE-2025-6543) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Citrix NetScaler ADC and Gateway contain a buffer overflow vulnerability leading to unintended control flow and Denial of Service. NetScaler must be configured as Gateway (VPN virtual server, ICA Proxy, CVPN, RDP Proxy) OR AAA virtual server.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-6543" target="_blank" class="cve-link">Citrix NetScaler ADC and Gateway Buffer Overflow Vulnerability (CVE-2025-6543) ↗</a>
-            <p class="desc">Citrix NetScaler ADC and Gateway contain a buffer overflow vulnerability leading to unintended control flow and Denial of Service. NetScaler must be configured as Gateway (VPN virtual server, ICA Proxy, CVPN, RDP Proxy) OR AAA virtual server.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+        </div>
+        
+        <div class="card vendor-Fortinet" data-vendor="Fortinet">
+            <span class="tag">Fortinet</span>
+            <span class="tag" style="float:right">2025-06-25</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2019-6693" target="_blank" class="cve-title">Fortinet FortiOS Use of Hard-Coded Credentials Vulnerability (CVE-2019-6693) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Fortinet FortiOS contains a use of hard-coded credentials vulnerability that could allow an attacker to cipher sensitive data in FortiOS configuration backup file via knowledge of the hard-coded key. </p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-06-10</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2025-06-10</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-33053" target="_blank" class="cve-title"> Microsoft Windows External Control of File Name or Path Vulnerability (CVE-2025-33053) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows contains an external control of file name or path vulnerability that could allow an attacker to execute code from a remote WebDAV location specified by the WorkingDirectory attribute of Internet Shortcut files.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-33053" target="_blank" class="cve-link"> Microsoft Windows External Control of File Name or Path Vulnerability (CVE-2025-33053) ↗</a>
-            <p class="desc">Microsoft Windows contains an external control of file name or path vulnerability that could allow an attacker to execute code from a remote WebDAV location specified by the WorkingDirectory attribute of Internet Shortcut files.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2025-33053' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2025-33053')">Copy</button>
             </div>
+            
+        </div>
+        
+        <div class="card vendor-Fortinet" data-vendor="Fortinet">
+            <span class="tag">Fortinet</span>
+            <span class="tag" style="float:right">2025-05-14</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-32756" target="_blank" class="cve-title">Fortinet Multiple Products Stack-Based Buffer Overflow Vulnerability (CVE-2025-32756) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Fortinet FortiFone, FortiVoice, FortiNDR and FortiMail contain a stack-based overflow vulnerability that may allow a remote unauthenticated attacker to execute arbitrary code or commands via crafted HTTP requests.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-05-13</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2025-05-13</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-32709" target="_blank" class="cve-title">Microsoft Windows Ancillary Function Driver for WinSock Use-After-Free Vulnerability (CVE-2025-32709) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows Ancillary Function Driver for WinSock contains a use-after-free vulnerability that allows an authorized attacker to escalate privileges to administrator.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-32709" target="_blank" class="cve-link">Microsoft Windows Ancillary Function Driver for WinSock Use-After-Free Vulnerability (CVE-2025-32709) ↗</a>
-            <p class="desc">Microsoft Windows Ancillary Function Driver for WinSock contains a use-after-free vulnerability that allows an authorized attacker to escalate privileges to administrator.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2025-32709' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2025-32709')">Copy</button>
             </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-05-13</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2025-05-13</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-30397" target="_blank" class="cve-title">Microsoft Windows Scripting Engine Type Confusion Vulnerability (CVE-2025-30397) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows Scripting Engine contains a type confusion vulnerability that allows an unauthorized attacker to execute code over a network via a specially crafted URL.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-30397" target="_blank" class="cve-link">Microsoft Windows Scripting Engine Type Confusion Vulnerability (CVE-2025-30397) ↗</a>
-            <p class="desc">Microsoft Windows Scripting Engine contains a type confusion vulnerability that allows an unauthorized attacker to execute code over a network via a specially crafted URL.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2025-30397' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2025-30397')">Copy</button>
             </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-05-13</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2025-05-13</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-32706" target="_blank" class="cve-title">Microsoft Windows Common Log File System (CLFS) Driver Heap-Based Buffer Overflow Vulnerability (CVE-2025-32706) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows Common Log File System (CLFS) Driver contains a heap-based buffer overflow vulnerability that allows an authorized attacker to elevate privileges locally.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-32706" target="_blank" class="cve-link">Microsoft Windows Common Log File System (CLFS) Driver Heap-Based Buffer Overflow Vulnerability (CVE-2025-32706) ↗</a>
-            <p class="desc">Microsoft Windows Common Log File System (CLFS) Driver contains a heap-based buffer overflow vulnerability that allows an authorized attacker to elevate privileges locally.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2025-32706' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2025-32706')">Copy</button>
             </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-05-13</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2025-05-13</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-32701" target="_blank" class="cve-title">Microsoft Windows Common Log File System (CLFS) Driver Use-After-Free Vulnerability (CVE-2025-32701) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows Common Log File System (CLFS) Driver contains a use-after-free vulnerability that allows an authorized attacker to elevate privileges locally.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-32701" target="_blank" class="cve-link">Microsoft Windows Common Log File System (CLFS) Driver Use-After-Free Vulnerability (CVE-2025-32701) ↗</a>
-            <p class="desc">Microsoft Windows Common Log File System (CLFS) Driver contains a use-after-free vulnerability that allows an authorized attacker to elevate privileges locally.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2025-32701' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2025-32701')">Copy</button>
             </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-05-13</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2025-05-13</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-30400" target="_blank" class="cve-title">Microsoft Windows DWM Core Library Use-After-Free Vulnerability (CVE-2025-30400) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows DWM Core Library contains a use-after-free vulnerability that allows an authorized attacker to elevate privileges locally.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-30400" target="_blank" class="cve-link">Microsoft Windows DWM Core Library Use-After-Free Vulnerability (CVE-2025-30400) ↗</a>
-            <p class="desc">Microsoft Windows DWM Core Library contains a use-after-free vulnerability that allows an authorized attacker to elevate privileges locally.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2025-30400' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2025-30400')">Copy</button>
             </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-04-17</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2025-04-17</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-24054" target="_blank" class="cve-title">Microsoft Windows NTLM Hash Disclosure Spoofing Vulnerability (CVE-2025-24054) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows NTLM contains an external control of file name or path vulnerability that allows an unauthorized attacker to perform spoofing over a network.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-24054" target="_blank" class="cve-link">Microsoft Windows NTLM Hash Disclosure Spoofing Vulnerability (CVE-2025-24054) ↗</a>
-            <p class="desc">Microsoft Windows NTLM contains an external control of file name or path vulnerability that allows an unauthorized attacker to perform spoofing over a network.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2025-24054' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2025-24054')">Copy</button>
             </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-04-08</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2025-04-08</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-29824" target="_blank" class="cve-title">Microsoft Windows Common Log File System (CLFS) Driver Use-After-Free Vulnerability (CVE-2025-29824) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows Common Log File System (CLFS) Driver contains a use-after-free vulnerability that allows an authorized attacker to elevate privileges locally.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-29824" target="_blank" class="cve-link">Microsoft Windows Common Log File System (CLFS) Driver Use-After-Free Vulnerability (CVE-2025-29824) ↗</a>
-            <p class="desc">Microsoft Windows Common Log File System (CLFS) Driver contains a use-after-free vulnerability that allows an authorized attacker to elevate privileges locally.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2025-29824' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2025-29824')">Copy</button>
             </div>
+            
         </div>
         
         <div class="card vendor-Cisco" data-vendor="Cisco">
-            <div class="card-header">
-                <span class="tag">Cisco</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-03-31</span>
+            <span class="tag">Cisco</span>
+            <span class="tag" style="float:right">2025-03-31</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2024-20439" target="_blank" class="cve-title">Cisco Smart Licensing Utility Static Credential Vulnerability (CVE-2024-20439) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Cisco Smart Licensing Utility contains a static credential vulnerability that allows an unauthenticated, remote attacker to log in to an affected system and gain administrative credentials.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2024-20439" target="_blank" class="cve-link">Cisco Smart Licensing Utility Static Credential Vulnerability (CVE-2024-20439) ↗</a>
-            <p class="desc">Cisco Smart Licensing Utility contains a static credential vulnerability that allows an unauthenticated, remote attacker to log in to an affected system and gain administrative credentials.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+        </div>
+        
+        <div class="card vendor-Fortinet" data-vendor="Fortinet">
+            <span class="tag">Fortinet</span>
+            <span class="tag" style="float:right">2025-03-18</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-24472" target="_blank" class="cve-title">Fortinet FortiOS and FortiProxy Authentication Bypass Vulnerability (CVE-2025-24472) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;"> Fortinet FortiOS and FortiProxy contain an authentication bypass vulnerability that allows a remote attacker to gain super-admin privileges via crafted CSF proxy requests.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-03-11</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2025-03-11</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-24993" target="_blank" class="cve-title">Microsoft Windows NTFS Heap-Based Buffer Overflow Vulnerability (CVE-2025-24993) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows New Technology File System (NTFS) contains a heap-based buffer overflow vulnerability that allows an unauthorized attacker to execute code locally.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-24993" target="_blank" class="cve-link">Microsoft Windows NTFS Heap-Based Buffer Overflow Vulnerability (CVE-2025-24993) ↗</a>
-            <p class="desc">Microsoft Windows New Technology File System (NTFS) contains a heap-based buffer overflow vulnerability that allows an unauthorized attacker to execute code locally.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2025-24993' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2025-24993')">Copy</button>
             </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-03-11</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2025-03-11</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-24991" target="_blank" class="cve-title">Microsoft Windows NTFS Out-Of-Bounds Read Vulnerability (CVE-2025-24991) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows New Technology File System (NTFS) contains an out-of-bounds read vulnerability that allows an authorized attacker to disclose information locally.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-24991" target="_blank" class="cve-link">Microsoft Windows NTFS Out-Of-Bounds Read Vulnerability (CVE-2025-24991) ↗</a>
-            <p class="desc">Microsoft Windows New Technology File System (NTFS) contains an out-of-bounds read vulnerability that allows an authorized attacker to disclose information locally.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2025-24991' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2025-24991')">Copy</button>
             </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-03-11</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2025-03-11</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-24985" target="_blank" class="cve-title">Microsoft Windows Fast FAT File System Driver Integer Overflow Vulnerability (CVE-2025-24985) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows Fast FAT File System Driver contains an integer overflow or wraparound vulnerability that allows an unauthorized attacker to execute code locally.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-24985" target="_blank" class="cve-link">Microsoft Windows Fast FAT File System Driver Integer Overflow Vulnerability (CVE-2025-24985) ↗</a>
-            <p class="desc">Microsoft Windows Fast FAT File System Driver contains an integer overflow or wraparound vulnerability that allows an unauthorized attacker to execute code locally.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2025-24985' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2025-24985')">Copy</button>
             </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-03-11</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2025-03-11</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-24984" target="_blank" class="cve-title">Microsoft Windows NTFS Information Disclosure Vulnerability (CVE-2025-24984) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows New Technology File System (NTFS) contains an insertion of sensitive Information into log file vulnerability that allows an unauthorized attacker to disclose information with a physical attack. An attacker who successfully exploited this vulnerability could potentially read portions of heap memory.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-24984" target="_blank" class="cve-link">Microsoft Windows NTFS Information Disclosure Vulnerability (CVE-2025-24984) ↗</a>
-            <p class="desc">Microsoft Windows New Technology File System (NTFS) contains an insertion of sensitive Information into log file vulnerability that allows an unauthorized attacker to disclose information with a physical attack. An attacker who successfully exploited this vulnerability could potentially read portions of heap memory.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2025-24984' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2025-24984')">Copy</button>
             </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-03-11</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2025-03-11</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-24983" target="_blank" class="cve-title">Microsoft Windows Win32k Use-After-Free Vulnerability (CVE-2025-24983) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows Win32 Kernel Subsystem contains a use-after-free vulnerability that allows an authorized attacker to elevate privileges locally.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-24983" target="_blank" class="cve-link">Microsoft Windows Win32k Use-After-Free Vulnerability (CVE-2025-24983) ↗</a>
-            <p class="desc">Microsoft Windows Win32 Kernel Subsystem contains a use-after-free vulnerability that allows an authorized attacker to elevate privileges locally.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2025-24983' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2025-24983')">Copy</button>
             </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-03-11</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2025-03-11</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-26633" target="_blank" class="cve-title">Microsoft Windows Management Console (MMC) Improper Neutralization Vulnerability (CVE-2025-26633) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows Management Console (MMC) contains an improper neutralization vulnerability that allows an unauthorized attacker to bypass a security feature locally.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-26633" target="_blank" class="cve-link">Microsoft Windows Management Console (MMC) Improper Neutralization Vulnerability (CVE-2025-26633) ↗</a>
-            <p class="desc">Microsoft Windows Management Console (MMC) contains an improper neutralization vulnerability that allows an unauthorized attacker to bypass a security feature locally.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2025-26633' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2025-26633')">Copy</button>
             </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-03-03</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2025-03-03</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2018-8639" target="_blank" class="cve-title">Microsoft Windows Win32k Improper Resource Shutdown or Release Vulnerability (CVE-2018-8639) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows Win32k contains an improper resource shutdown or release vulnerability that allows for local, authenticated privilege escalation. An attacker who successfully exploited this vulnerability could run arbitrary code in kernel mode.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2018-8639" target="_blank" class="cve-link">Microsoft Windows Win32k Improper Resource Shutdown or Release Vulnerability (CVE-2018-8639) ↗</a>
-            <p class="desc">Microsoft Windows Win32k contains an improper resource shutdown or release vulnerability that allows for local, authenticated privilege escalation. An attacker who successfully exploited this vulnerability could run arbitrary code in kernel mode.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2018-8639' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2018-8639')">Copy</button>
             </div>
+            
         </div>
         
         <div class="card vendor-Cisco" data-vendor="Cisco">
-            <div class="card-header">
-                <span class="tag">Cisco</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-03-03</span>
+            <span class="tag">Cisco</span>
+            <span class="tag" style="float:right">2025-03-03</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2023-20118" target="_blank" class="cve-title">Cisco Small Business RV Series Routers Command Injection Vulnerability (CVE-2023-20118) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Multiple Cisco Small Business RV Series Routers contains a command injection vulnerability in the web-based management interface. Successful exploitation could allow an authenticated, remote attacker to gain root-level privileges and access unauthorized data.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2023-20118" target="_blank" class="cve-link">Cisco Small Business RV Series Routers Command Injection Vulnerability (CVE-2023-20118) ↗</a>
-            <p class="desc">Multiple Cisco Small Business RV Series Routers contains a command injection vulnerability in the web-based management interface. Successful exploitation could allow an authenticated, remote attacker to gain root-level privileges and access unauthorized data.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
-            </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-02-25</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2025-02-25</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2024-49035" target="_blank" class="cve-title">Microsoft Partner Center Improper Access Control Vulnerability (CVE-2024-49035) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Partner Center contains an improper access control vulnerability that allows an attacker to escalate privileges.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2024-49035" target="_blank" class="cve-link">Microsoft Partner Center Improper Access Control Vulnerability (CVE-2024-49035) ↗</a>
-            <p class="desc">Microsoft Partner Center contains an improper access control vulnerability that allows an attacker to escalate privileges.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2024-49035' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2024-49035')">Copy</button>
             </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-02-21</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2025-02-21</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-24989" target="_blank" class="cve-title">Microsoft Power Pages Improper Access Control Vulnerability (CVE-2025-24989) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Power Pages contains an improper access control vulnerability that allows an unauthorized attacker to elevate privileges over a network potentially bypassing the user registration control.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions, follow BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-24989" target="_blank" class="cve-link">Microsoft Power Pages Improper Access Control Vulnerability (CVE-2025-24989) ↗</a>
-            <p class="desc">Microsoft Power Pages contains an improper access control vulnerability that allows an unauthorized attacker to elevate privileges over a network potentially bypassing the user registration control.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions, follow BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2025-24989' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2025-24989')">Copy</button>
             </div>
+            
         </div>
         
         <div class="card vendor-Palo" data-vendor="Palo Alto">
-            <div class="card-header">
-                <span class="tag">Palo Alto</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-02-20</span>
+            <span class="tag">Palo Alto</span>
+            <span class="tag" style="float:right">2025-02-20</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-0111" target="_blank" class="cve-title">Palo Alto Networks PAN-OS File Read Vulnerability (CVE-2025-0111) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Palo Alto Networks PAN-OS contains an external control of file name or path vulnerability. Successful exploitation enables an authenticated attacker with network access to the management web interface to read files on the PAN-OS filesystem that are readable by the “nobody” user.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-0111" target="_blank" class="cve-link">Palo Alto Networks PAN-OS File Read Vulnerability (CVE-2025-0111) ↗</a>
-            <p class="desc">Palo Alto Networks PAN-OS contains an external control of file name or path vulnerability. Successful exploitation enables an authenticated attacker with network access to the management web interface to read files on the PAN-OS filesystem that are readable by the “nobody” user.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions or discontinue use of the product if mitigations are unavailable.
-            </div>
+            
         </div>
         
         <div class="card vendor-Palo" data-vendor="Palo Alto">
-            <div class="card-header">
-                <span class="tag">Palo Alto</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-02-18</span>
+            <span class="tag">Palo Alto</span>
+            <span class="tag" style="float:right">2025-02-18</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-0108" target="_blank" class="cve-title">Palo Alto Networks PAN-OS Authentication Bypass Vulnerability (CVE-2025-0108) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Palo Alto Networks PAN-OS contains an authentication bypass vulnerability in its management web interface. This vulnerability allows an unauthenticated attacker with network access to the management web interface to bypass the authentication normally required and invoke certain PHP scripts.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-0108" target="_blank" class="cve-link">Palo Alto Networks PAN-OS Authentication Bypass Vulnerability (CVE-2025-0108) ↗</a>
-            <p class="desc">Palo Alto Networks PAN-OS contains an authentication bypass vulnerability in its management web interface. This vulnerability allows an unauthenticated attacker with network access to the management web interface to bypass the authentication normally required and invoke certain PHP scripts.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions or discontinue use of the product if mitigations are unavailable.
-            </div>
+            
         </div>
         
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-02-11</span>
+            <span class="tag">Microsoft</span>
+            <span class="tag" style="float:right">2025-02-11</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-21418" target="_blank" class="cve-title">Microsoft Windows Ancillary Function Driver for WinSock Heap-Based Buffer Overflow Vulnerability (CVE-2025-21418) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows Ancillary Function Driver for WinSock contains a heap-based buffer overflow vulnerability that allows for privilege escalation, enabling a local attacker to gain SYSTEM privileges.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> Apply mitigations per vendor instructions or discontinue use of the product if mitigations are unavailable.
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-21418" target="_blank" class="cve-link">Microsoft Windows Ancillary Function Driver for WinSock Heap-Based Buffer Overflow Vulnerability (CVE-2025-21418) ↗</a>
-            <p class="desc">Microsoft Windows Ancillary Function Driver for WinSock contains a heap-based buffer overflow vulnerability that allows for privilege escalation, enabling a local attacker to gain SYSTEM privileges.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions or discontinue use of the product if mitigations are unavailable.
+            
+            <div class="kql-box">
+                <div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2025-21418' | summarize count() by DeviceName</div>
+                <button class="copy-btn" onclick="copyKql('CVE-2025-21418')">Copy</button>
             </div>
+            
         </div>
         
-        <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-02-11</span>
+                </div>
             </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-21391" target="_blank" class="cve-link">Microsoft Windows Storage Link Following Vulnerability (CVE-2025-21391) ↗</a>
-            <p class="desc">Microsoft Windows Storage contains a link following vulnerability that could allow for privilege escalation. This vulnerability could allow an attacker to delete data including data that results in the service being unavailable.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions or discontinue use of the product if mitigations are unavailable.
-            </div>
+            
+            <div id="news" class="tab-content">
+                <h3 style="color:#0f172a; margin-top:0;">Curated Cyber Security News (Filtered)</h3>
+    
+        <div class="news-item">
+            <div class="news-source">The Hacker News • Fri, 30 Jan 2026</div>
+            <a href="https://thehackernews.com/2026/01/badges-bytes-and-blackmail.html" target="_blank" class="news-link">Badges, Bytes and Blackmail ↗</a>
         </div>
         
-        <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-02-06</span>
-            </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2024-21413" target="_blank" class="cve-link">Microsoft Outlook Improper Input Validation Vulnerability (CVE-2024-21413) ↗</a>
-            <p class="desc">Microsoft Outlook contains an improper input validation vulnerability that allows for remote code execution. Successful exploitation of this vulnerability would allow an attacker to bypass the Office Protected View and open in editing mode rather than protected mode.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions or discontinue use of the product if mitigations are unavailable.
-            </div>
+        <div class="news-item">
+            <div class="news-source">The Hacker News • Fri, 30 Jan 2026</div>
+            <a href="https://thehackernews.com/2026/01/smartermail-fixes-critical.html" target="_blank" class="news-link">SmarterMail Fixes Critical Unauthenticated RCE Flaw with CVSS 9.3 Score ↗</a>
         </div>
         
-        <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-02-04</span>
-            </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2024-29059" target="_blank" class="cve-link">Microsoft .NET Framework Information Disclosure Vulnerability (CVE-2024-29059) ↗</a>
-            <p class="desc">Microsoft .NET Framework contains an information disclosure vulnerability that exposes the ObjRef URI to an attacker, ultimately enabling remote code execution.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions or discontinue use of the product if mitigations are unavailable.
-            </div>
+        <div class="news-item">
+            <div class="news-source">The Hacker News • Fri, 30 Jan 2026</div>
+            <a href="https://thehackernews.com/2026/01/two-ivanti-epmm-zero-day-rce-flaws.html" target="_blank" class="news-link">Two Ivanti EPMM Zero-Day RCE Flaws Actively Exploited, Security Updates Released ↗</a>
         </div>
         
-        <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-01-14</span>
-            </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-21335" target="_blank" class="cve-link">Microsoft Windows Hyper-V NT Kernel Integration VSP Use-After-Free Vulnerability (CVE-2025-21335) ↗</a>
-            <p class="desc">Microsoft Windows Hyper-V NT Kernel Integration VSP contains a use-after-free vulnerability that allows a local attacker to gain SYSTEM privileges.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions or discontinue use of the product if mitigations are unavailable.
-            </div>
+        <div class="news-item">
+            <div class="news-source">The Hacker News • Fri, 30 Jan 2026</div>
+            <a href="https://thehackernews.com/2026/01/researchers-find-175000-publicly.html" target="_blank" class="news-link">Researchers Find 175,000 Publicly Exposed Ollama AI Servers Across 130 Countries ↗</a>
         </div>
         
-        <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-01-14</span>
-            </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-21334" target="_blank" class="cve-link">Microsoft Windows Hyper-V NT Kernel Integration VSP Use-After-Free Vulnerability (CVE-2025-21334) ↗</a>
-            <p class="desc">Microsoft Windows Hyper-V NT Kernel Integration VSP contains a use-after-free vulnerability that allows a local attacker to gain SYSTEM privileges.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions or discontinue use of the product if mitigations are unavailable.
-            </div>
+        <div class="news-item">
+            <div class="news-source">Dark Reading • Fri, 30 Jan 2026</div>
+            <a href="https://www.darkreading.com/cyber-risk/tenable-tackles-ai-governance-shadow-ai-risks-data-exposure" target="_blank" class="news-link">Tenable Tackles AI Governance, Shadow AI Risks, Data Exposure ↗</a>
         </div>
         
-        <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2025-01-14</span>
-            </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-21333" target="_blank" class="cve-link">Microsoft Windows Hyper-V NT Kernel Integration VSP Heap-based Buffer Overflow Vulnerability (CVE-2025-21333) ↗</a>
-            <p class="desc">Microsoft Windows Hyper-V NT Kernel Integration VSP contains a heap-based buffer overflow vulnerability that allows a local attacker to gain SYSTEM privileges.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions or discontinue use of the product if mitigations are unavailable.
-            </div>
+        <div class="news-item">
+            <div class="news-source">Dark Reading • Fri, 30 Jan 2026</div>
+            <a href="https://www.darkreading.com/application-security/openclaw-ai-runs-wild-business-environments" target="_blank" class="news-link">OpenClaw AI Runs Wild in Business Environments ↗</a>
         </div>
         
-        <div class="card vendor-Palo" data-vendor="Palo Alto">
-            <div class="card-header">
-                <span class="tag">Palo Alto</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2024-12-30</span>
-            </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2024-3393" target="_blank" class="cve-link">Palo Alto Networks PAN-OS Malicious DNS Packet Vulnerability (CVE-2024-3393) ↗</a>
-            <p class="desc">Palo Alto Networks PAN-OS contains a vulnerability in parsing and logging malicious DNS packets in the DNS Security feature that, when exploited, allows an unauthenticated attacker to remotely reboot the firewall. Repeated attempts to trigger this condition will cause the firewall to enter maintenance mode.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions or discontinue use of the product if mitigations are unavailable.
-            </div>
+        <div class="news-item">
+            <div class="news-source">Dark Reading • Thu, 29 Jan 2026</div>
+            <a href="https://www.darkreading.com/vulnerabilities-threats/critical-flaws-n8n-compromise-customer-security" target="_blank" class="news-link">Second Round of Critical RCE Bugs in n8n Spikes Corporate Risk ↗</a>
         </div>
         
-        <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <div class="card-header">
-                <span class="tag">Microsoft</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">2024-12-16</span>
-            </div>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2024-35250" target="_blank" class="cve-link">Microsoft Windows Kernel-Mode Driver Untrusted Pointer Dereference Vulnerability  (CVE-2024-35250) ↗</a>
-            <p class="desc">Microsoft Windows Kernel-Mode Driver contains an untrusted pointer dereference vulnerability that allows a local attacker to escalate privileges.</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> Apply mitigations per vendor instructions or discontinue use of the product if mitigations are unavailable.
-            </div>
+        <div class="news-item">
+            <div class="news-source">Dark Reading • Thu, 29 Jan 2026</div>
+            <a href="https://www.darkreading.com/cybersecurity-operations/quantum-ai-risks-cybersecuritys-future" target="_blank" class="news-link">From Quantum to AI Risks: Preparing for Cybersecurity's Future ↗</a>
+        </div>
+        
+        <div class="news-item">
+            <div class="news-source">Dark Reading • Wed, 28 Jan 2026</div>
+            <a href="https://www.darkreading.com/cyber-risk/how-cisos-respond-ransomware-getting-more-violent" target="_blank" class="news-link">How Can CISOs Respond to Ransomware Getting More Violent? ↗</a>
         </div>
         
             </div>
