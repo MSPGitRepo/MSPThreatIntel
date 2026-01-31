@@ -39,9 +39,9 @@ NEWS_FEEDS = [
 ]
 NEWS_TRIGGERS = ['cve-', 'zero-day', 'exploit', 'rce', 'critical', 'patch', 'vulnerability', 'backdoor']
 
-# 4. STATUS SOURCES (No Auth Required)
+# 4. STATUS SOURCES
+# Azure Status is granular (good). Windows Release Health is summarized (hard to split).
 AZURE_STATUS_RSS = "https://azure.status.microsoft/en-gb/status/feed/"
-# Scrapes Microsoft Learn for "Known Issues" in Windows
 WINDOWS_HEALTH_RSS = "https://learn.microsoft.com/api/search/rss?search=%22known%20issue%22&locale=en-us&scopename=Windows%20Release%20Health"
 
 def fetch_cisa_data():
@@ -112,7 +112,7 @@ def fetch_security_news():
 def fetch_status_updates():
     status_items = []
     
-    # 1. Fetch Azure Status (Global Outages)
+    # 1. Azure Outages (Granular)
     try:
         r = requests.get(AZURE_STATUS_RSS, timeout=5)
         root = ET.fromstring(r.content)
@@ -127,18 +127,23 @@ def fetch_status_updates():
             })
     except Exception as e: print(f"Azure RSS Error: {e}")
 
-    # 2. Fetch Windows Known Issues (Microsoft Learn)
+    # 2. Windows Known Issues (Summarized)
+    # We strip the "Known issues" text to make it cleaner
     try:
         r = requests.get(WINDOWS_HEALTH_RSS, timeout=5)
         root = ET.fromstring(r.content)
-        for item in root.findall('./channel/item')[:8]:
+        for item in root.findall('./channel/item')[:10]:
             title = item.find('title').text
-            # Only keep if it looks like a known issue article
             if "known issue" in title.lower() or "status" in title.lower():
+                clean_desc = item.find('description').text
+                # Cleanup the description to remove the generic "See all messages" spam
+                if "See all messages" in clean_desc:
+                    clean_desc = clean_desc.split("See all messages")[0]
+                
                 status_items.append({
-                    "type": "Known Issue",
-                    "title": title,
-                    "desc": item.find('description').text[:200] + "...",
+                    "type": "Windows Issue",
+                    "title": title.replace(" known issues and notifications", ""), # Clean up title
+                    "desc": clean_desc + "...",
                     "date": item.find('pubDate').text[:16],
                     "link": item.find('link').text,
                     "severity": "warning"
@@ -148,55 +153,78 @@ def fetch_status_updates():
     return status_items
 
 def generate_html(vulns, eol, news, status):
-    # --- PRE-CALCULATE HTML TO AVOID F-STRING ERRORS ---
+    # --- UI GENERATION ---
+    
+    # Generate Vendor Buttons
     vendor_buttons = f'<button id="btn-All" class="filter-btn active" onclick="filter(\'All\')">All Vendors</button>'
     for k in VENDORS.keys():
         vendor_buttons += f'<button id="btn-{k}" class="filter-btn" onclick="filter(\'{k}\')">{k}</button>'
 
+    # Generate EOL List with cleaner layout
     eol_list = ""
     for i in eol:
-        eol_list += f'<div class="eol-item st-{i["status"]}"><span>{i["product"]}</span><span class="eol-date">{i["eol"]}</span></div>'
+        eol_list += f'''
+        <div class="eol-item st-{i["status"]}">
+            <span class="eol-prod">{i["product"]}</span>
+            <span class="eol-date">{i["eol"]}</span>
+        </div>'''
 
     css = """
-        :root { --bg: #f1f5f9; --sidebar: #0f172a; --card: #ffffff; --text: #334155; --accent: #2563eb; }
+        :root { --bg: #f8fafc; --sidebar: #0f172a; --card: #ffffff; --text: #334155; --accent: #2563eb; }
         body { font-family: 'Segoe UI', system-ui, sans-serif; margin: 0; padding: 0; background: var(--bg); color: var(--text); display: flex; min-height: 100vh; }
-        .sidebar { width: 300px; background: var(--sidebar); color: #e2e8f0; padding: 2rem; position: fixed; height: 100%; overflow-y: auto; flex-shrink: 0; }
-        .sidebar h1 { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2rem; border-bottom: 1px solid #334155; padding-bottom: 1rem; color: white; }
-        .section-label { font-size: 0.75rem; color: #94a3b8; margin: 20px 0 10px 0; font-weight: bold; }
-        .filter-btn { display: block; width: 100%; padding: 10px; margin-bottom: 5px; background: #1e293b; border: 1px solid #334155; color: #cbd5e1; text-align: left; cursor: pointer; border-radius: 6px; }
-        .filter-btn:hover, .filter-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
-        .eol-item { font-size: 0.85rem; padding: 8px 0; border-bottom: 1px solid #334155; display: flex; justify-content: space-between; }
-        .eol-date { font-family: monospace; opacity: 0.8; font-size: 0.8rem; }
-        .st-warning { color: #f59e0b; } .st-expired { text-decoration: line-through; opacity: 0.5; } .st-ok { color: #10b981; }
         
-        .main { margin-left: 300px; padding: 2rem 3rem; width: 100%; }
-        .tab-nav { display: flex; gap: 20px; margin-bottom: 20px; border-bottom: 2px solid #e2e8f0; }
-        .tab-btn { padding: 10px 20px; cursor: pointer; font-weight: 600; color: #64748b; border-bottom: 3px solid transparent; }
+        /* 1. SIDEBAR FIXES (WIDER + NO CLIPPING) */
+        .sidebar { width: 340px; background: var(--sidebar); color: #e2e8f0; padding: 2rem; position: fixed; height: 100%; overflow-y: auto; flex-shrink: 0; box-sizing: border-box; }
+        .sidebar h1 { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2rem; border-bottom: 1px solid #334155; padding-bottom: 1rem; color: white; }
+        
+        /* EOL Items */
+        .eol-item { font-size: 0.85rem; padding: 10px 0; border-bottom: 1px solid #334155; display: flex; justify-content: space-between; align-items: center; }
+        .eol-prod { font-weight: 500; color: #cbd5e1; padding-right: 10px; }
+        .eol-date { font-family: monospace; opacity: 0.9; font-size: 0.85rem; white-space: nowrap; color: #94a3b8; }
+        .st-warning .eol-date { color: #f59e0b; font-weight:bold; } 
+        .st-expired { text-decoration: line-through; opacity: 0.5; }
+        
+        .main { margin-left: 340px; padding: 2rem 3rem; width: 100%; box-sizing: border-box; }
+        
+        /* TABS & BUTTONS */
+        .section-label { font-size: 0.75rem; color: #94a3b8; margin: 25px 0 10px 0; font-weight: bold; letter-spacing: 0.5px; }
+        .filter-btn { display: block; width: 100%; padding: 10px; margin-bottom: 5px; background: #1e293b; border: 1px solid #334155; color: #cbd5e1; text-align: left; cursor: pointer; border-radius: 6px; transition: 0.2s; }
+        .filter-btn:hover, .filter-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
+        
+        .tab-nav { display: flex; gap: 20px; margin-bottom: 20px; border-bottom: 2px solid #e2e8f0; overflow-x: auto; }
+        .tab-btn { padding: 10px 20px; cursor: pointer; font-weight: 600; color: #64748b; border-bottom: 3px solid transparent; white-space: nowrap; }
         .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
         
+        /* CARDS */
         .grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); }
-        .card { background: var(--card); padding: 1.5rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); border-left: 5px solid #ccc; position: relative; }
-        .card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: 0.2s; }
+        .card { background: var(--card); padding: 1.5rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); border-left: 5px solid #ccc; }
         .card.vendor-Microsoft { border-left-color: #0078d4; }
         .card.vendor-Cisco { border-left-color: #1ba0d7; }
         .card.vendor-Citrix { border-left-color: #d13438; }
+        
+        /* STATUS ITEMS (IMPROVED) */
+        .list-item { background: white; padding: 20px; margin-bottom: 15px; border-radius: 8px; border-left: 5px solid #334155; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .status-critical { border-left-color: #ef4444; } /* Red for Outage */
+        .status-warning { border-left-color: #f59e0b; } /* Orange for Known Issue */
+        
+        .meta { font-size: 0.75rem; font-weight: bold; margin-bottom: 8px; display: block; letter-spacing: 0.5px; }
+        .item-link { text-decoration: none; color: #1e293b; font-weight: 700; font-size: 1.1rem; display: block; margin-bottom: 8px; }
+        .item-link:hover { color: var(--accent); text-decoration: underline; }
+        .item-desc { font-size: 0.95rem; color: #475569; line-height: 1.6; }
+        
         .tag { background: #f1f5f9; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: #475569; }
         .cve-title { display: block; color: var(--accent); font-weight: 700; font-size: 1.05rem; margin: 10px 0; text-decoration: none; }
         .kql-box { margin-top: 15px; background: #f8fafc; padding: 10px; border: 1px solid #e2e8f0; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; }
         .kql-code { font-family: monospace; font-size: 0.75rem; color: #334155; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 80%; }
         .copy-btn { background: white; border: 1px solid #cbd5e1; cursor: pointer; padding: 4px 8px; font-size: 0.7rem; border-radius: 4px; }
         
-        /* Status & News Items */
-        .list-item { background: white; padding: 15px; margin-bottom: 10px; border-radius: 6px; border-left: 4px solid #334155; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
-        .status-critical { border-left-color: #ef4444; }
-        .status-warning { border-left-color: #f59e0b; }
-        .meta { font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: bold; margin-bottom: 5px; display: block; }
-        .item-link { text-decoration: none; color: #1e293b; font-weight: 600; font-size: 1.1rem; display: block; margin-bottom: 5px; }
-        .item-desc { font-size: 0.9rem; color: #475569; line-height: 1.5; }
-        
-        @media (max-width: 1000px) { body { display: block; } .sidebar { width: auto; position: relative; height: auto; } .main { margin: 0; padding: 1rem; } }
+        @media (max-width: 1000px) { 
+            body { display: block; } 
+            .sidebar { width: auto; position: relative; height: auto; padding: 1rem; } 
+            .main { margin: 0; padding: 1rem; } 
+        }
     """
 
     html = f"""
@@ -264,7 +292,6 @@ def generate_html(vulns, eol, news, status):
 
     html += """</div></div><div id="status" class="tab-content"><h3>Live Service Status (Public Feeds)</h3>"""
     
-    # Status Items
     if not status: html += "<p>No active major outages or known issues found.</p>"
     for s in status:
         html += f"""
@@ -276,7 +303,6 @@ def generate_html(vulns, eol, news, status):
 
     html += """</div><div id="news" class="tab-content"><h3>Curated Security News</h3>"""
     
-    # News Items
     for n in news:
         html += f"""
         <div class="list-item">
