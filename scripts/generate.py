@@ -2,30 +2,45 @@ import requests
 import json
 import datetime
 import os
+import xml.etree.ElementTree as ET
+import re
 
 # --- CONFIGURATION ---
 CISA_URL = "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json"
 OUTPUT_DIR = "public"
 OUTPUT_FILE = os.path.join(OUTPUT_DIR, "index.html")
 
-# Vendors to track (Case insensitive matching)
-# key = display name, value = list of search terms
+# 1. VENDORS TO TRACK (CISA)
 VENDORS = {
     'Microsoft': ['microsoft'],
     'Cisco': ['cisco'],
     'Citrix': ['citrix'],
     'Palo Alto': ['palo alto'],
-    'Check Point': ['checkpoint', 'check point']
+    'Check Point': ['checkpoint', 'check point'],
+    'Fortinet': ['fortinet', 'fortigate']
 }
 
-# EOL Products to track (slugs from endoflife.date)
+# 2. EXTENDED LIFECYCLE TRACKING
+# Key = Friendly Name, Value = endoflife.date slug
 EOL_SLUGS = {
-    'windows': 'Windows Desktop',
-    'windows-server': 'Windows Server',
-    'exchange-server': 'Exchange Server',
-    'office': 'Office / M365 Apps',
-    'sql-server': 'SQL Server'
+    'Windows Desktop': 'windows',
+    'Windows Server': 'windows-server',
+    'Exchange Server': 'exchange-server',
+    'SQL Server': 'sql-server',
+    'Office / M365': 'office',
+    'Azure AD Connect': 'azure-aad-connect',
+    'SharePoint Server': 'sharepoint'
 }
+
+# 3. NEWS SOURCES (RSS)
+NEWS_FEEDS = [
+    {"name": "BleepingComputer", "url": "https://www.bleepingcomputer.com/feed/"},
+    {"name": "The Hacker News", "url": "https://feeds.feedburner.com/TheHackersNews"},
+    {"name": "Dark Reading", "url": "https://www.darkreading.com/rss.xml"}
+]
+
+# Keywords to KEEP an article (The "No Fluff" Filter)
+NEWS_TRIGGERS = ['cve-', 'zero-day', 'exploit', 'rce', 'critical', 'patch', 'vulnerability', 'backdoor']
 
 def fetch_cisa_data():
     try:
@@ -38,7 +53,6 @@ def fetch_cisa_data():
             vendor_field = v.get('vendorProject', '').lower()
             product_field = v.get('product', '').lower()
             
-            # Determine which vendor bucket this belongs to
             assigned_vendor = None
             for category, keywords in VENDORS.items():
                 if any(k in vendor_field for k in keywords):
@@ -46,12 +60,15 @@ def fetch_cisa_data():
                     break
             
             if assigned_vendor:
-                # Add extra metadata for the UI
                 v['ui_category'] = assigned_vendor
                 v['link'] = f"https://nvd.nist.gov/vuln/detail/{v.get('cveID')}"
+                # Pre-generate KQL for Microsoft items
+                if assigned_vendor == 'Microsoft':
+                    v['kql'] = f"DeviceTvmSoftwareVulnerabilities | where CveId == '{v.get('cveID')}' | summarize count() by DeviceName"
+                else:
+                    v['kql'] = None
                 relevant_vulns.append(v)
                 
-        # Sort by date added (newest first)
         return sorted(relevant_vulns, key=lambda x: x['dateAdded'], reverse=True)[:60]
     except Exception as e:
         print(f"Error fetching CISA: {e}")
@@ -61,33 +78,31 @@ def fetch_eol_data():
     items = []
     today = datetime.date.today()
     
-    for slug, name in EOL_SLUGS.items():
+    for friendly_name, slug in EOL_SLUGS.items():
         try:
             r = requests.get(f"https://endoflife.date/api/{slug}.json")
             if r.status_code != 200: continue
             
-            # Get only the last 5 versions to keep list clean
-            versions = r.json()[:5] 
-            
+            versions = r.json()[:5] # Last 5 versions
             for v in versions:
                 eol = v.get('eol')
                 if not eol or eol == False: continue
                 
-                # Parse date
                 try:
                     eol_dt = datetime.datetime.strptime(eol, "%Y-%m-%d").date()
                 except:
                     continue
                     
                 days_left = (eol_dt - today).days
-                status = "ok"
-                if days_left < 0: status = "expired"
-                elif days_left < 365: status = "warning"
                 
-                # Only show if expired recently (last 2 years) or future
+                # Filter: Show if expired in last 2 years OR future
                 if days_left > -730: 
+                    status = "ok"
+                    if days_left < 0: status = "expired"
+                    elif days_left < 365: status = "warning"
+                    
                     items.append({
-                        'product': f"{name} {v.get('cycle')}",
+                        'product': f"{friendly_name} {v.get('cycle')}",
                         'eol': eol,
                         'status': status,
                         'sort_date': eol_dt
@@ -97,45 +112,90 @@ def fetch_eol_data():
             
     return sorted(items, key=lambda x: x['sort_date'])
 
-def generate_html(vulns, eol):
-    # Professional Slate/Blue Theme
+def fetch_security_news():
+    news_items = []
+    for source in NEWS_FEEDS:
+        try:
+            r = requests.get(source['url'], timeout=5)
+            root = ET.fromstring(r.content)
+            
+            # RSS Parsing standard usually: channel -> item
+            for item in root.findall('./channel/item')[:10]: # Check top 10 per feed
+                title = item.find('title').text
+                link = item.find('link').text
+                desc = item.find('description').text if item.find('description') is not None else ""
+                
+                # THE FILTER: Only keep if title/desc contains trigger words
+                combined_text = (title + " " + desc).lower()
+                if any(trigger in combined_text for trigger in NEWS_TRIGGERS):
+                    news_items.append({
+                        "source": source['name'],
+                        "title": title,
+                        "link": link,
+                        "date": item.find('pubDate').text[:16] if item.find('pubDate') is not None else ""
+                    })
+        except Exception as e:
+            print(f"Skipping {source['name']}: {e}")
+            continue
+            
+    return news_items[:15] # Return top 15 relevant stories
+
+def generate_html(vulns, eol, news):
     css = """
-        :root { --bg: #f8f9fa; --sidebar: #1e293b; --card: #ffffff; --text: #334155; --accent: #0f172a; --highlight: #2563eb; --critical: #ef4444; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background: var(--bg); color: var(--text); display: flex; min-height: 100vh; }
+        :root { --bg: #f0f2f5; --sidebar: #0f172a; --card: #ffffff; --text: #334155; --accent: #2563eb; --critical: #d13438; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; margin: 0; padding: 0; background: var(--bg); color: var(--text); display: flex; min-height: 100vh; }
         
-        /* Sidebar */
-        .sidebar { width: 280px; background: var(--sidebar); color: white; padding: 2rem; position: fixed; height: 100%; overflow-y: auto; }
-        .sidebar h1 { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2rem; border-bottom: 1px solid #334155; padding-bottom: 1rem; }
-        .filter-btn { display: block; width: 100%; padding: 12px; margin-bottom: 8px; background: #334155; border: none; color: white; text-align: left; cursor: pointer; border-radius: 6px; transition: 0.2s; }
-        .filter-btn:hover, .filter-btn.active { background: var(--highlight); }
-        .eol-section { margin-top: 3rem; }
-        .eol-item { font-size: 0.85rem; padding: 8px 0; border-bottom: 1px solid #334155; }
-        .eol-date { display: block; font-size: 0.75rem; opacity: 0.7; margin-top: 2px; }
+        /* SIDEBAR (Filters + EOL) */
+        .sidebar { width: 300px; background: var(--sidebar); color: #e2e8f0; padding: 2rem; position: fixed; height: 100%; overflow-y: auto; flex-shrink: 0; }
+        .sidebar h1 { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2rem; border-bottom: 1px solid #334155; padding-bottom: 1rem; color: #fff; }
+        
+        .section-label { font-size: 0.75rem; color: #94a3b8; margin: 20px 0 10px 0; font-weight: bold; letter-spacing: 0.5px; }
+        
+        /* Filter Buttons */
+        .filter-btn { display: block; width: 100%; padding: 10px; margin-bottom: 5px; background: #1e293b; border: 1px solid #334155; color: #cbd5e1; text-align: left; cursor: pointer; border-radius: 6px; transition: 0.2s; }
+        .filter-btn:hover, .filter-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
+        
+        /* EOL Items */
+        .eol-item { font-size: 0.85rem; padding: 8px 0; border-bottom: 1px solid #334155; display: flex; justify-content: space-between; align-items: center; }
+        .eol-date { font-family: monospace; opacity: 0.8; font-size: 0.8rem; }
         .st-warning { color: #f59e0b; } .st-expired { text-decoration: line-through; opacity: 0.5; } .st-ok { color: #10b981; }
 
-        /* Main Content */
-        .main { margin-left: 280px; padding: 2rem 3rem; width: 100%; }
-        .header { margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; }
-        .last-updated { font-size: 0.9rem; color: #64748b; }
+        /* MAIN CONTENT */
+        .main { margin-left: 300px; padding: 2rem 3rem; width: 100%; }
         
-        /* Cards */
-        .grid { display: grid; gap: 1.5rem; }
-        .card { background: var(--card); padding: 1.5rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border-left: 4px solid var(--highlight); transition: transform 0.2s; }
-        .card:hover { transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        /* TABS */
+        .tab-nav { display: flex; gap: 20px; margin-bottom: 20px; border-bottom: 2px solid #e2e8f0; }
+        .tab-btn { padding: 10px 20px; cursor: pointer; font-weight: 600; color: #64748b; border-bottom: 3px solid transparent; }
+        .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+        
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* VULN CARDS */
+        .grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); }
+        .card { background: var(--card); padding: 1.5rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); border-left: 5px solid #ccc; transition: transform 0.2s; position: relative; }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
         .card.vendor-Microsoft { border-left-color: #0078d4; }
         .card.vendor-Cisco { border-left-color: #1ba0d7; }
         .card.vendor-Citrix { border-left-color: #d13438; }
-        .card.vendor-Palo { border-left-color: #f97316; }
         
-        .card-header { display: flex; justify-content: space-between; margin-bottom: 1rem; }
-        .tag { background: #f1f5f9; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
-        .cve-link { color: var(--highlight); text-decoration: none; font-weight: 700; font-size: 1.1rem; }
-        .cve-link:hover { text-decoration: underline; }
-        .desc { font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem; color: #475569; }
-        .action { background: #eff6ff; padding: 12px; border-radius: 6px; font-size: 0.9rem; border: 1px solid #dbeafe; }
+        .tag { background: #f1f5f9; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: #475569; }
+        .cve-title { display: block; color: var(--accent); font-weight: 700; font-size: 1.05rem; margin: 10px 0; text-decoration: none; }
+        .cve-title:hover { text-decoration: underline; }
         
-        /* Mobile */
-        @media (max-width: 900px) { body { display: block; } .sidebar { position: relative; width: auto; height: auto; } .main { margin: 0; padding: 1rem; } }
+        /* KQL Button */
+        .kql-box { margin-top: 15px; background: #f8fafc; padding: 10px; border: 1px solid #e2e8f0; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; }
+        .kql-code { font-family: monospace; font-size: 0.75rem; color: #334155; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 80%; }
+        .copy-btn { background: white; border: 1px solid #cbd5e1; cursor: pointer; padding: 4px 8px; font-size: 0.7rem; border-radius: 4px; }
+        .copy-btn:hover { background: #e2e8f0; }
+
+        /* NEWS LIST */
+        .news-item { background: white; padding: 15px; margin-bottom: 10px; border-radius: 6px; border-left: 3px solid #334155; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+        .news-source { font-size: 0.7rem; font-weight: bold; color: #64748b; text-transform: uppercase; }
+        .news-link { text-decoration: none; color: #1e293b; font-weight: 600; font-size: 1.1rem; display: block; margin: 5px 0; }
+        .news-link:hover { color: var(--accent); }
+
+        @media (max-width: 1000px) { body { display: block; } .sidebar { width: auto; position: relative; height: auto; } .main { margin: 0; padding: 1rem; } }
     """
 
     html = f"""
@@ -148,65 +208,94 @@ def generate_html(vulns, eol):
         <style>{css}</style>
         <script>
             function filter(vendor) {{
-                const cards = document.querySelectorAll('.card');
-                const buttons = document.querySelectorAll('.filter-btn');
-                
-                // Update buttons
-                buttons.forEach(b => b.classList.remove('active'));
+                // Update UI buttons
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
                 document.getElementById('btn-'+vendor).classList.add('active');
                 
-                // Filter cards
-                cards.forEach(card => {{
-                    if (vendor === 'All' || card.dataset.vendor === vendor) {{
-                        card.style.display = 'block';
-                    }} else {{
-                        card.style.display = 'none';
-                    }}
+                // Filter Cards
+                document.querySelectorAll('.card').forEach(card => {{
+                    card.style.display = (vendor === 'All' || card.dataset.vendor === vendor) ? 'block' : 'none';
                 }});
+            }}
+            
+            function switchTab(tabId) {{
+                // Hide all
+                document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                
+                // Show selected
+                document.getElementById(tabId).classList.add('active');
+                document.getElementById('tab-btn-'+tabId).classList.add('active');
+            }}
+
+            function copyKql(cve) {{
+                const query = "DeviceTvmSoftwareVulnerabilities | where CveId == '" + cve + "' | summarize count() by DeviceName";
+                navigator.clipboard.writeText(query);
+                alert("KQL Copied for " + cve);
             }}
         </script>
     </head>
     <body>
         <div class="sidebar">
-            <h1>Threat Intel</h1>
+            <h1>MSP Threat Intel</h1>
             
-            <p style="color:#94a3b8; font-size:0.8rem; margin-bottom:10px;">VULNERABILITY FILTER</p>
+            <div class="section-label">VULNERABILITY FILTER</div>
             <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors</button>
-            <button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft</button>
-            <button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco</button>
-            <button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix</button>
-            <button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto</button>
+            {''.join([f'<button id="btn-{k}" class="filter-btn" onclick="filter(\'{k}\')">{k}</button>' for k in VENDORS.keys()])}
             
-            <div class="eol-section">
-                <p style="color:#94a3b8; font-size:0.8rem; margin-bottom:10px;">LIFECYCLE (MICROSOFT)</p>
-                {''.join([f'<div class="eol-item st-{i["status"]}"><strong>{i["product"]}</strong><span class="eol-date">{i["eol"]}</span></div>' for i in eol])}
-            </div>
+            <div class="section-label">LIFECYCLE TRACKER</div>
+            {''.join([f'<div class="eol-item st-{i["status"]}"><span>{i["product"]}</span><span class="eol-date">{i["eol"]}</span></div>' for i in eol])}
         </div>
         
         <div class="main">
-            <div class="header">
-                <h2>Active Exploitations (CISA KEV)</h2>
-                <div class="last-updated">Updated: {datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")}</div>
+            <div class="tab-nav">
+                <div id="tab-btn-vulns" class="tab-btn active" onclick="switchTab('vulns')">Active Exploits (CISA)</div>
+                <div id="tab-btn-news" class="tab-btn" onclick="switchTab('news')">Latest Intel (No Fluff)</div>
             </div>
             
-            <div class="grid">
+            <div id="vulns" class="tab-content active">
+                <div class="grid">
     """
     
+    # Generate Vulnerability Cards
     for v in vulns:
-        # Vendor class for styling
         v_cls = v['ui_category'].split()[0] if v['ui_category'] else 'Other'
-        
+        kql_block = ""
+        if v.get('kql'):
+            kql_block = f"""
+            <div class="kql-box">
+                <div class="kql-code">KQL: {v['kql']}</div>
+                <button class="copy-btn" onclick="copyKql('{v['cveID']}')">Copy</button>
+            </div>
+            """
+            
         html += f"""
         <div class="card vendor-{v_cls}" data-vendor="{v['ui_category']}">
-            <div class="card-header">
-                <span class="tag">{v['ui_category']}</span>
-                <span class="tag" style="background: white; border: 1px solid #ddd;">{v['dateAdded']}</span>
+            <span class="tag">{v['ui_category']}</span>
+            <span class="tag" style="float:right">{v['dateAdded']}</span>
+            <a href="{v['link']}" target="_blank" class="cve-title">{v['vulnerabilityName']} ({v['cveID']}) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">{v['shortDescription']}</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;">
+                <strong>ACTION:</strong> {v['requiredAction']}
             </div>
-            <a href="{v['link']}" target="_blank" class="cve-link">{v['vulnerabilityName']} ({v['cveID']}) ↗</a>
-            <p class="desc">{v['shortDescription']}</p>
-            <div class="action">
-                <strong>REQUIRED ACTION:</strong> {v['requiredAction']}
+            {kql_block}
+        </div>
+        """
+
+    html += """
+                </div>
             </div>
+            
+            <div id="news" class="tab-content">
+                <h3 style="color:#0f172a; margin-top:0;">Curated Cyber Security News (Filtered)</h3>
+    """
+    
+    # Generate News Items
+    for n in news:
+        html += f"""
+        <div class="news-item">
+            <div class="news-source">{n['source']} • {n['date']}</div>
+            <a href="{n['link']}" target="_blank" class="news-link">{n['title']} ↗</a>
         </div>
         """
 
@@ -223,12 +312,13 @@ if __name__ == "__main__":
     
     print("Fetching CISA...")
     vulns = fetch_cisa_data()
-    print(f"Found {len(vulns)} vulnerabilities.")
     
     print("Fetching EOL...")
     eol = fetch_eol_data()
     
-    print("Generating Dashboard...")
+    print("Fetching News...")
+    news = fetch_security_news()
+    
     with open(OUTPUT_FILE, 'w') as f:
-        f.write(generate_html(vulns, eol))
+        f.write(generate_html(vulns, eol, news))
     print("Done.")
