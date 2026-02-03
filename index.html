@@ -582,6 +582,16 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions or discontinue use of the product if mitigations are unavailable.</div>
             <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2025-21418' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2025-21418')">Copy</button></div>
         </div></div></div><div id="status" class="tab-content"><h3>Live Service Status (Public Feeds)</h3>
+        <div class="list-item status-critical">
+            <span class="meta" style="color:#ef4444">Azure Outage • Mon, 02 Feb 2026</span>
+            <a href="https://status.azure.com/en-gb/status/" target="_blank" class="item-link">Active - Virtual Machines and dependent services - Service management issues in multiple regions ↗</a>
+            <div class="item-desc"><p><strong>Impact statement: </strong>As early as 19:46 UTC on 2 February 2026, we became aware of an issue causing customers to receive error notifications when performing service management operations - such as create, delete, update, scaling, start, stop - for Virtual Machines (VMs) affecting multiple regions. These issues are also impacting services with dependencies on these service management operations - including Azure Arc Enabled Servers, Azure Batch, Azure Cache for Redis, Azure Container Apps, Azure DevOps (ADO), Azure Kubernetes Service (AKS), Azure Load Testing, Azure Firewall, Azure Search, Azure Virtual Machine Scale Sets (VMSS), GitHub (see https://www.githubstatus.com).</p><p><strong>Current status: </strong>We determined that these issues were caused by a recent configuration change that affected public access to certain Microsoft‑managed storage accounts, used to host extension packages. We have applied our mitigation across all impacted regions, so the vast majority of customers and services should be mitigated. We are actively working to identify and mitigate any potential remaining impact, including performing final checks to ensure that all affected resources have had their configurations updated. At this stage, we are investigating potentially related issues for a small number of downstream services - if determined to be related, we will provide an update once validated; if determined to be unrelated, we will mitigate this incident. Our next update will be provided by 03:30 UTC, approximately 60 minutes from now, or sooner if we have progress to share.</p></div>
+        </div>
+        <div class="list-item status-critical">
+            <span class="meta" style="color:#ef4444">Azure Outage • Tue, 03 Feb 2026</span>
+            <a href="https://status.azure.com/en-gb/status/" target="_blank" class="item-link">Active -  Managed Service Identity  and depended service operation failure in East US and West US ↗</a>
+            <div class="item-desc"><p><strong><em>Impact Statement:</em></strong><em> </em>Beginning at 00:15 UTC on 03 February 2026, customers utilizing Managed Identity for Azure resources may have encountered issues when trying to create, update, delete, or acquire tokens in the East US and West US regions. These challenges are also impacting dependent services such as Synapse platform service, Azure Databricks, Azure Stream Analytics, Azure Kubernetes Service, Microsoft Copilot Studio, Azure Chaos Studio, Azure Database for PostgreSQL Flexible Servers, Azure Container Apps, and Video Indexer. Please be aware that this is not an exhaustive list of affected services, and further updates will be provided as additional information is obtained. </p><p><strong>Current Status:</strong><em> </em>We detected this issue via our automated service monitoring upon identifying sudden and sustained errors on resources. Mitigation workstream is in progress. We are continuing to closely monitor this issue.</p><p>The next update will be provided within 60 minutes, or as events warrant.</p></div>
+        </div>
         <div class="list-item status-warning">
             <span class="meta" style="color:#f59e0b">Windows Issue • Fri, 30 Jan 2026</span>
             <a href="https://learn.microsoft.com/en-us/windows/release-health/status-windows-11-25h2" target="_blank" class="item-link">Windows 11, version 25H2 ↗</a>
@@ -613,6 +623,10 @@
             <div class="item-desc">How to get Windows 11, version 25H2 An IT pro’s guide to Windows 11, version 25H2 ...</div>
         </div></div><div id="news" class="tab-content"><h3>Curated Security News</h3>
         <div class="list-item">
+            <span class="meta">The Hacker News • Tue, 03 Feb 2026</span>
+            <a href="https://thehackernews.com/2026/02/notepad-hosting-breach-attributed-to.html" target="_blank" class="item-link">Notepad++ Hosting Breach Attributed to China-Linked Lotus Blossom Hacking Group ↗</a>
+        </div>
+        <div class="list-item">
             <span class="meta">The Hacker News • Mon, 02 Feb 2026</span>
             <a href="https://thehackernews.com/2026/02/openclaw-bug-enables-one-click-remote.html" target="_blank" class="item-link">OpenClaw Bug Enables One-Click Remote Code Execution via Malicious Link ↗</a>
         </div>
@@ -643,8 +657,4 @@
         <div class="list-item">
             <span class="meta">Dark Reading • Fri, 30 Jan 2026</span>
             <a href="https://www.darkreading.com/application-security/openclaw-ai-runs-wild-business-environments" target="_blank" class="item-link">OpenClaw AI Runs Wild in Business Environments ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">Dark Reading • Thu, 29 Jan 2026</span>
-            <a href="https://www.darkreading.com/vulnerabilities-threats/critical-flaws-n8n-compromise-customer-security" target="_blank" class="item-link">Second Round of Critical RCE Bugs in n8n Spikes Corporate Risk ↗</a>
         </div></div></div></body></html>
