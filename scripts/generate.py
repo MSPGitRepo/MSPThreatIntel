@@ -19,7 +19,7 @@ VENDORS = {
     'Palo Alto': ['palo alto'],
     'Check Point': ['checkpoint', 'check point'],
     'Fortinet': ['fortinet', 'fortigate'],
-    'Aruba': ['aruba', 'hpe networking']  # <--- Added Aruba
+    'Aruba': ['aruba', 'hpe networking']
 }
 
 # 2. LIFECYCLE TRACKING
@@ -55,7 +55,7 @@ def fetch_cisa_data():
         for v in data.get('vulnerabilities', []):
             vendor_field = v.get('vendorProject', '').lower()
             
-            # --- LOGIC UPDATE: Default to "Other" ---
+            # --- LOGIC: Default to "Other" ---
             assigned_vendor = "Other"
             
             for category, keywords in VENDORS.items():
@@ -74,7 +74,7 @@ def fetch_cisa_data():
             
             relevant_vulns.append(v)
             
-        return sorted(relevant_vulns, key=lambda x: x['dateAdded'], reverse=True)[:100] # Increased limit to see "Other" items
+        return sorted(relevant_vulns, key=lambda x: x['dateAdded'], reverse=True)[:100] 
     except Exception as e:
         print(f"Error fetching CISA: {e}")
         return []
@@ -156,16 +156,31 @@ def fetch_status_updates():
     return status_items
 
 def generate_html(vulns, eol, news, status):
-    # --- UI GENERATION (Split to avoid Syntax Errors) ---
+    # --- UI GENERATION ---
     
-    # 1. Vendor Buttons
-    vendor_buttons_html = f'<button id="btn-All" class="filter-btn active" onclick="filter(\'All\')">All Vendors</button>'
-    for k in VENDORS.keys():
-        vendor_buttons_html += f'<button id="btn-{k}" class="filter-btn" onclick="filter(\'{k}\')">{k}</button>'
-    # Add "Other" Button
-    vendor_buttons_html += '<button id="btn-Other" class="filter-btn" onclick="filter(\'Other\')">Other / Misc</button>'
+    # 1. Calculate Counts per Vendor
+    counts = {k: 0 for k in VENDORS.keys()}
+    counts['Other'] = 0
+    counts['All'] = len(vulns)
 
-    # 2. EOL List
+    for v in vulns:
+        cat = v.get('ui_category', 'Other')
+        if cat in counts:
+            counts[cat] += 1
+        else:
+            counts['Other'] += 1
+
+    # 2. Build Vendor Buttons with Badges
+    vendor_buttons_html = f'<button id="btn-All" class="filter-btn active" onclick="filter(\'All\')">All Vendors <span class="count-badge">{counts["All"]}</span></button>'
+    
+    for k in VENDORS.keys():
+        count = counts.get(k, 0)
+        vendor_buttons_html += f'<button id="btn-{k}" class="filter-btn" onclick="filter(\'{k}\')">{k} <span class="count-badge">{count}</span></button>'
+    
+    # Add "Other" Button
+    vendor_buttons_html += f'<button id="btn-Other" class="filter-btn" onclick="filter(\'Other\')">Other / Misc <span class="count-badge">{counts["Other"]}</span></button>'
+
+    # 3. EOL List
     eol_list_html = ""
     for i in eol:
         eol_list_html += f'''
@@ -174,7 +189,7 @@ def generate_html(vulns, eol, news, status):
             <span class="eol-date">{i["eol"]}</span>
         </div>'''
 
-    # 3. Vulnerability Cards
+    # 4. Vulnerability Cards
     vuln_cards_html = ""
     for v in vulns:
         v_cls = v['ui_category'].split()[0] if v['ui_category'] else 'Other'
@@ -191,7 +206,7 @@ def generate_html(vulns, eol, news, status):
             {kql}
         </div>"""
 
-    # 4. Status Items
+    # 5. Status Items
     status_html = ""
     if not status: status_html = "<p>No active major outages or known issues found.</p>"
     for s in status:
@@ -202,7 +217,7 @@ def generate_html(vulns, eol, news, status):
             <div class="item-desc">{s['desc']}</div>
         </div>"""
 
-    # 5. News Items
+    # 6. News Items
     news_html = ""
     for n in news:
         news_html += f"""
@@ -217,6 +232,14 @@ def generate_html(vulns, eol, news, status):
         body { font-family: 'Segoe UI', system-ui, sans-serif; margin: 0; padding: 0; background: var(--bg); color: var(--text); display: flex; min-height: 100vh; }
         .sidebar { width: 340px; background: var(--sidebar); color: #e2e8f0; padding: 2rem; position: fixed; height: 100%; overflow-y: auto; flex-shrink: 0; box-sizing: border-box; }
         .sidebar h1 { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2rem; border-bottom: 1px solid #334155; padding-bottom: 1rem; color: white; }
+        
+        .filter-btn { display: block; width: 100%; padding: 10px; margin-bottom: 5px; background: #1e293b; border: 1px solid #334155; color: #cbd5e1; text-align: left; cursor: pointer; border-radius: 6px; transition: 0.2s; position: relative; }
+        .filter-btn:hover, .filter-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
+        
+        /* NEW: Badge Style */
+        .count-badge { float: right; background: rgba(255,255,255,0.1); padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: bold; }
+        .filter-btn.active .count-badge { background: rgba(255,255,255,0.3); color: white; }
+        
         .eol-item { font-size: 0.85rem; padding: 10px 0; border-bottom: 1px solid #334155; display: flex; justify-content: space-between; align-items: center; }
         .eol-prod { font-weight: 500; color: #cbd5e1; padding-right: 10px; }
         .eol-date { font-family: monospace; opacity: 0.9; font-size: 0.85rem; white-space: nowrap; color: #94a3b8; }
@@ -224,22 +247,20 @@ def generate_html(vulns, eol, news, status):
         .st-expired { text-decoration: line-through; opacity: 0.5; }
         .main { margin-left: 340px; padding: 2rem 3rem; width: 100%; box-sizing: border-box; }
         .section-label { font-size: 0.75rem; color: #94a3b8; margin: 25px 0 10px 0; font-weight: bold; letter-spacing: 0.5px; }
-        .filter-btn { display: block; width: 100%; padding: 10px; margin-bottom: 5px; background: #1e293b; border: 1px solid #334155; color: #cbd5e1; text-align: left; cursor: pointer; border-radius: 6px; transition: 0.2s; }
-        .filter-btn:hover, .filter-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
+        
         .tab-nav { display: flex; gap: 20px; margin-bottom: 20px; border-bottom: 2px solid #e2e8f0; overflow-x: auto; }
         .tab-btn { padding: 10px 20px; cursor: pointer; font-weight: 600; color: #64748b; border-bottom: 3px solid transparent; white-space: nowrap; }
         .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
+        
         .grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); }
         .card { background: var(--card); padding: 1.5rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); border-left: 5px solid #ccc; }
-        
-        /* Vendor Colors */
         .card.vendor-Microsoft { border-left-color: #0078d4; }
         .card.vendor-Cisco { border-left-color: #1ba0d7; }
         .card.vendor-Citrix { border-left-color: #d13438; }
-        .card.vendor-Aruba { border-left-color: #ff8300; } /* Orange */
-        .card.vendor-Other { border-left-color: #64748b; } /* Grey */
+        .card.vendor-Aruba { border-left-color: #ff8300; }
+        .card.vendor-Other { border-left-color: #64748b; }
         
         .list-item { background: white; padding: 20px; margin-bottom: 15px; border-radius: 8px; border-left: 5px solid #334155; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
         .status-critical { border-left-color: #ef4444; } 
@@ -261,7 +282,6 @@ def generate_html(vulns, eol, news, status):
     """
 
     # --- FINAL HTML ASSEMBLY ---
-    # We use .format() or manual concatenation to avoid f-string complexity issues
     html = f"""
     <!DOCTYPE html>
     <html lang="en">
