@@ -83,7 +83,7 @@
         <div class="sidebar">
             <h1>MSP Threat Intel</h1>
             <div class="section-label">VULNERABILITY FILTER</div>
-            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">13</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">5</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">0</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">0</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">0</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">4</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">78</span></button>
+            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">19</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">5</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">0</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">0</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">0</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">4</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">72</span></button>
             <div class="section-label">LIFECYCLE TRACKER</div>
             
         <div class="eol-item st-expired">
@@ -158,6 +158,48 @@
             <div id="vulns" class="tab-content active">
                 <div class="grid">
                     
+        <div class="card vendor-Microsoft" data-vendor="Microsoft">
+            <span class="tag">Microsoft</span><span class="tag" style="float:right">2026-02-10</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-21513" target="_blank" class="cve-title">Microsoft Internet Explorer Protection Mechanism Failure Vulnerability (CVE-2026-21513) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Internet Explorer contains a protection mechanism failure vulnerability that could allow an unauthorized attacker to bypass a security feature over a network.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2026-21513' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2026-21513')">Copy</button></div>
+        </div>
+        <div class="card vendor-Microsoft" data-vendor="Microsoft">
+            <span class="tag">Microsoft</span><span class="tag" style="float:right">2026-02-10</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-21525" target="_blank" class="cve-title">Microsoft Windows NULL Pointer Dereference Vulnerability (CVE-2026-21525) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows Remote Access Connection Manager contains a NULL pointer dereference that could allow an unauthorized attacker to deny service locally.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2026-21525' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2026-21525')">Copy</button></div>
+        </div>
+        <div class="card vendor-Microsoft" data-vendor="Microsoft">
+            <span class="tag">Microsoft</span><span class="tag" style="float:right">2026-02-10</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-21510" target="_blank" class="cve-title">Microsoft Windows Shell Protection Mechanism Failure Vulnerability (CVE-2026-21510) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows Shell contains a protection mechanism failure vulnerability that could allow an unauthorized attacker to bypass a security feature over a network. </p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2026-21510' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2026-21510')">Copy</button></div>
+        </div>
+        <div class="card vendor-Microsoft" data-vendor="Microsoft">
+            <span class="tag">Microsoft</span><span class="tag" style="float:right">2026-02-10</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-21533" target="_blank" class="cve-title">Microsoft Windows Improper Privilege Management Vulnerability (CVE-2026-21533) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows Remote Desktop Services contains an improper privilege management vulnerability that could allow an authorized attacker to elevate privileges locally.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2026-21533' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2026-21533')">Copy</button></div>
+        </div>
+        <div class="card vendor-Microsoft" data-vendor="Microsoft">
+            <span class="tag">Microsoft</span><span class="tag" style="float:right">2026-02-10</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-21519" target="_blank" class="cve-title">Microsoft Windows Type Confusion Vulnerability (CVE-2026-21519) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Desktop Windows Manager contains a type confusion vulnerability that could allow an authorized attacker to elevate privileges locally.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2026-21519' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2026-21519')">Copy</button></div>
+        </div>
+        <div class="card vendor-Microsoft" data-vendor="Microsoft">
+            <span class="tag">Microsoft</span><span class="tag" style="float:right">2026-02-10</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-21514" target="_blank" class="cve-title">Microsoft Office Word Reliance on Untrusted Inputs in a Security Decision Vulnerability (CVE-2026-21514) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Office Word contains a reliance on untrusted inputs in a security decision vulnerability that could allow an authorized attacker to elevate privileges locally.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2026-21514' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2026-21514')">Copy</button></div>
+        </div>
         <div class="card vendor-Other" data-vendor="Other">
             <span class="tag">Other</span><span class="tag" style="float:right">2026-02-05</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-11953" target="_blank" class="cve-title">React Native Community CLI OS Command Injection Vulnerability (CVE-2025-11953) ↗</a>
@@ -816,48 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
             
         </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2025-09-04</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-38352" target="_blank" class="cve-title">Linux Kernel Time-of-Check Time-of-Use (TOCTOU) Race Condition Vulnerability (CVE-2025-38352) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Linux kernel contains a time-of-check time-of-use (TOCTOU) race condition vulnerability that has a high impact on confidentiality, integrity, and availability.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2025-09-04</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-48543" target="_blank" class="cve-title">Android Runtime Use-After-Free Vulnerability (CVE-2025-48543) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Android Runtime contains a use-after-free vulnerability potentially allowing a chrome sandbox escape leading to local privilege escalation.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2025-09-04</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-53690" target="_blank" class="cve-title">Sitecore Multiple Products Deserialization of Untrusted Data Vulnerability (CVE-2025-53690) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Sitecore Experience Manager (XM), Experience Platform (XP), Experience Commerce (XC), and Managed Cloud contain a deserialization of untrusted data vulnerability involving the use of default machine keys. This flaw allows attackers to exploit exposed ASP.NET machine keys to achieve remote code execution. </p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2025-09-03</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2023-50224" target="_blank" class="cve-title">TP-Link TL-WR841N Authentication Bypass by Spoofing Vulnerability (CVE-2023-50224) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">TP-Link TL-WR841N contains an authentication bypass by spoofing vulnerability within the httpd service, which listens on TCP port 80 by default, leading to the disclose of stored credentials. The impacted products could be end-of-life (EoL) and/or end-of-service (EoS). Users should discontinue product utilization.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2025-09-03</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-9377" target="_blank" class="cve-title">TP-Link Archer C7(EU) and TL-WR841N/ND(MS) OS Command Injection Vulnerability (CVE-2025-9377) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">TP-Link Archer C7(EU) and TL-WR841N/ND(MS) contain an OS command injection vulnerability that exists in the Parental Control page. The impacted products could be end-of-life (EoL) and/or end-of-service (EoS). Users should discontinue product utilization.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2025-09-02</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2020-24363" target="_blank" class="cve-title">TP-link TL-WA855RE Missing Authentication for Critical Function Vulnerability (CVE-2020-24363) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">TP-link TL-WA855RE contains a missing authentication for critical function vulnerability. This vulnerability could allow an unauthenticated attacker (on the same network) to submit a TDDP_RESET POST request for a factory reset and reboot. The attacker can then obtain incorrect access control by setting a new administrative password. The impacted products could be end-of-life (EoL) and/or end-of-service (EoS). Users should discontinue product utilization.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
                 </div>
             </div>
             
@@ -865,29 +865,29 @@
                 <h3>Live Service Status (Public Feeds)</h3>
                 
         <div class="list-item status-warning">
-            <span class="meta" style="color:#f59e0b">Windows Issue • Sat, 07 Feb 2026</span>
+            <span class="meta" style="color:#f59e0b">Windows Issue • Tue, 10 Feb 2026</span>
             <a href="https://learn.microsoft.com/en-us/windows/release-health/status-windows-server-2025" target="_blank" class="item-link">Windows Server 2025 ↗</a>
             <div class="item-desc">What is new in Windows Server 2025Check its advanced features and innovations Get Windows Server known issues in Graph APIData is available for supported Windows Server versions ...</div>
         </div>
         <div class="list-item status-warning">
-            <span class="meta" style="color:#f59e0b">Windows Issue • Thu, 05 Feb 2026</span>
+            <span class="meta" style="color:#f59e0b">Windows Issue • Tue, 10 Feb 2026</span>
             <a href="https://learn.microsoft.com/en-us/autopilot/known-issues" target="_blank" class="item-link">Windows Autopilot known issues ↗</a>
-            <div class="item-desc">Known issues Local Autopilot Reset can’t be triggered by local administrator when you deny access from network Date added: January 16, 2026 When a device is configured with an Intune policy that sets Deny access to this computer from the network for the local account, the local Windows administrator account can't start a local Windows Autopilot....</div>
+            <div class="item-desc">Known issues Microsoft Entra hybrid join Autopilot deployments time out with error code 0x80004005 Date added: February 9, 2026 During Microsoft Entra hybrid join Autopilot deployments, devices might experience timeout errors with error code 0x80004005 in the deployment process.  ...network for the local account, the local Windows administrator....</div>
         </div>
         <div class="list-item status-warning">
-            <span class="meta" style="color:#f59e0b">Windows Issue • Sat, 07 Feb 2026</span>
+            <span class="meta" style="color:#f59e0b">Windows Issue • Tue, 10 Feb 2026</span>
             <a href="https://learn.microsoft.com/en-us/windows/release-health/status-windows-11-24h2" target="_blank" class="item-link">Windows 11, version 24H2 ↗</a>
+            <div class="item-desc">How to get Windows 11, version 25H2 An IT pro’s guide to Windows 11, version 25H2 ...</div>
+        </div>
+        <div class="list-item status-warning">
+            <span class="meta" style="color:#f59e0b">Windows Issue • Tue, 10 Feb 2026</span>
+            <a href="https://learn.microsoft.com/en-us/windows/release-health/status-windows-11-23h2" target="_blank" class="item-link">Windows 11, version 23H2 ↗</a>
             <div class="item-desc">How to get Windows 11, version 25H2 An IT pro’s guide to Windows 11, version 25H2 ...</div>
         </div>
         <div class="list-item status-warning">
             <span class="meta" style="color:#f59e0b">Windows Issue • Wed, 01 Oct 2025</span>
             <a href="https://learn.microsoft.com/en-us/entra/identity/devices/troubleshoot-macos-platform-single-sign-on-extension" target="_blank" class="item-link">macOS Platform single sign-on known issues and troubleshooting - Microsoft Entra ID ↗</a>
             <div class="item-desc">macOS Platform single sign-on known issues and troubleshooting This article outlines the current known issues and common questions with ma... Important There is currently a known issue with PSSO that is causing registration removal during recovery and may prompt users to re-register after recovery. Known issues Unexpected/frequent re-registration....</div>
-        </div>
-        <div class="list-item status-warning">
-            <span class="meta" style="color:#f59e0b">Windows Issue • Sat, 07 Feb 2026</span>
-            <a href="https://learn.microsoft.com/en-us/windows/release-health/status-windows-11-23h2" target="_blank" class="item-link">Windows 11, version 23H2 ↗</a>
-            <div class="item-desc">How to get Windows 11, version 25H2 An IT pro’s guide to Windows 11, version 25H2 ...</div>
         </div>
             </div>
 
