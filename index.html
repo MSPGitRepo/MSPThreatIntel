@@ -83,7 +83,7 @@
         <div class="sidebar">
             <h1>MSP Threat Intel</h1>
             <div class="section-label">VULNERABILITY FILTER</div>
-            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">19</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">5</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">0</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">0</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">0</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">4</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">72</span></button>
+            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">20</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">4</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">0</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">0</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">0</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">4</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">72</span></button>
             <div class="section-label">LIFECYCLE TRACKER</div>
             
         <div class="eol-item st-expired">
@@ -158,6 +158,27 @@
             <div id="vulns" class="tab-content active">
                 <div class="grid">
                     
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-02-12</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20700" target="_blank" class="cve-title">Apple Multiple Buffer Overflow Vulnerability (CVE-2026-20700) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Apple iOS, macOS, tvOS, watchOS, and visionOS contain an improper restriction of operations within the bounds of a memory buffer vulnerability that could allow an attacker with memory write the capability to execute arbitrary code.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            
+        </div>
+        <div class="card vendor-Microsoft" data-vendor="Microsoft">
+            <span class="tag">Microsoft</span><span class="tag" style="float:right">2026-02-12</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2024-43468" target="_blank" class="cve-title">Microsoft Configuration Manager SQL Injection Vulnerability (CVE-2024-43468) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Configuration Manager contains an SQL injection vulnerability. An unauthenticated attacker could exploit this vulnerability by sending specially crafted requests to the target environment which are processed in an unsafe manner enabling the attacker to execute commands on the server and/or underlying database.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2024-43468' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2024-43468')">Copy</button></div>
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-02-12</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-15556" target="_blank" class="cve-title">Notepad++ Download of Code Without Integrity Check Vulnerability (CVE-2025-15556) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Notepad++ when using the WinGUp updater, contains a download of code without integrity check vulnerability that could allow an attacker to intercept or redirect update traffic to download and execute an attacker-controlled installer. This could lead to arbitrary code execution with the privileges of the user.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            
+        </div>
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
             <span class="tag">Microsoft</span><span class="tag" style="float:right">2026-02-10</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-21513" target="_blank" class="cve-title">Microsoft MSHTML Framework Protection Mechanism Failure Vulnerability (CVE-2026-21513) ↗</a>
@@ -837,27 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> The KEV due date refers to the deadline by which FCEB agencies are expected to review and begin implementing the guidance outlined in Emergency Directive (ED) 25-03 (URL listed below in Notes). Agencies must follow the mitigation steps provided by CISA (URL listed below in Notes) and vendor’s instructions (URL listed below in Notes). Adhere to the applicable BOD 22-01 guidance for cloud services or discontinue use of the product if mitigations are not available.</div>
             
         </div>
-        <div class="card vendor-Cisco" data-vendor="Cisco">
-            <span class="tag">Cisco</span><span class="tag" style="float:right">2025-09-25</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-20333" target="_blank" class="cve-title">Cisco Secure Firewall Adaptive Security Appliance (ASA) and Secure Firewall Threat Defense (FTD) Buffer Overflow Vulnerability (CVE-2025-20333) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Cisco Secure Firewall Adaptive Security (ASA) Appliance and Secure Firewall Threat Defense (FTD) Software VPN Web Server contain a buffer overflow vulnerability that allows for remote code execution. This vulnerability could be chained with CVE-2025-20362.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> The KEV due date refers to the deadline by which FCEB agencies are expected to review and begin implementing the guidance outlined in Emergency Directive (ED) 25-03 (URL listed below in Notes). Agencies must follow the mitigation steps provided by CISA (URL listed below in Notes) and vendor’s instructions (URL listed below in Notes). Adhere to the applicable BOD 22-01 guidance for cloud services or discontinue use of the product if mitigations are not available.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2025-09-23</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-10585" target="_blank" class="cve-title">Google Chromium V8 Type Confusion Vulnerability (CVE-2025-10585) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Google Chromium contains a type confusion vulnerability in the V8 JavaScript and WebAssembly engine.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2025-09-11</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-5086" target="_blank" class="cve-title">Dassault Systèmes DELMIA Apriso Deserialization of Untrusted Data Vulnerability (CVE-2025-5086) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Dassault Systèmes DELMIA Apriso contains a deserialization of untrusted data vulnerability that could lead to a remote code execution.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
                 </div>
             </div>
             
@@ -865,7 +865,7 @@
                 <h3>Live Service Status (Public Feeds)</h3>
                 
         <div class="list-item status-warning">
-            <span class="meta" style="color:#f59e0b">Windows Issue • Wed, 11 Feb 2026</span>
+            <span class="meta" style="color:#f59e0b">Windows Issue • Thu, 12 Feb 2026</span>
             <a href="https://learn.microsoft.com/en-us/windows/release-health/status-windows-server-2025" target="_blank" class="item-link">Windows Server 2025 ↗</a>
             <div class="item-desc">What is new in Windows Server 2025Check its advanced features and innovations Get Windows Server known issues in Graph APIData is available for supported Windows Server versions ...</div>
         </div>
@@ -875,13 +875,8 @@
             <div class="item-desc">Known issues Microsoft Entra hybrid join Autopilot deployments time out with error code 0x80004005 Date added: February 9, 2026 During Microsoft Entra hybrid join Autopilot deployments, devices might experience timeout errors with error code 0x80004005 in the deployment process.  ...network for the local account, the local Windows administrator....</div>
         </div>
         <div class="list-item status-warning">
-            <span class="meta" style="color:#f59e0b">Windows Issue • Wed, 11 Feb 2026</span>
+            <span class="meta" style="color:#f59e0b">Windows Issue • Thu, 12 Feb 2026</span>
             <a href="https://learn.microsoft.com/en-us/windows/release-health/status-windows-11-24h2" target="_blank" class="item-link">Windows 11, version 24H2 ↗</a>
-            <div class="item-desc">How to get Windows 11, version 25H2 An IT pro’s guide to Windows 11, version 25H2 ...</div>
-        </div>
-        <div class="list-item status-warning">
-            <span class="meta" style="color:#f59e0b">Windows Issue • Wed, 11 Feb 2026</span>
-            <a href="https://learn.microsoft.com/en-us/windows/release-health/status-windows-11-23h2" target="_blank" class="item-link">Windows 11, version 23H2 ↗</a>
             <div class="item-desc">How to get Windows 11, version 25H2 An IT pro’s guide to Windows 11, version 25H2 ...</div>
         </div>
         <div class="list-item status-warning">
@@ -904,19 +899,11 @@
         </div>
         <div class="list-item">
             <span class="meta">The Hacker News • Thu, 12 Feb 2026</span>
-            <a href="https://thehackernews.com/2026/02/apple-fixes-exploited-zero-day.html" target="_blank" class="item-link">Apple Fixes Exploited Zero-Day Affecting iOS, macOS, and Apple Devices ↗</a>
+            <a href="https://thehackernews.com/2026/02/apple-fixes-exploited-zero-day.html" target="_blank" class="item-link">Apple Fixes Exploited Zero-Day Affecting iOS, macOS, and Other Devices ↗</a>
         </div>
         <div class="list-item">
             <span class="meta">The Hacker News • Wed, 11 Feb 2026</span>
             <a href="https://thehackernews.com/2026/02/over-60-software-vendors-issue-security.html" target="_blank" class="item-link">Over 60 Software Vendors Issue Security Fixes Across OS, Cloud, and Network Platforms ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">The Hacker News • Wed, 11 Feb 2026</span>
-            <a href="https://thehackernews.com/2026/02/microsoft-patches-59-vulnerabilities.html" target="_blank" class="item-link">Microsoft Patches 59 Vulnerabilities Including Six Actively Exploited Zero-Days ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">The Hacker News • Wed, 11 Feb 2026</span>
-            <a href="https://thehackernews.com/2026/02/sshstalker-botnet-uses-irc-c2-to.html" target="_blank" class="item-link">SSHStalker Botnet Uses IRC C2 to Control Linux Systems via Legacy Kernel Exploits ↗</a>
         </div>
         <div class="list-item">
             <span class="meta">Dark Reading • Tue, 10 Feb 2026</span>
