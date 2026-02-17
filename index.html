@@ -83,7 +83,7 @@
         <div class="sidebar">
             <h1>MSP Threat Intel</h1>
             <div class="section-label">VULNERABILITY FILTER</div>
-            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">20</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">3</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">0</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">0</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">0</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">4</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">73</span></button>
+            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">21</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">2</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">0</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">0</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">0</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">4</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">73</span></button>
             <div class="section-label">LIFECYCLE TRACKER</div>
             
         <div class="eol-item st-expired">
@@ -158,6 +158,34 @@
             <div id="vulns" class="tab-content active">
                 <div class="grid">
                     
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-02-17</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2020-7796" target="_blank" class="cve-title">Synacor Zimbra Collaboration Suite (ZCS) Server-Side Request Forgery Vulnerability (CVE-2020-7796) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Synacor Zimbra Collaboration Suite (ZCS) contains a server-side request forgery vulnerability if WebEx zimlet installed and zimlet JSP is enabled.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-02-17</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2024-7694" target="_blank" class="cve-title">TeamT5 ThreatSonar Anti-Ransomware Unrestricted Upload of File with Dangerous Type Vulnerability (CVE-2024-7694) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">TeamT5 ThreatSonar Anti-Ransomware contains an unrestricted upload of file with dangerous type vulnerability. ThreatSonar Anti-Ransomware does not properly validate the content of uploaded files. Remote attackers with administrator privileges on the product platform can upload malicious files, which can be used to execute arbitrary system commands on the server.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            
+        </div>
+        <div class="card vendor-Microsoft" data-vendor="Microsoft">
+            <span class="tag">Microsoft</span><span class="tag" style="float:right">2026-02-17</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2008-0015" target="_blank" class="cve-title"> Microsoft Windows Video ActiveX Control Remote Code Execution Vulnerability (CVE-2008-0015) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows Video ActiveX Control contains a remote code execution vulnerability. An attacker could exploit the vulnerability by constructing a specially crafted Web page. When a user views the Web page, the vulnerability could allow remote code execution. An attacker who successfully exploited this vulnerability could gain the same user rights as the logged-on user.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2008-0015' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2008-0015')">Copy</button></div>
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-02-17</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-2441" target="_blank" class="cve-title">Google Chromium CSS Use-After-Free Vulnerability (CVE-2026-2441) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Google Chromium CSS contains a use-after-free vulnerability that could allow a remote attacker to potentially exploit heap corruption via a crafted HTML page. This vulnerability could affect multiple web browsers that utilize Chromium, including, but not limited to, Google Chrome, Microsoft Edge, and Opera.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            
+        </div>
         <div class="card vendor-Other" data-vendor="Other">
             <span class="tag">Other</span><span class="tag" style="float:right">2026-02-13</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-1731" target="_blank" class="cve-title">BeyondTrust Remote Support (RS) and Privileged Remote Access (PRA) OS Command Injection Vulnerability (CVE-2026-1731) ↗</a>
@@ -830,34 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
             
         </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2025-09-29</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-32463" target="_blank" class="cve-title">Sudo Inclusion of Functionality from Untrusted Control Sphere Vulnerability (CVE-2025-32463) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Sudo contains an inclusion of functionality from untrusted control sphere vulnerability. This vulnerability could allow local attacker to leverage sudo’s -R (--chroot) option to run arbitrary commands as root, even if they are not listed in the sudoers file.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2025-09-29</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-59689" target="_blank" class="cve-title">Libraesva Email Security Gateway Command Injection Vulnerability (CVE-2025-59689) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Libraesva Email Security Gateway (ESG) contains a command injection vulnerability which allows command injection via a compressed e-mail attachment.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2025-09-29</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-10035" target="_blank" class="cve-title">Fortra GoAnywhere MFT Deserialization of Untrusted Data Vulnerability (CVE-2025-10035) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Fortra GoAnywhere MFT contains a deserialization of untrusted data vulnerability allows an actor with a validly forged license response signature to deserialize an arbitrary actor-controlled object, possibly leading to command injection.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
-        <div class="card vendor-Cisco" data-vendor="Cisco">
-            <span class="tag">Cisco</span><span class="tag" style="float:right">2025-09-29</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-20352" target="_blank" class="cve-title">Cisco IOS and IOS XE Software SNMP Denial of Service and Remote Code Execution Vulnerability (CVE-2025-20352) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Cisco IOS and IOS XE contains a stack-based buffer overflow vulnerability in the Simple Network Management Protocol (SNMP) subsystem that could allow for denial of service or remote code execution. A successful exploit could allow a low-privileged attacker to cause the affected system to reload, resulting in a DoS condition, or allow a high-privileged attacker to execute arbitrary code as the root user and obtain full control of the affected system.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
                 </div>
             </div>
             
@@ -885,14 +885,14 @@
             <div class="item-desc">How to get Windows 11, version 25H2 An IT pro’s guide to Windows 11, version 25H2 ...</div>
         </div>
         <div class="list-item status-warning">
-            <span class="meta" style="color:#f59e0b">Windows Issue • Wed, 01 Oct 2025</span>
-            <a href="https://learn.microsoft.com/en-us/entra/identity/devices/troubleshoot-macos-platform-single-sign-on-extension" target="_blank" class="item-link">macOS Platform single sign-on known issues and troubleshooting - Microsoft Entra ID ↗</a>
-            <div class="item-desc">macOS Platform single sign-on known issues and troubleshooting This article outlines the current known issues and common questions with ma... Important There is currently a known issue with PSSO that is causing registration removal during recovery and may prompt users to re-register after recovery. Known issues Unexpected/frequent re-registration....</div>
-        </div>
-        <div class="list-item status-warning">
             <span class="meta" style="color:#f59e0b">Windows Issue • Thu, 12 Feb 2026</span>
             <a href="https://learn.microsoft.com/en-us/windows/release-health/status-windows-11-23h2" target="_blank" class="item-link">Windows 11, version 23H2 ↗</a>
             <div class="item-desc">How to get Windows 11, version 25H2 An IT pro’s guide to Windows 11, version 25H2 ...</div>
+        </div>
+        <div class="list-item status-warning">
+            <span class="meta" style="color:#f59e0b">Windows Issue • Wed, 01 Oct 2025</span>
+            <a href="https://learn.microsoft.com/en-us/entra/identity/devices/troubleshoot-macos-platform-single-sign-on-extension" target="_blank" class="item-link">macOS Platform single sign-on known issues and troubleshooting - Microsoft Entra ID ↗</a>
+            <div class="item-desc">macOS Platform single sign-on known issues and troubleshooting This article outlines the current known issues and common questions with ma... Important There is currently a known issue with PSSO that is causing registration removal during recovery and may prompt users to re-register after recovery. Known issues Unexpected/frequent re-registration....</div>
         </div>
             </div>
 
@@ -918,10 +918,6 @@
         <div class="list-item">
             <span class="meta">Dark Reading • Thu, 12 Feb 2026</span>
             <a href="https://www.darkreading.com/endpoint-security/ivanti-epmm-zero-day-bugs-exploit" target="_blank" class="item-link">Ivanti EPMM Zero-Day Bugs Spark Exploit Frenzy — Again ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">Dark Reading • Thu, 12 Feb 2026</span>
-            <a href="https://www.darkreading.com/identity-access-management-security/specterops-launches-bloodhound-scentry" target="_blank" class="item-link">SpecterOps Launches BloodHound Scentry to Accelerate the Practice of Identity Attack Path Management ↗</a>
         </div>
             </div>
         </div>
