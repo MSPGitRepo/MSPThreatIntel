@@ -83,7 +83,7 @@
         <div class="sidebar">
             <h1>MSP Threat Intel</h1>
             <div class="section-label">VULNERABILITY FILTER</div>
-            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">21</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">2</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">0</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">0</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">0</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">4</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">73</span></button>
+            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">21</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">4</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">0</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">0</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">0</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">4</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">71</span></button>
             <div class="section-label">LIFECYCLE TRACKER</div>
             
         <div class="eol-item st-expired">
@@ -158,6 +158,20 @@
             <div id="vulns" class="tab-content active">
                 <div class="grid">
                     
+        <div class="card vendor-Cisco" data-vendor="Cisco">
+            <span class="tag">Cisco</span><span class="tag" style="float:right">2026-02-25</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2022-20775" target="_blank" class="cve-title">Cisco SD-WAN Path Traversal Vulnerability (CVE-2022-20775) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Cisco SD-WAN CLI contains a path traversal vulnerability that could allow an authenticated local attacker to gain elevated privileges via improper access controls on commands within the application CLI. A successful exploit could allow the attacker to execute arbitrary commands as the root user.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Please adhere to CISA’s guidelines to assess exposure and mitigate risks associated with Cisco SD-WAN devices as outlines in CISA’s Emergency Directive 26-03 (URL listed below in Notes) and CISA’s “Hunt & Hardening Guidance for Cisco SD-WAN Devices (URL listed below in Notes). Adhere to the applicable BOD 22-01 guidance for cloud services or discontinue use of the product if mitigations are not available.</div>
+            
+        </div>
+        <div class="card vendor-Cisco" data-vendor="Cisco">
+            <span class="tag">Cisco</span><span class="tag" style="float:right">2026-02-25</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20127" target="_blank" class="cve-title">Cisco Catalyst SD-WAN Controller and Manager Authentication Bypass Vulnerability (CVE-2026-20127) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Cisco Catalyst SD-WAN Controller, formerly SD-WAN vSmart, and Cisco Catalyst SD-WAN Manager, formerly SD-WAN vManage, contain an authentication bypass vulnerability could allow an unauthenticated, remote attacker to bypass authentication and obtain administrative privileges on an affected system. This vulnerability exists because the peering authentication mechanism in an affected system is not working properly. An attacker could exploit this vulnerability by sending crafted requests to an affected system. A successful exploit could allow the attacker to log in to an affected Cisco Catalyst SD-WAN Controller as an internal, high-privileged, non-root user account. Using this account, the attacker could access NETCONF, which would then allow the attacker to manipulate network configuration for the SD-WAN fabric.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Please adhere to CISA’s guidelines to assess exposure and mitigate risks associated with Cisco SD-WAN devices as outlines in CISA’s Emergency Directive 26-03 (URL listed below in Notes) and CISA’s “Hunt & Hardening Guidance for Cisco SD-WAN Devices (URL listed below in Notes). Adhere to the applicable BOD 22-01 guidance for cloud services or discontinue use of the product if mitigations are not available.</div>
+            
+        </div>
         <div class="card vendor-Other" data-vendor="Other">
             <span class="tag">Other</span><span class="tag" style="float:right">2026-02-24</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-25108" target="_blank" class="cve-title">Soliton Systems K.K FileZen OS Command Injection Vulnerability (CVE-2026-25108) ↗</a>
@@ -844,20 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
             <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2011-3402' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2011-3402')">Copy</button></div>
         </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2025-10-06</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2010-3765" target="_blank" class="cve-title">Mozilla Multiple Products Remote Code Execution Vulnerability (CVE-2010-3765) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Mozilla Firefox, SeaMonkey, and Thunderbird contain an unspecified vulnerability when JavaScript is enabled. This allows remote attackers to execute arbitrary code via vectors related to nsCSSFrameConstructor::ContentAppended, the appendChild method, incorrect index tracking, and the creation of multiple frames, which triggers memory corruption.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2025-10-06</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-61882" target="_blank" class="cve-title">Oracle E-Business Suite Unspecified Vulnerability (CVE-2025-61882) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Oracle E-Business Suite contains an unspecified vulnerability in the BI Publisher Integration component. The vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle Concurrent Processing. Successful attacks can result in takeover of Oracle Concurrent Processing.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
                 </div>
             </div>
             
@@ -896,6 +896,10 @@
                 
         <div class="list-item">
             <span class="meta">The Hacker News • Wed, 25 Feb 2026</span>
+            <a href="https://thehackernews.com/2026/02/claude-code-flaws-allow-remote-code.html" target="_blank" class="item-link">Claude Code Flaws Allow Remote Code Execution and API Key Exfiltration ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">The Hacker News • Wed, 25 Feb 2026</span>
             <a href="https://thehackernews.com/2026/02/malicious-nuget-packages-stole-aspnet.html" target="_blank" class="item-link">Malicious NuGet Packages Stole ASP.NET Data; npm Package Dropped Malware ↗</a>
         </div>
         <div class="list-item">
@@ -917,10 +921,6 @@
         <div class="list-item">
             <span class="meta">The Hacker News • Wed, 25 Feb 2026</span>
             <a href="https://thehackernews.com/2026/02/roguepilot-flaw-in-github-codespaces.html" target="_blank" class="item-link">RoguePilot Flaw in GitHub Codespaces Enabled Copilot to Leak GITHUB_TOKEN ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">The Hacker News • Tue, 24 Feb 2026</span>
-            <a href="https://thehackernews.com/2026/02/unsolicitedbooker-targets-central-asian.html" target="_blank" class="item-link">UnsolicitedBooker Targets Central Asian Telecoms With LuciDoor and MarsSnake Backdoors ↗</a>
         </div>
         <div class="list-item">
             <span class="meta">Dark Reading • Wed, 25 Feb 2026</span>
