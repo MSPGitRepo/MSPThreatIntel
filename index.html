@@ -159,6 +159,20 @@
                 <div class="grid">
                     
         <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-03-13</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-3910" target="_blank" class="cve-title">Google Chromium V8 Improper Restriction of Operations Within the Bounds of a Memory Buffer Vulnerability (CVE-2026-3910) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Google Chromium V8 contains an improper restriction of operations within the bounds of a memory buffer vulnerability that could allow a remote attacker to execute arbitrary code inside a sandbox via a crafted HTML page. This vulnerability could affect multiple web browsers that utilize Chromium, including, but not limited to, Google Chrome, Microsoft Edge, and Opera.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-03-13</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-3909" target="_blank" class="cve-title">Google Skia Out-of-Bounds Write Vulnerability (CVE-2026-3909) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Google Skia contains an out-of-bounds write vulnerability that could allow a remote attacker to perform out of bounds memory access via a crafted HTML page. This vulnerability affects Google Chrome and ChromeOS, Android, Flutter, and possibly other products.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
             <span class="tag">Other</span><span class="tag" style="float:right">2026-03-11</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-68613" target="_blank" class="cve-title">n8n Improper Control of Dynamically-Managed Code Resources Vulnerability (CVE-2025-68613) ↗</a>
             <p style="font-size:0.9rem; color:#475569;">n8n contains an improper control of dynamically managed code resources vulnerability in its workflow expression evaluation system that allows for remote code execution.</p>
@@ -844,20 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
             <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2025-33073' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2025-33073')">Copy</button></div>
         </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2025-10-20</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-61884" target="_blank" class="cve-title">Oracle E-Business Suite Server-Side Request Forgery (SSRF) Vulnerability (CVE-2025-61884) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Oracle E-Business Suite contains a server-side request forgery (SSRF) vulnerability in the Runtime component of Oracle Configurator. This vulnerability is remotely exploitable without authentication.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2025-10-15</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-54253" target="_blank" class="cve-title">Adobe Experience Manager Forms Code Execution Vulnerability (CVE-2025-54253) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Adobe Experience Manager Forms in JEE contains an unspecified vulnerability that allows for arbitrary code execution.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
                 </div>
             </div>
             
@@ -865,12 +865,12 @@
                 <h3>Live Service Status (Public Feeds)</h3>
                 
         <div class="list-item status-warning">
-            <span class="meta" style="color:#f59e0b">Windows Issue • Thu, 12 Mar 2026</span>
+            <span class="meta" style="color:#f59e0b">Windows Issue • Fri, 13 Mar 2026</span>
             <a href="https://learn.microsoft.com/en-us/windows/release-health/status-windows-11-25h2" target="_blank" class="item-link">Windows 11, version 25H2 ↗</a>
-            <div class="item-desc">SummaryOriginating updateStatusLast updated Updates installed via WUSA might fail if installed from a shared folderThis issue might occur when installing an update from a network folder containing multiple .msu files.N/A  Mitigated2025-09-30 10:04 PT Issue details August 2025Updates installed via WUSA might fail if installed from a shared folder....</div>
+            <div class="item-desc">SummaryOriginating updateStatusLast updated Microsoft received reports of loss of access to the C: drive and app failuresReports mention the issue affects some Samsung devices in specific regions after installing KB5077181.OS Build 26100.7840 KB50771812026-02-10Investigating2026-03-13 13:07 PT Updates installed via WUSA might fail if installed....</div>
         </div>
         <div class="list-item status-warning">
-            <span class="meta" style="color:#f59e0b">Windows Issue • Thu, 12 Mar 2026</span>
+            <span class="meta" style="color:#f59e0b">Windows Issue • Fri, 13 Mar 2026</span>
             <a href="https://learn.microsoft.com/en-us/windows/release-health/status-windows-server-2025" target="_blank" class="item-link">Windows Server 2025 ↗</a>
             <div class="item-desc">...ue is observed in a niche scenario when using PKINIT protocol and is resolved in the April 2025 security update.N/A  Resolved KB50555232026-02-23 21:14 PT Updates installed via WUSA might fail if installed from a shared folderThis issue might occur when installing an update from a network folder containing multiple .msu files.OS Build....</div>
         </div>
@@ -885,9 +885,9 @@
             <div class="item-desc">macOS Platform single sign-on known issues and troubleshooting This article outlines the current known issues and common questions with ma... Important There is currently a known issue with PSSO that is causing registration removal during recovery and may prompt users to re-register after recovery. Known issues Unexpected/frequent re-registration....</div>
         </div>
         <div class="list-item status-warning">
-            <span class="meta" style="color:#f59e0b">Windows Issue • Thu, 12 Mar 2026</span>
+            <span class="meta" style="color:#f59e0b">Windows Issue • Fri, 13 Mar 2026</span>
             <a href="https://learn.microsoft.com/en-us/windows/release-health/status-windows-11-23h2" target="_blank" class="item-link">Windows 11, version 23H2 ↗</a>
-            <div class="item-desc">Current status as of November 11, 2025As of November 11, 2025, Home and Pro editions of Windows 11, version 23H2 have reached end of servicing. Enterprise and Education... For more details, watch this video. How to get Windows 11, version 25H2 An IT pro’s guide to Windows 11, version 25H2 ...</div>
+            <div class="item-desc">Windows 11, version 23H2 known issues and notifications Summarize this article for me Find information on known issues and the status of the Windows 11, version 23H2 rollout. For immediate help with Windows update... How to get Windows 11, version 25H2 An IT pro’s guide to Windows 11, version 25H2 ...</div>
         </div>
             </div>
 
