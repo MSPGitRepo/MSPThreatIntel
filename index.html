@@ -83,7 +83,7 @@
         <div class="sidebar">
             <h1>MSP Threat Intel</h1>
             <div class="section-label">VULNERABILITY FILTER</div>
-            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">15</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">4</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">0</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">0</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">0</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">4</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">77</span></button>
+            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">15</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">5</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">0</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">0</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">0</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">4</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">76</span></button>
             <div class="section-label">LIFECYCLE TRACKER</div>
             
         <div class="eol-item st-expired">
@@ -158,6 +158,13 @@
             <div id="vulns" class="tab-content active">
                 <div class="grid">
                     
+        <div class="card vendor-Cisco" data-vendor="Cisco">
+            <span class="tag">Cisco</span><span class="tag" style="float:right">2026-03-19</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20131" target="_blank" class="cve-title">Cisco Secure Firewall Management Center (FMC) Software and Cisco Security Cloud Control (SCC) Firewall Management Deserialization of Untrusted Data Vulnerability (CVE-2026-20131) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Cisco Secure Firewall Management Center (FMC) Software and Cisco Security Cloud Control (SCC) Firewall Management contain a deserialization of untrusted data vulnerability in the web-based management interface that could allow an unauthenticated, remote attacker to execute arbitrary Java code as root on an affected device.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            
+        </div>
         <div class="card vendor-Other" data-vendor="Other">
             <span class="tag">Other</span><span class="tag" style="float:right">2026-03-18</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-66376" target="_blank" class="cve-title">Synacor Zimbra Collaboration Suite (ZCS) Cross-Site Scripting Vulnerability (CVE-2025-66376) ↗</a>
@@ -851,13 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
             
         </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2025-10-20</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2022-48503" target="_blank" class="cve-title">Apple Multiple Products Unspecified Vulnerability (CVE-2022-48503) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Apple macOS, iOS, tvOS, Safari, and watchOS contain an unspecified vulnerability in JavaScriptCore that when processing web content may lead to arbitrary code execution. The impacted product could be end-of-life (EoL) and/or end-of-service (EoS). Users should discontinue product utilization.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
                 </div>
             </div>
             
@@ -896,6 +896,10 @@
                 
         <div class="list-item">
             <span class="meta">The Hacker News • Thu, 19 Mar 2026</span>
+            <a href="https://thehackernews.com/2026/03/threatsday-bulletin-fortigate-raas.html" target="_blank" class="item-link">ThreatsDay Bulletin: FortiGate RaaS, Citrix Exploits, MCP Abuse, LiveChat Phish & More ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">The Hacker News • Thu, 19 Mar 2026</span>
             <a href="https://thehackernews.com/2026/03/darksword-ios-exploit-kit-uses-6-flaws.html" target="_blank" class="item-link">DarkSword iOS Exploit Kit Uses 6 Flaws, 3 Zero-Days for Full Device Takeover ↗</a>
         </div>
         <div class="list-item">
@@ -913,10 +917,6 @@
         <div class="list-item">
             <span class="meta">The Hacker News • Wed, 18 Mar 2026</span>
             <a href="https://thehackernews.com/2026/03/9-critical-ip-kvm-flaws-enable.html" target="_blank" class="item-link">9 Critical IP KVM Flaws Enable Unauthenticated Root Access Across Four Vendors ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">The Hacker News • Wed, 18 Mar 2026</span>
-            <a href="https://thehackernews.com/2026/03/ubuntu-cve-2026-3888-bug-lets-attackers.html" target="_blank" class="item-link">Ubuntu CVE-2026-3888 Bug Lets Attackers Gain Root via systemd Cleanup Timing Exploit ↗</a>
         </div>
         <div class="list-item">
             <span class="meta">Dark Reading • Wed, 18 Mar 2026</span>
