@@ -83,7 +83,7 @@
         <div class="sidebar">
             <h1>MSP Threat Intel</h1>
             <div class="section-label">VULNERABILITY FILTER</div>
-            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">15</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">5</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">0</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">0</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">0</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">4</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">76</span></button>
+            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">14</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">5</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">0</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">0</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">0</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">4</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">77</span></button>
             <div class="section-label">LIFECYCLE TRACKER</div>
             
         <div class="eol-item st-expired">
@@ -158,6 +158,41 @@
             <div id="vulns" class="tab-content active">
                 <div class="grid">
                     
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-03-20</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-32432" target="_blank" class="cve-title">Craft CMS Code Injection Vulnerability (CVE-2025-32432) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Craft CMS contains a code injection vulnerability that allows a remote attacker to execute arbitrary code.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-03-20</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-54068" target="_blank" class="cve-title">Laravel Livewire Code Injection Vulnerability (CVE-2025-54068) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Laravel Livewire contain a code injection vulnerability that could allow unauthenticated attackers to achieve remote command execution in specific scenarios.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-03-20</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-43510" target="_blank" class="cve-title">Apple Multiple Products Improper Locking Vulnerability (CVE-2025-43510) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Apple watchOS, iOS, iPadOS, macOS, visionOS, and tvOS contain an improper locking vulnerability that could allow a malicious application to cause unexpected changes in memory shared between processes.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-03-20</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-43520" target="_blank" class="cve-title">Apple Multiple Products Classic Buffer Overflow Vulnerability (CVE-2025-43520) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Apple watchOS, iOS, iPadOS, macOS, visionOS, tvOS, and iPadOS contain a classic buffer overflow vulnerability which could allow a malicious application to cause unexpected system termination or write kernel memory.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-03-20</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-31277" target="_blank" class="cve-title">Apple Multiple Products Buffer Overflow Vulnerability (CVE-2025-31277) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Apple Safari, iOS, watchOS, visionOS, iPadOS, macOS, and tvOS contain a buffer overflow vulnerability that could allow the processing of maliciously crafted web content which may lead to memory corruption.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            
+        </div>
         <div class="card vendor-Cisco" data-vendor="Cisco">
             <span class="tag">Cisco</span><span class="tag" style="float:right">2026-03-19</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20131" target="_blank" class="cve-title">Cisco Secure Firewall Management Center (FMC) Software and Cisco Security Cloud Control (SCC) Firewall Management Deserialization of Untrusted Data Vulnerability (CVE-2026-20131) ↗</a>
@@ -823,47 +858,17 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
             
         </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2025-10-28</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-6204" target="_blank" class="cve-title">Dassault Systèmes DELMIA Apriso Code Injection Vulnerability (CVE-2025-6204) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Dassault Systèmes DELMIA Apriso contains a code injection vulnerability that could allow an attacker to execute arbitrary code.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2025-10-28</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-6205" target="_blank" class="cve-title">Dassault Systèmes DELMIA Apriso Missing Authorization Vulnerability (CVE-2025-6205) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Dassault Systèmes DELMIA Apriso contains a missing authorization vulnerability that could allow an attacker to gain privileged access to the application.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2025-10-24</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-54236" target="_blank" class="cve-title">Adobe Commerce and Magento Improper Input Validation Vulnerability (CVE-2025-54236) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Adobe Commerce and Magento Open Source contain an improper input validation vulnerability that could allow an attacker to take over customer accounts through the Commerce REST API.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
-        <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <span class="tag">Microsoft</span><span class="tag" style="float:right">2025-10-24</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-59287" target="_blank" class="cve-title">Microsoft Windows Server Update Service (WSUS) Deserialization of Untrusted Data Vulnerability (CVE-2025-59287) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows Server Update Service (WSUS) contains a deserialization of untrusted data vulnerability that allows for remote code execution.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2025-59287' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2025-59287')">Copy</button></div>
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2025-10-22</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-61932" target="_blank" class="cve-title">Motex LANSCOPE Endpoint Manager Improper Verification of Source of a Communication Channel Vulnerability (CVE-2025-61932) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Motex LANSCOPE Endpoint Manager contains an improper verification of source of a communication channel vulnerability allowing an attacker to execute arbitrary code by sending specially crafted packets.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
                 </div>
             </div>
             
             <div id="status" class="tab-content">
                 <h3>Live Service Status (Public Feeds)</h3>
                 
+        <div class="list-item status-critical">
+            <span class="meta" style="color:#ef4444">Azure Outage • Fri, 20 Mar 2026</span>
+            <a href="https://azurestatusprodncus.azurewebsites.net/en-gb/status/" target="_blank" class="item-link">Mitigated - Multiple Azure Services Experienced Degraded Services in East US  ↗</a>
+            <div class="item-desc">Impact SummaryBetween 15:05 UTC and 15:35 UTC on 20 March 2026, customers in East US may have experienced degraded performance across multiple Azure services.The issue has been mitigated. Further updates, if required, will be communicated via the Azure Service Health portal.&nbsp;</div>
+        </div>
         <div class="list-item status-warning">
             <span class="meta" style="color:#f59e0b">Windows Issue • Fri, 20 Mar 2026</span>
             <a href="https://learn.microsoft.com/en-us/windows/release-health/status-windows-server-2025" target="_blank" class="item-link">Windows Server 2025 ↗</a>
@@ -896,6 +901,14 @@
                 
         <div class="list-item">
             <span class="meta">The Hacker News • Fri, 20 Mar 2026</span>
+            <a href="https://thehackernews.com/2026/03/critical-langflow-flaw-cve-2026-33017.html" target="_blank" class="item-link">Critical Langflow Flaw CVE-2026-33017 Triggers Attacks within 20 Hours of Disclosure ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">The Hacker News • Fri, 20 Mar 2026</span>
+            <a href="https://thehackernews.com/2026/03/magento-polyshell-flaw-enables.html" target="_blank" class="item-link">Magento PolyShell Flaw Enables Unauthenticated Uploads, RCE and Account Takeover ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">The Hacker News • Fri, 20 Mar 2026</span>
             <a href="https://thehackernews.com/2026/03/doj-disrupts-3-million-device-iot.html" target="_blank" class="item-link">DoJ Disrupts 3 Million-Device IoT Botnets Behind Record 31.4 Tbps Global DDoS Attacks ↗</a>
         </div>
         <div class="list-item">
@@ -911,8 +924,8 @@
             <a href="https://thehackernews.com/2026/03/threatsday-bulletin-fortigate-raas.html" target="_blank" class="item-link">ThreatsDay Bulletin: FortiGate RaaS, Citrix Exploits, MCP Abuse, LiveChat Phish & More ↗</a>
         </div>
         <div class="list-item">
-            <span class="meta">The Hacker News • Thu, 19 Mar 2026</span>
-            <a href="https://thehackernews.com/2026/03/darksword-ios-exploit-kit-uses-6-flaws.html" target="_blank" class="item-link">DarkSword iOS Exploit Kit Uses 6 Flaws, 3 Zero-Days for Full Device Takeover ↗</a>
+            <span class="meta">Dark Reading • Fri, 20 Mar 2026</span>
+            <a href="https://www.darkreading.com/threat-intelligence/interlock-ransomware-targets-cisco-enterprise-firewalls" target="_blank" class="item-link">Interlock Ransomware Targets Cisco Enterprise Firewalls ↗</a>
         </div>
         <div class="list-item">
             <span class="meta">Dark Reading • Thu, 19 Mar 2026</span>
@@ -929,10 +942,6 @@
         <div class="list-item">
             <span class="meta">Dark Reading • Wed, 18 Mar 2026</span>
             <a href="https://www.darkreading.com/vulnerabilities-threats/claudy-day-trio-flaws-claude-users-data-theft" target="_blank" class="item-link">'Claudy Day’ Trio of Flaws Exposes Claude Users to Data Theft ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">Dark Reading • Wed, 18 Mar 2026</span>
-            <a href="https://www.darkreading.com/threat-intelligence/sidewinder-espionage-campaign-expands-across-southeast-asia" target="_blank" class="item-link">SideWinder Espionage Campaign Expands Across Southeast Asia ↗</a>
         </div>
             </div>
         </div>
