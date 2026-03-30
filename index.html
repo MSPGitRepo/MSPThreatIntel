@@ -83,7 +83,7 @@
         <div class="sidebar">
             <h1>MSP Threat Intel</h1>
             <div class="section-label">VULNERABILITY FILTER</div>
-            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">14</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">5</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">0</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">0</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">0</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">4</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">77</span></button>
+            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">14</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">5</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">1</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">0</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">0</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">4</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">76</span></button>
             <div class="section-label">LIFECYCLE TRACKER</div>
             
         <div class="eol-item st-expired">
@@ -158,6 +158,13 @@
             <div id="vulns" class="tab-content active">
                 <div class="grid">
                     
+        <div class="card vendor-Citrix" data-vendor="Citrix">
+            <span class="tag">Citrix</span><span class="tag" style="float:right">2026-03-30</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-3055" target="_blank" class="cve-title">Citrix NetScaler Out-of-Bounds Read Vulnerability (CVE-2026-3055) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Citrix NetScaler ADC (formerly Citrix ADC), NetScaler Gateway (formerly Citrix Gateway) and NetScaler ADC FIPS and NDcPP contain an out-of-bounds reads vulnerability when configured as a SAML IDP leading to memory overread.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            
+        </div>
         <div class="card vendor-Other" data-vendor="Other">
             <span class="tag">Other</span><span class="tag" style="float:right">2026-03-27</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-53521" target="_blank" class="cve-title">F5 BIG-IP Unspecified Vulnerability (CVE-2025-53521) ↗</a>
@@ -851,13 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
             
         </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2025-11-04</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-48703" target="_blank" class="cve-title">CWP Control Web Panel OS Command Injection Vulnerability (CVE-2025-48703) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">CWP Control Web Panel (formerly CentOS Web Panel) contains an OS command Injection vulnerability that allows unauthenticated remote code execution via shell metacharacters in the t_total parameter in a filemanager changePerm request. A valid non-root username must be known.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
                 </div>
             </div>
             
@@ -896,6 +896,10 @@
                 
         <div class="list-item">
             <span class="meta">The Hacker News • Mon, 30 Mar 2026</span>
+            <a href="https://thehackernews.com/2026/03/openai-patches-chatgpt-data.html" target="_blank" class="item-link">OpenAI Patches ChatGPT Data Exfiltration Flaw and Codex GitHub Token Vulnerability ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">The Hacker News • Mon, 30 Mar 2026</span>
             <a href="https://thehackernews.com/2026/03/weekly-recap-telecom-sleeper-cells-llm.html" target="_blank" class="item-link">⚡ Weekly Recap: Telecom Sleeper Cells, LLM Jailbreaks, Apple Forces U.K. Age Checks and More ↗</a>
         </div>
         <div class="list-item">
@@ -911,12 +915,12 @@
             <a href="https://thehackernews.com/2026/03/ta446-deploys-leaked-darksword-ios.html" target="_blank" class="item-link">TA446 Deploys DarkSword iOS Exploit Kit in Targeted Spear-Phishing Campaign ↗</a>
         </div>
         <div class="list-item">
-            <span class="meta">The Hacker News • Sat, 28 Mar 2026</span>
-            <a href="https://thehackernews.com/2026/03/cisa-adds-cve-2025-53521-to-kev-after.html" target="_blank" class="item-link">CISA Adds CVE-2025-53521 to KEV After Active F5 BIG-IP APM Exploitation ↗</a>
+            <span class="meta">Dark Reading • Mon, 30 Mar 2026</span>
+            <a href="https://www.darkreading.com/application-security/fortinet-big-ip-vulnerability-reclassified-rce-exploitation" target="_blank" class="item-link">Fortinet BIG-IP Vulnerability Reclassified as RCE, Under Exploitation ↗</a>
         </div>
         <div class="list-item">
-            <span class="meta">The Hacker News • Fri, 27 Mar 2026</span>
-            <a href="https://thehackernews.com/2026/03/apple-sends-lock-screen-alerts-to.html" target="_blank" class="item-link">Apple Sends Lock Screen Alerts to Outdated iPhones Over Active Web-Based Exploits ↗</a>
+            <span class="meta">Dark Reading • Mon, 30 Mar 2026</span>
+            <a href="https://www.darkreading.com/application-security/storm-brews-critical-no-click-telegram-flaw" target="_blank" class="item-link">Storm Brews Over Critical, No-Click Telegram Flaw ↗</a>
         </div>
         <div class="list-item">
             <span class="meta">Dark Reading • Fri, 27 Mar 2026</span>
@@ -933,14 +937,6 @@
         <div class="list-item">
             <span class="meta">Dark Reading • Thu, 26 Mar 2026</span>
             <a href="https://www.darkreading.com/endpoint-security/coruna-darksword-democratizing-nation-state-exploit-kits" target="_blank" class="item-link">Coruna, DarkSword &amp; Democratizing Nation-State Exploit Kits ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">Dark Reading • Thu, 26 Mar 2026</span>
-            <a href="https://www.darkreading.com/vulnerabilities-threats/critical-flaw-langflow-ai-platform-under-attack" target="_blank" class="item-link">Critical Flaw in Langflow AI Platform Under Attack ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">Dark Reading • Thu, 26 Mar 2026</span>
-            <a href="https://www.darkreading.com/cybersecurity-operations/blunders-level-up-security-programs" target="_blank" class="item-link">How Organizations Can Use Mistakes to Level Up Their Security Programs ↗</a>
         </div>
             </div>
         </div>
