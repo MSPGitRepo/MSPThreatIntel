@@ -159,6 +159,13 @@
                 <div class="grid">
                     
         <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-04-02</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-3502" target="_blank" class="cve-title">TrueConf Client Download of Code Without Integrity Check Vulnerability (CVE-2026-3502) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">TrueConf Client contains a download of code without integrity check vulnerability. An attacker who is able to influence the update delivery path can substitute a tampered update payload. If the payload is executed or installed by the updater, this may result in arbitrary code execution in the context of the updating process or user.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
             <span class="tag">Other</span><span class="tag" style="float:right">2026-04-01</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-5281" target="_blank" class="cve-title">Google Dawn Use-After-Free Vulnerability (CVE-2026-5281) ↗</a>
             <p style="font-size:0.9rem; color:#475569;">Google Dawn contains an use-after-free vulnerability that could allow a remote attacker who had compromised the renderer process to execute arbitrary code via a crafted HTML page. This vulnerability could affect multiple Chromium-based products including, but not limited to, Google Chrome, Microsoft Edge, and Opera.</p>
@@ -174,8 +181,8 @@
         </div>
         <div class="card vendor-Other" data-vendor="Other">
             <span class="tag">Other</span><span class="tag" style="float:right">2026-03-27</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-53521" target="_blank" class="cve-title">F5 BIG-IP Unspecified Vulnerability (CVE-2025-53521) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">F5 BIG-IP APM contains an unspecified vulnerability that could allow a threat actor to achieve remote code execution.</p>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-53521" target="_blank" class="cve-title">F5 BIG-IP Stack-Based Buffer Overflow Vulnerability (CVE-2025-53521) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">F5 BIG-IP APM contains a stack-based buffer overflow vulnerability that could allow a threat actor to achieve remote code execution.</p>
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
             
         </div>
@@ -851,13 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
             <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2025-62215' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2025-62215')">Copy</button></div>
         </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2025-11-12</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-9242" target="_blank" class="cve-title">WatchGuard Firebox Out-of-Bounds Write Vulnerability (CVE-2025-9242) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">WatchGuard Firebox contains an out-of-bounds write vulnerability in the OS iked process that may allow a remote unauthenticated attacker to execute arbitrary code.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
                 </div>
             </div>
             
@@ -885,7 +885,7 @@
             <div class="item-desc">The Defender for Identity sensor interprets error 401 or 403 as a licensing issue and not as a proxy authentication issue. Cause: The issue can be caused when the trusted root certification authorities certificates required by Defender f... Sample logs that might indicate the issue: GetEntraConnectGlobalSettingsAsync....</div>
         </div>
         <div class="list-item status-warning">
-            <span class="meta" style="color:#f59e0b">Windows Issue • Tue, 31 Mar 2026</span>
+            <span class="meta" style="color:#f59e0b">Windows Issue • Thu, 02 Apr 2026</span>
             <a href="https://learn.microsoft.com/en-us/windows/release-health/status-windows-server-2025" target="_blank" class="item-link">Windows Server 2025 ↗</a>
             <div class="item-desc">SummaryOriginating updateStatusLast updated Updates installed via WUSA might fail if installed from a shared folderThis issue might occur when installing an update from a network folder containing multiple .msu files.OS Build 26100.4349 KB50608422025-06-10Mitigated2025-09-30 10:04 PT Windows Server 2022 and Server 2019 unexpectedly upgraded to....</div>
         </div>
