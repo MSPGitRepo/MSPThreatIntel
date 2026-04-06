@@ -83,7 +83,7 @@
         <div class="sidebar">
             <h1>MSP Threat Intel</h1>
             <div class="section-label">VULNERABILITY FILTER</div>
-            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">14</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">5</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">1</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">0</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">0</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">4</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">76</span></button>
+            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">13</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">5</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">1</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">0</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">0</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">5</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">76</span></button>
             <div class="section-label">LIFECYCLE TRACKER</div>
             
         <div class="eol-item st-expired">
@@ -158,6 +158,13 @@
             <div id="vulns" class="tab-content active">
                 <div class="grid">
                     
+        <div class="card vendor-Fortinet" data-vendor="Fortinet">
+            <span class="tag">Fortinet</span><span class="tag" style="float:right">2026-04-06</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-35616" target="_blank" class="cve-title">Fortinet FortiClient EMS Improper Access Control Vulnerability (CVE-2026-35616) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Fortinet FortiClient EMS contains an improper access control vulnerability that may allow an unauthenticated attacker to execute unauthorized code or commands via crafted requests.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            
+        </div>
         <div class="card vendor-Other" data-vendor="Other">
             <span class="tag">Other</span><span class="tag" style="float:right">2026-04-02</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-3502" target="_blank" class="cve-title">TrueConf Client Download of Code Without Integrity Check Vulnerability (CVE-2026-3502) ↗</a>
@@ -851,13 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
             
         </div>
-        <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <span class="tag">Microsoft</span><span class="tag" style="float:right">2025-11-12</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-62215" target="_blank" class="cve-title">Microsoft Windows Race Condition Vulnerability (CVE-2025-62215) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows Kernel contains a race condition vulnerability that allows a local attacker with low-level privileges to escalate privileges. Successful exploitation of this vulnerability could enable the attacker to gain SYSTEM-level access.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2025-62215' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2025-62215')">Copy</button></div>
-        </div>
                 </div>
             </div>
             
@@ -890,12 +890,24 @@
                 <h3>Curated Security News</h3>
                 
         <div class="list-item">
+            <span class="meta">The Hacker News • Mon, 06 Apr 2026</span>
+            <a href="https://thehackernews.com/2026/04/multi-os-cyberattacks-how-socs-close.html" target="_blank" class="item-link">Multi-OS Cyberattacks: How SOCs Close a Critical Risk in 3 Steps ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">The Hacker News • Mon, 06 Apr 2026</span>
+            <a href="https://thehackernews.com/2026/04/weekly-recap-axios-hack-chrome-0-day.html" target="_blank" class="item-link">⚡ Weekly Recap: Axios Hack, Chrome 0-Day, Fortinet Exploits, Paragon Spyware and More ↗</a>
+        </div>
+        <div class="list-item">
             <span class="meta">The Hacker News • Sun, 05 Apr 2026</span>
             <a href="https://thehackernews.com/2026/04/36-malicious-npm-packages-exploited.html" target="_blank" class="item-link">36 Malicious npm Packages Exploited Redis, PostgreSQL to Deploy Persistent Implants ↗</a>
         </div>
         <div class="list-item">
             <span class="meta">The Hacker News • Sun, 05 Apr 2026</span>
             <a href="https://thehackernews.com/2026/04/fortinet-patches-actively-exploited-cve.html" target="_blank" class="item-link">Fortinet Patches Actively Exploited CVE-2026-35616 in FortiClient EMS ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">Dark Reading • Mon, 06 Apr 2026</span>
+            <a href="https://www.darkreading.com/cyberattacks-data-breaches/automated-credential-harvesting-campaign-react2shell" target="_blank" class="item-link">Automated Credential Harvesting Campaign Exploits React2Shell Flaw ↗</a>
         </div>
         <div class="list-item">
             <span class="meta">Dark Reading • Fri, 03 Apr 2026</span>
