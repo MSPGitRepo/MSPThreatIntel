@@ -83,7 +83,7 @@
         <div class="sidebar">
             <h1>MSP Threat Intel</h1>
             <div class="section-label">VULNERABILITY FILTER</div>
-            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">17</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">5</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">1</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">0</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">0</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">4</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">73</span></button>
+            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">19</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">5</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">1</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">0</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">0</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">4</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">71</span></button>
             <div class="section-label">LIFECYCLE TRACKER</div>
             
         <div class="eol-item st-expired">
@@ -158,6 +158,20 @@
             <div id="vulns" class="tab-content active">
                 <div class="grid">
                     
+        <div class="card vendor-Microsoft" data-vendor="Microsoft">
+            <span class="tag">Microsoft</span><span class="tag" style="float:right">2026-04-14</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2009-0238" target="_blank" class="cve-title">Microsoft Office Remote Code Execution (CVE-2009-0238) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Office Excel contains a remote code execution vulnerability that could allow an attacker to take complete control of an affected system if a user opens a specially crafted Excel file that includes a malformed object.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2009-0238' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2009-0238')">Copy</button></div>
+        </div>
+        <div class="card vendor-Microsoft" data-vendor="Microsoft">
+            <span class="tag">Microsoft</span><span class="tag" style="float:right">2026-04-14</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-32201" target="_blank" class="cve-title">Microsoft SharePoint Server Improper Input Validation Vulnerability (CVE-2026-32201) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft SharePoint Server contains an improper input validation vulnerability that allows an unauthorized attacker to perform spoofing over a network.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2026-32201' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2026-32201')">Copy</button></div>
+        </div>
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
             <span class="tag">Microsoft</span><span class="tag" style="float:right">2026-04-13</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2012-1854" target="_blank" class="cve-title">Microsoft Visual Basic for Applications Insecure Library Loading Vulnerability (CVE-2012-1854) ↗</a>
@@ -844,20 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
             
         </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2025-12-05</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-55182" target="_blank" class="cve-title">Meta React Server Components Remote Code Execution Vulnerability (CVE-2025-55182) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Meta React Server Components contains a remote code execution vulnerability that could allow unauthenticated remote code execution by exploiting a flaw in how React decodes payloads sent to React Server Function endpoints. Please note CVE-2025-66478 has been rejected, but it is associated with CVE-2025- 55182.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2025-12-03</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2021-26828" target="_blank" class="cve-title">OpenPLC ScadaBR Unrestricted Upload of File with Dangerous Type Vulnerability (CVE-2021-26828) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">OpenPLC ScadaBR contains an unrestricted upload of file with dangerous type vulnerability that allows remote authenticated users to upload and execute arbitrary JSP files via view_edit.shtm.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
                 </div>
             </div>
             
@@ -891,6 +891,10 @@
                 
         <div class="list-item">
             <span class="meta">The Hacker News • Tue, 14 Apr 2026</span>
+            <a href="https://thehackernews.com/2026/04/new-php-composer-flaws-enable-arbitrary.html" target="_blank" class="item-link">New PHP Composer Flaws Enable Arbitrary Command Execution — Patches Released ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">The Hacker News • Tue, 14 Apr 2026</span>
             <a href="https://thehackernews.com/2026/04/ai-driven-pushpaganda-scam-exploits.html" target="_blank" class="item-link">AI-Driven Pushpaganda Scam Exploits Google Discover to Spread Scareware and Ad Fraud ↗</a>
         </div>
         <div class="list-item">
@@ -906,10 +910,6 @@
             <a href="https://thehackernews.com/2026/04/cisa-adds-6-known-exploited-flaws-in.html" target="_blank" class="item-link">CISA Adds 6 Known Exploited Flaws in Fortinet, Microsoft, and Adobe Software ↗</a>
         </div>
         <div class="list-item">
-            <span class="meta">The Hacker News • Mon, 13 Apr 2026</span>
-            <a href="https://thehackernews.com/2026/04/weekly-recap-fiber-optic-spying-windows.html" target="_blank" class="item-link">⚡ Weekly Recap: Fiber Optic Spying, Windows Rootkit, AI Vulnerability Hunting and More ↗</a>
-        </div>
-        <div class="list-item">
             <span class="meta">Dark Reading • Mon, 13 Apr 2026</span>
             <a href="https://www.darkreading.com/cloud-security/csa-cisos-prepare-post-mythos-exploit-storm" target="_blank" class="item-link">CSA: CISOs Should Prepare for Post-Mythos Exploit Storm ↗</a>
         </div>
@@ -920,10 +920,6 @@
         <div class="list-item">
             <span class="meta">Dark Reading • Mon, 13 Apr 2026</span>
             <a href="https://www.darkreading.com/cloud-security/apt41-zero-detection-backdoor-harvest-cloud-credentials" target="_blank" class="item-link">APT41 Delivers 'Zero-Detection' Backdoor to Harvest Cloud Credentials ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">Dark Reading • Fri, 10 Apr 2026</span>
-            <a href="https://www.darkreading.com/application-security/anthropic-exploit-writing-mythos-ai-safe" target="_blank" class="item-link">Can Anthropic Keep Its Exploit-Writing AI Out of the Wrong Hands? ↗</a>
         </div>
             </div>
         </div>
