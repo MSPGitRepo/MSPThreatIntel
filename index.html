@@ -83,7 +83,7 @@
         <div class="sidebar">
             <h1>MSP Threat Intel</h1>
             <div class="section-label">VULNERABILITY FILTER</div>
-            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">18</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">7</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">1</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">1</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">0</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">3</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">70</span></button>
+            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">18</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">6</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">1</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">1</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">0</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">3</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">71</span></button>
             <div class="section-label">LIFECYCLE TRACKER</div>
             
         <div class="eol-item st-expired">
@@ -158,6 +158,13 @@
             <div id="vulns" class="tab-content active">
                 <div class="grid">
                     
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-05-07</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-6973" target="_blank" class="cve-title">Ivanti Endpoint Manager Mobile (EPMM) Improper Input Validation Vulnerability (CVE-2026-6973) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Ivanti Endpoint Manager Mobile (EPMM) contains an improper input validation vulnerability that allows a remotely authenticated user with administrative access to achieve remote code execution.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            
+        </div>
         <div class="card vendor-Palo" data-vendor="Palo Alto">
             <span class="tag">Palo Alto</span><span class="tag" style="float:right">2026-05-06</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-0300" target="_blank" class="cve-title">Palo Alto Networks PAN-OS Out-of-bounds Write Vulnerability (CVE-2026-0300) ↗</a>
@@ -851,13 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
             
         </div>
-        <div class="card vendor-Cisco" data-vendor="Cisco">
-            <span class="tag">Cisco</span><span class="tag" style="float:right">2026-01-21</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20045" target="_blank" class="cve-title">Cisco Unified Communications Products Code Injection Vulnerability (CVE-2026-20045) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Cisco Unified Communications Manager (Unified CM), Cisco Unified Communications Manager Session Management Edition (Unified CM SME), Cisco Unified Communications Manager IM & Presence Service (Unified CM IM&P), Cisco Unity Connection, and Cisco Webex Calling Dedicated Instance contain a code injection vulnerability that could allow the attacker to obtain user-level access to the underlying operating system and then elevate privileges to root.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
                 </div>
             </div>
             
@@ -901,6 +901,10 @@
                 
         <div class="list-item">
             <span class="meta">The Hacker News • Thu, 07 May 2026</span>
+            <a href="https://thehackernews.com/2026/05/pan-os-rce-exploit-under-active-use.html" target="_blank" class="item-link">PAN-OS RCE Exploit Under Active Use Enabling Root Access and Espionage ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">The Hacker News • Thu, 07 May 2026</span>
             <a href="https://thehackernews.com/2026/05/threatsday-bulletin-edge-plaintext.html" target="_blank" class="item-link">ThreatsDay Bulletin: Edge Plaintext Passwords, ICS 0-Days, Patch-or-Die Alerts and 25+ New Stories ↗</a>
         </div>
         <div class="list-item">
@@ -910,10 +914,6 @@
         <div class="list-item">
             <span class="meta">The Hacker News • Thu, 07 May 2026</span>
             <a href="https://thehackernews.com/2026/05/mirai-based-xlabsv1-botnet-exploits-adb.html" target="_blank" class="item-link">Mirai-Based xlabs_v1 Botnet Exploits ADB to Hijack IoT Devices for DDoS Attacks ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">The Hacker News • Wed, 06 May 2026</span>
-            <a href="https://thehackernews.com/2026/05/windows-phone-link-exploited-by-cloudz.html" target="_blank" class="item-link">Windows Phone Link Exploited by CloudZ RAT to Steal Credentials and OTPs ↗</a>
         </div>
         <div class="list-item">
             <span class="meta">Dark Reading • Wed, 06 May 2026</span>
