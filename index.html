@@ -83,7 +83,7 @@
         <div class="sidebar">
             <h1>MSP Threat Intel</h1>
             <div class="section-label">VULNERABILITY FILTER</div>
-            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">18</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">6</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">1</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">1</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">0</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">3</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">71</span></button>
+            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">18</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">7</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">1</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">1</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">0</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">3</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">70</span></button>
             <div class="section-label">LIFECYCLE TRACKER</div>
             
         <div class="eol-item st-expired">
@@ -158,6 +158,13 @@
             <div id="vulns" class="tab-content active">
                 <div class="grid">
                     
+        <div class="card vendor-Cisco" data-vendor="Cisco">
+            <span class="tag">Cisco</span><span class="tag" style="float:right">2026-05-14</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20182" target="_blank" class="cve-title">Cisco Catalyst SD-WAN Controller Authentication Bypass Vulnerability (CVE-2026-20182) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Cisco Catalyst SD-WAN Controller & Manager contain an authentication bypass vulnerability that allows an unauthenticated, remote attacker to bypass authentication and obtain administrative privileges on an affected system.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Please adhere to CISA’s guidelines to assess exposure and mitigate risks associated with Cisco SD-WAN devices as outlined in CISA’s Emergency Directive 26-03 (URL listed below in Notes) and CISA’s Hunt & Hardening Guidance for Cisco SD-WAN Devices (URL listed below in Notes). Adhere to the applicable BOD 22-01 guidance for cloud services or discontinue use of the product if mitigations are not available.</div>
+            
+        </div>
         <div class="card vendor-Other" data-vendor="Other">
             <span class="tag">Other</span><span class="tag" style="float:right">2026-05-08</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-42208" target="_blank" class="cve-title">BerriAI LiteLLM SQL Injection Vulnerability (CVE-2026-42208) ↗</a>
@@ -851,13 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
             
         </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-01-22</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-31125" target="_blank" class="cve-title">Vite Vitejs Improper Access Control Vulnerability (CVE-2025-31125) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Vite Vitejs contains an improper access control vulnerability that exposes content of non-allowed files using ?inline&import or ?raw?import. Only apps explicitly exposing the Vite dev server to the network (using --host or server.host config option) are affected.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
                 </div>
             </div>
             
@@ -865,7 +865,7 @@
                 <h3>Live Service Status (Public Feeds)</h3>
                 
         <div class="list-item status-warning">
-            <span class="meta" style="color:#f59e0b">Windows Issue • Wed, 13 May 2026</span>
+            <span class="meta" style="color:#f59e0b">Windows Issue • Thu, 14 May 2026</span>
             <a href="https://learn.microsoft.com/en-us/windows/release-health/status-windows-server-2025" target="_blank" class="item-link">Windows Server 2025 ↗</a>
             <div class="item-desc">Windows Server 2025 is Microsoft’s latest Long-Term Servicing Channel (LTSC) release for Windows Server. Windows Server 2025 is offered as an Optional update for Windows Server 2022 and Window Server 2019 devices, if organizations want to do an in-place upgrade. What is new in Windows Server 2025Check its advanced features and innovations Get....</div>
         </div>
@@ -885,7 +885,7 @@
             <div class="item-desc">For more information about common error messages you might encounter, see Troubleshoot user errors with Office Add-ins or contact the add-in developer on the Details + support tab on the add-in's detail page in Microsoft Marketplace. ISSUE: Office Add-in update failures and activation issues There's an issue affecting some customers where Office....</div>
         </div>
         <div class="list-item status-warning">
-            <span class="meta" style="color:#f59e0b">Windows Issue • Wed, 13 May 2026</span>
+            <span class="meta" style="color:#f59e0b">Windows Issue • Thu, 14 May 2026</span>
             <a href="https://learn.microsoft.com/en-us/windows/release-health/status-windows-server-2022" target="_blank" class="item-link">Windows Server 2022 ↗</a>
             <div class="item-desc">Windows Server 2022 Summarize this article for me In this article known issues and notifications Find information on known issues and the servicing status for Windows Server 2022. For immediate help with Windows update issues, click here if you are using a Windows device to open the Get Help app or go to support.mic... OS Build 20348.5020....</div>
         </div>
@@ -899,6 +899,10 @@
             <div id="news" class="tab-content">
                 <h3>Curated Security News</h3>
                 
+        <div class="list-item">
+            <span class="meta">The Hacker News • Thu, 14 May 2026</span>
+            <a href="https://thehackernews.com/2026/05/threatsday-bulletin-pan-os-rce-mythos.html" target="_blank" class="item-link">ThreatsDay Bulletin: PAN-OS RCE, Mythos cURL Bug, AI Tokenizer Attacks, and 10+ Stories ↗</a>
+        </div>
         <div class="list-item">
             <span class="meta">The Hacker News • Thu, 14 May 2026</span>
             <a href="https://thehackernews.com/2026/05/praisonai-cve-2026-44338-auth-bypass.html" target="_blank" class="item-link">PraisonAI CVE-2026-44338 Auth Bypass Targeted Within Hours of Disclosure ↗</a>
@@ -926,14 +930,6 @@
         <div class="list-item">
             <span class="meta">The Hacker News • Wed, 13 May 2026</span>
             <a href="https://thehackernews.com/2026/05/azerbaijani-energy-firm-hit-by-repeated.html" target="_blank" class="item-link">Azerbaijani Energy Firm Hit by Repeated Microsoft Exchange Exploitation ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">The Hacker News • Wed, 13 May 2026</span>
-            <a href="https://thehackernews.com/2026/05/most-remediation-programs-never-confirm.html" target="_blank" class="item-link">Most Remediation Programs Never Confirm the Fix Actually Worked ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">The Hacker News • Wed, 13 May 2026</span>
-            <a href="https://thehackernews.com/2026/05/microsoft-patches-138-vulnerabilities.html" target="_blank" class="item-link">Microsoft Patches 138 Vulnerabilities, Including DNS and Netlogon RCE Flaws ↗</a>
         </div>
         <div class="list-item">
             <span class="meta">Dark Reading • Wed, 13 May 2026</span>
