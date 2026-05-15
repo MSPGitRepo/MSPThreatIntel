@@ -83,7 +83,7 @@
         <div class="sidebar">
             <h1>MSP Threat Intel</h1>
             <div class="section-label">VULNERABILITY FILTER</div>
-            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">18</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">7</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">1</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">1</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">0</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">3</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">70</span></button>
+            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">19</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">7</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">1</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">1</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">0</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">3</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">69</span></button>
             <div class="section-label">LIFECYCLE TRACKER</div>
             
         <div class="eol-item st-expired">
@@ -158,6 +158,13 @@
             <div id="vulns" class="tab-content active">
                 <div class="grid">
                     
+        <div class="card vendor-Microsoft" data-vendor="Microsoft">
+            <span class="tag">Microsoft</span><span class="tag" style="float:right">2026-05-15</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-42897" target="_blank" class="cve-title">Microsoft Exchange Server Cross-Site Scripting Vulnerability (CVE-2026-42897) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Exchange Server contains a cross-site scripting vulnerability during web page generation in Outlook Web Access and when certain interaction conditions are met, arbitrary JavaScript can be executed in the browser context.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2026-42897' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2026-42897')">Copy</button></div>
+        </div>
         <div class="card vendor-Cisco" data-vendor="Cisco">
             <span class="tag">Cisco</span><span class="tag" style="float:right">2026-05-14</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20182" target="_blank" class="cve-title">Cisco Catalyst SD-WAN Controller Authentication Bypass Vulnerability (CVE-2026-20182) ↗</a>
@@ -851,13 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
             
         </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-01-22</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-34026" target="_blank" class="cve-title">Versa Concerto Improper Authentication Vulnerability (CVE-2025-34026) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Versa Concerto SD-WAN orchestration platform contains an improper authentication vulnerability in the Traefik reverse proxy configuration, allowing at attacker to access administrative endpoints. The internal Actuator endpoint can be leveraged for access to heap dumps and trace logs.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
                 </div>
             </div>
             
@@ -865,9 +865,9 @@
                 <h3>Live Service Status (Public Feeds)</h3>
                 
         <div class="list-item status-warning">
-            <span class="meta" style="color:#f59e0b">Windows Issue • Thu, 14 May 2026</span>
+            <span class="meta" style="color:#f59e0b">Windows Issue • Fri, 15 May 2026</span>
             <a href="https://learn.microsoft.com/en-us/windows/release-health/status-windows-server-2025" target="_blank" class="item-link">Windows Server 2025 ↗</a>
-            <div class="item-desc">Windows Server 2025 is Microsoft’s latest Long-Term Servicing Channel (LTSC) release for Windows Server. Windows Server 2025 is offered as an Optional update for Windows Server 2022 and Window Server 2019 devices, if organizations want to do an in-place upgrade. What is new in Windows Server 2025Check its advanced features and innovations Get....</div>
+            <div class="item-desc">Windows Server 2025 known issues and notifications Summarize this article for me In this article Find information on known issues and the servicing status for Windows Server 2025. For immediate help with Windows update issues, click here if you are using a Windows device to open the Get Help app or go to support.microsoft.com. Follow....</div>
         </div>
         <div class="list-item status-warning">
             <span class="meta" style="color:#f59e0b">Windows Issue • Fri, 15 May 2026</span>
@@ -885,9 +885,9 @@
             <div class="item-desc">For more information about common error messages you might encounter, see Troubleshoot user errors with Office Add-ins or contact the add-in developer on the Details + support tab on the add-in's detail page in Microsoft Marketplace. ISSUE: Office Add-in update failures and activation issues There's an issue affecting some customers where Office....</div>
         </div>
         <div class="list-item status-warning">
-            <span class="meta" style="color:#f59e0b">Windows Issue • Thu, 14 May 2026</span>
+            <span class="meta" style="color:#f59e0b">Windows Issue • Fri, 15 May 2026</span>
             <a href="https://learn.microsoft.com/en-us/windows/release-health/status-windows-server-2022" target="_blank" class="item-link">Windows Server 2022 ↗</a>
-            <div class="item-desc">Windows Server 2022 Summarize this article for me In this article known issues and notifications Find information on known issues and the servicing status for Windows Server 2022. For immediate help with Windows update issues, click here if you are using a Windows device to open the Get Help app or go to support.mic... OS Build 20348.5020....</div>
+            <div class="item-desc">OS Build 20348.5020 KB50821422026-04-14Resolved KB50915752026-04-19 14:16 PT Issue details April 2026Domain controllers may restart repeatedly after installing April security update StatusOriginating updateHistoryResolved KB5091575OS Build 20348.5020 KB50821422026-04-14Resolved: 2026-04-19, 14:00 PTOpened: 2026-04-16, 18:50 PT After installing the....</div>
         </div>
         <div class="list-item status-warning">
             <span class="meta" style="color:#f59e0b">Windows Issue • Mon, 27 Apr 2026</span>
@@ -930,6 +930,10 @@
         <div class="list-item">
             <span class="meta">The Hacker News • Thu, 14 May 2026</span>
             <a href="https://thehackernews.com/2026/05/threatsday-bulletin-pan-os-rce-mythos.html" target="_blank" class="item-link">ThreatsDay Bulletin: PAN-OS RCE, Mythos cURL Bug, AI Tokenizer Attacks, and 10+ Stories ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">Dark Reading • Mon, 18 May 2026</span>
+            <a href="https://www.darkreading.com/cyber-risk/ai-code-and-agents-forces-defenders-adapt" target="_blank" class="item-link">The Boring Stuff is Dangerous Now ↗</a>
         </div>
         <div class="list-item">
             <span class="meta">Dark Reading • Thu, 14 May 2026</span>
