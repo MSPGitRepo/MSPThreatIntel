@@ -83,7 +83,7 @@
         <div class="sidebar">
             <h1>MSP Threat Intel</h1>
             <div class="section-label">VULNERABILITY FILTER</div>
-            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">19</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">7</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">1</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">1</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">0</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">3</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">69</span></button>
+            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">24</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">7</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">1</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">1</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">0</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">3</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">64</span></button>
             <div class="section-label">LIFECYCLE TRACKER</div>
             
         <div class="eol-item st-expired">
@@ -158,6 +158,55 @@
             <div id="vulns" class="tab-content active">
                 <div class="grid">
                     
+        <div class="card vendor-Microsoft" data-vendor="Microsoft">
+            <span class="tag">Microsoft</span><span class="tag" style="float:right">2026-05-20</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2008-4250" target="_blank" class="cve-title">Microsoft Windows Buffer Overflow Vulnerability (CVE-2008-4250) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows contains a buffer overflow vulnerability in the Windows Server Service that allows remote attackers to execute arbitrary code via a crafted RPC request that triggers an overflow during path canonicalization.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2008-4250' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2008-4250')">Copy</button></div>
+        </div>
+        <div class="card vendor-Microsoft" data-vendor="Microsoft">
+            <span class="tag">Microsoft</span><span class="tag" style="float:right">2026-05-20</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2009-1537" target="_blank" class="cve-title">Microsoft DirectX NULL Byte Overwrite Vulnerability (CVE-2009-1537) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft DirectX contains a NULL byte overwrite vulnerability in the QuickTime Movie Parser Filter in quartz.dll in DirectShow which could allow remote attackers to execute arbitrary code via a crafted QuickTime media file.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2009-1537' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2009-1537')">Copy</button></div>
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-05-20</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2009-3459" target="_blank" class="cve-title">Adobe Acrobat and Reader Heap-Based Buffer Overflow Vulnerability (CVE-2009-3459) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Adobe Acrobat and Reader contain a heap-based buffer overflow vulnerability which could allow remote attackers to execute arbitrary code via a crafted PDF file that triggers memory corruption.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            
+        </div>
+        <div class="card vendor-Microsoft" data-vendor="Microsoft">
+            <span class="tag">Microsoft</span><span class="tag" style="float:right">2026-05-20</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2010-0249" target="_blank" class="cve-title">Microsoft Internet Explorer Use-After-Free Vulnerability (CVE-2010-0249) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Internet Explorer contains an use-after-free vulnerability that could allow remote attackers to execute arbitrary code by accessing a pointer associated with a deleted object. The impacted product could be end-of-life (EoL) and/or end-of-service (EoS). Users should discontinue product utilization.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2010-0249' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2010-0249')">Copy</button></div>
+        </div>
+        <div class="card vendor-Microsoft" data-vendor="Microsoft">
+            <span class="tag">Microsoft</span><span class="tag" style="float:right">2026-05-20</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2010-0806" target="_blank" class="cve-title">Microsoft Internet Explorer Use-After-Free Vulnerability (CVE-2010-0806) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Internet Explorer contains an use-after-free vulnerability that could allow remote attackers to execute arbitrary code via vectors involving access to an invalid pointer after the deletion of an object. The impacted product could be end-of-life (EoL) and/or end-of-service (EoS). Users should discontinue product utilization.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2010-0806' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2010-0806')">Copy</button></div>
+        </div>
+        <div class="card vendor-Microsoft" data-vendor="Microsoft">
+            <span class="tag">Microsoft</span><span class="tag" style="float:right">2026-05-20</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-41091" target="_blank" class="cve-title">Microsoft Defender Link Following Vulnerability (CVE-2026-41091) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Defender contains a link following vulnerability that allows an authorized attacker to elevate privileges locally.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2026-41091' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2026-41091')">Copy</button></div>
+        </div>
+        <div class="card vendor-Microsoft" data-vendor="Microsoft">
+            <span class="tag">Microsoft</span><span class="tag" style="float:right">2026-05-20</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-45498" target="_blank" class="cve-title">Microsoft Defender Denial of Service Vulnerability (CVE-2026-45498) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Defender contains an unspecified vulnerability that allows for denial of service.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2026-45498' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2026-45498')">Copy</button></div>
+        </div>
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
             <span class="tag">Microsoft</span><span class="tag" style="float:right">2026-05-15</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-42897" target="_blank" class="cve-title">Microsoft Exchange Server Cross-Site Scripting Vulnerability (CVE-2026-42897) ↗</a>
@@ -809,55 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
             
         </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-01-26</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2018-14634" target="_blank" class="cve-title">Linux Kernel Integer Overflow Vulnerability (CVE-2018-14634) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Linux Kernel contains an integer overflow vulnerability in the create_elf_tables() function which could allow an unprivileged local user with access to SUID (or otherwise privileged) binary to escalate their privileges on the system.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-01-26</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-52691" target="_blank" class="cve-title">SmarterTools SmarterMail Unrestricted Upload of File with Dangerous Type Vulnerability (CVE-2025-52691) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">SmarterTools SmarterMail contains an unrestricted upload of file with dangerous type vulnerability that could allow an unauthenticated attacker to upload arbitrary files to any location on the mail server, potentially enabling remote code execution.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-01-26</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-23760" target="_blank" class="cve-title">SmarterTools SmarterMail Authentication Bypass Using an Alternate Path or Channel Vulnerability (CVE-2026-23760) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">SmarterTools SmarterMail contains an authentication bypass using an alternate path or channel vulnerability in the password reset API. The force-reset-password endpoint permits anonymous requests and fails to verify the existing password or a reset token when resetting system administrator accounts. This could allow an unauthenticated attacker to supply a target administrator username and a new password to reset the account, resulting in full administrative compromise of the SmarterMail instance.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-01-26</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-24061" target="_blank" class="cve-title">GNU InetUtils Argument Injection Vulnerability (CVE-2026-24061) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">GNU InetUtils contains an argument injection vulnerability in telnetd that could allow for remote authentication bypass via a "-f root" value for the USER environment variable.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
-        <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <span class="tag">Microsoft</span><span class="tag" style="float:right">2026-01-26</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-21509" target="_blank" class="cve-title">Microsoft Office Security Feature Bypass Vulnerability (CVE-2026-21509) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Microsoft Office contains a security feature bypass vulnerability in which reliance on untrusted inputs in a security decision in Microsoft Office could allow an unauthorized attacker to bypass a security feature locally. Some of the impacted product(s) could be end-of-life (EoL) and/or end-of-service (EoS). Users are advised to discontinue use and/or transition to a supported version.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2026-21509' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2026-21509')">Copy</button></div>
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-01-23</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2024-37079" target="_blank" class="cve-title">Broadcom VMware vCenter Server Out-of-bounds Write Vulnerability (CVE-2024-37079) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Broadcom VMware vCenter Server contains an out-of-bounds write vulnerability in the implementation of the DCERPC protocol. This could allow a malicious actor with network access to vCenter Server to send specially crafted network packets, potentially leading to remote code execution.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-01-22</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-68645" target="_blank" class="cve-title">Synacor Zimbra Collaboration Suite (ZCS) PHP Remote File Inclusion Vulnerability (CVE-2025-68645) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Synacor Zimbra Collaboration Suite (ZCS) contains a PHP remote file inclusion vulnerability that could allow for remote attackers to craft requests to the /h/rest endpoint to influence internal request dispatching, allowing inclusion of arbitrary files from the WebRoot directory.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
                 </div>
             </div>
             
@@ -896,6 +896,10 @@
                 
         <div class="list-item">
             <span class="meta">The Hacker News • Wed, 20 May 2026</span>
+            <a href="https://thehackernews.com/2026/05/microsoft-open-sources-rampart-and.html" target="_blank" class="item-link">Microsoft Open-Sources RAMPART and Clarity to Secure AI Agents During Development ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">The Hacker News • Wed, 20 May 2026</span>
             <a href="https://thehackernews.com/2026/05/webworm-deploys-echocreep-and-graphworm.html" target="_blank" class="item-link">Webworm Deploys EchoCreep and GraphWorm Backdoors Using Discord and MS Graph API ↗</a>
         </div>
         <div class="list-item">
@@ -915,8 +919,8 @@
             <a href="https://thehackernews.com/2026/05/dirtydecrypt-poc-released-for-linux.html" target="_blank" class="item-link">DirtyDecrypt PoC Released for Linux Kernel CVE-2026-31635 LPE Vulnerability ↗</a>
         </div>
         <div class="list-item">
-            <span class="meta">The Hacker News • Tue, 19 May 2026</span>
-            <a href="https://thehackernews.com/2026/05/drupal-to-release-urgent-core-security.html" target="_blank" class="item-link">Drupal to Release Urgent Core Security Updates on May 20, Sites Told to Prepare ↗</a>
+            <span class="meta">Dark Reading • Wed, 20 May 2026</span>
+            <a href="https://www.darkreading.com/ics-ot-security/patch-now-critical-flaw-ot-robot-os" target="_blank" class="item-link">Patch Now: Critical Flaw in OT Robot OS Gives Attackers Control ↗</a>
         </div>
         <div class="list-item">
             <span class="meta">Dark Reading • Wed, 20 May 2026</span>
