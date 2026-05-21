@@ -83,7 +83,7 @@
         <div class="sidebar">
             <h1>MSP Threat Intel</h1>
             <div class="section-label">VULNERABILITY FILTER</div>
-            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">24</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">7</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">1</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">1</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">0</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">3</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">64</span></button>
+            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">24</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">7</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">1</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">1</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">0</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">2</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">65</span></button>
             <div class="section-label">LIFECYCLE TRACKER</div>
             
         <div class="eol-item st-expired">
@@ -158,6 +158,20 @@
             <div id="vulns" class="tab-content active">
                 <div class="grid">
                     
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-05-21</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-34291" target="_blank" class="cve-title">Langflow Origin Validation Error Vulnerability (CVE-2025-34291) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Langflow contains an origin validation error vulnerability in which an overly permissive CORS configuration combined with a refresh token cookie configured as SameSite=None allows a malicious webpage to perform cross-origin requests that include credentials and successfully call the refresh endpoint. This could allow the attacker to execute arbitrary code and achieve full system compromise via obtained tokens that permit access to authenticated endpoints.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-05-21</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-34926" target="_blank" class="cve-title">Trend Micro Apex One (On-Premise) Directory Traversal Vulnerability (CVE-2026-34926) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Trend Micro Apex One (on-premise) contains a directory traversal vulnerability that could allow a pre-authenticated local attacker to modify a key table on the server to inject malicious code to deploy to agents on affected installations.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            
+        </div>
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
             <span class="tag">Microsoft</span><span class="tag" style="float:right">2026-05-20</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2008-4250" target="_blank" class="cve-title">Microsoft Windows Buffer Overflow Vulnerability (CVE-2008-4250) ↗</a>
@@ -844,20 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
             
         </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-01-29</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-1281" target="_blank" class="cve-title">Ivanti Endpoint Manager Mobile (EPMM) Code Injection Vulnerability (CVE-2026-1281) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Ivanti Endpoint Manager Mobile (EPMM) contains a code injection vulnerability that could allow attackers to achieve unauthenticated remote code execution.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
-        <div class="card vendor-Fortinet" data-vendor="Fortinet">
-            <span class="tag">Fortinet</span><span class="tag" style="float:right">2026-01-27</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-24858" target="_blank" class="cve-title">Fortinet Multiple Products Authentication Bypass Using an Alternate Path or Channel Vulnerability (CVE-2026-24858) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Fortinet FortiAnalyzer, FortiManager, FortiOS, and FortiProxy contain an authentication bypass using an alternate path or channel that could allow an attacker with a FortiCloud account and a registered device to log into other devices registered to other accounts, if FortiCloud SSO authentication is enabled on those devices.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
                 </div>
             </div>
             
@@ -933,10 +933,6 @@
         <div class="list-item">
             <span class="meta">Dark Reading • Wed, 20 May 2026</span>
             <a href="https://www.darkreading.com/ics-ot-security/patch-now-critical-flaw-ot-robot-os" target="_blank" class="item-link">Patch Now: Critical Flaw in OT Robot OS Gives Attackers Control ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">Dark Reading • Wed, 20 May 2026</span>
-            <a href="https://www.darkreading.com/cybersecurity-operations/interpol-operation-ramz-cross-region-middle-east" target="_blank" class="item-link">Interpol's 'Operation Ramz' Pioneers Cross-Region Collabs in Middle East ↗</a>
         </div>
             </div>
         </div>
