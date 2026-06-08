@@ -83,7 +83,7 @@
         <div class="sidebar">
             <h1>MSP Threat Intel</h1>
             <div class="section-label">VULNERABILITY FILTER</div>
-            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">18</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">7</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">1</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">2</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">0</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">2</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">70</span></button>
+            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">18</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">7</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">1</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">2</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">1</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">2</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">69</span></button>
             <div class="section-label">LIFECYCLE TRACKER</div>
             
         <div class="eol-item st-expired">
@@ -162,6 +162,13 @@
             <span class="tag">Other</span><span class="tag" style="float:right">2026-06-08</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-42271" target="_blank" class="cve-title">BerriAI LiteLLM Command Injection Vulnerability (CVE-2026-42271) ↗</a>
             <p style="font-size:0.9rem; color:#475569;">BerriAI LiteLLM contains a command injection vulnerability that could allow any authenticated user, including holders of low-privilege internal-user keys, to run arbitrary commands on the host.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
+            
+        </div>
+        <div class="card vendor-Check" data-vendor="Check Point">
+            <span class="tag">Check Point</span><span class="tag" style="float:right">2026-06-08</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-50751" target="_blank" class="cve-title">Check Point Security Gateway Improper Authentication Vulnerability (CVE-2026-50751) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Check Point Security Gateway contains an improper authentication vulnerability in IKEv1 key exchange that could allow an unauthenticated remote attacker to bypass user authentication and establish a remote access VPN connection without a valid user password.</p>
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
             
         </div>
@@ -851,13 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
             
         </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-02-12</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-40536" target="_blank" class="cve-title">SolarWinds Web Help Desk Security Control Bypass Vulnerability (CVE-2025-40536) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">SolarWinds Web Help Desk contains a security control bypass vulnerability that could allow an unauthenticated attacker to gain access to certain restricted functionality.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
                 </div>
             </div>
             
@@ -890,6 +890,10 @@
                 <h3>Curated Security News</h3>
                 
         <div class="list-item">
+            <span class="meta">The Hacker News • Tue, 09 Jun 2026</span>
+            <a href="https://thehackernews.com/2026/06/one-character-linux-kernel-flaw-enables.html" target="_blank" class="item-link">One-Character Linux Kernel Flaw Enables Local Root Access, Exploits Now Public ↗</a>
+        </div>
+        <div class="list-item">
             <span class="meta">The Hacker News • Mon, 08 Jun 2026</span>
             <a href="https://thehackernews.com/2026/06/critical-check-point-vpn-flaw-exploited.html" target="_blank" class="item-link">Critical Check Point VPN Flaw Exploited to Bypass Passwords in IKEv1 Setups ↗</a>
         </div>
@@ -904,6 +908,10 @@
         <div class="list-item">
             <span class="meta">The Hacker News • Mon, 08 Jun 2026</span>
             <a href="https://thehackernews.com/2026/06/verdantbamboo-deploys-bsd-variant-of.html" target="_blank" class="item-link">VerdantBamboo Deploys BSD Variant of BRICKSTORM on Linux Appliances ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">Dark Reading • Mon, 08 Jun 2026</span>
+            <a href="https://www.darkreading.com/vulnerabilities-threats/check-point-vpn-flaw-exploited-early-may" target="_blank" class="item-link">Check Point VPN Flaw Exploited Since Early May ↗</a>
         </div>
         <div class="list-item">
             <span class="meta">Dark Reading • Thu, 04 Jun 2026</span>
