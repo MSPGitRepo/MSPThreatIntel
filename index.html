@@ -159,6 +159,13 @@
                 <div class="grid">
                     
         <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-06-12</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-35273" target="_blank" class="cve-title">Oracle PeopleSoft Enterprise PeopleTools Missing Authentication for Critical Function Vulnerability (CVE-2026-35273) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Oracle PeopleSoft Enterprise PeopleTools contains a missing authentication for critical function vulnerability which could allow an unauthenticated attacker to obtain takeover of PeopleSoft Enterprise PeopleTools.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
             <span class="tag">Other</span><span class="tag" style="float:right">2026-06-11</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-10520" target="_blank" class="cve-title">Ivanti Sentry OS Command Injection Vulnerability (CVE-2026-10520) ↗</a>
             <p style="font-size:0.9rem; color:#475569;">Ivanti Sentry (formerly known as MobileIron Sentry) contains an OS command injection vulnerability which could allow a remote unauthenticated user to achieve root-level remote code execution. This vulnerability can be successfully exploited in cases where the Sentry appliance is in an unmanaged state with its endpoints externally reachable. The use of mTLS with EPMM or restricted HTTPS access through Neurons for MDM makes interfaces inaccessible to external actors.</p>
@@ -851,13 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
             <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2008-0015' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2008-0015')">Copy</button></div>
         </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-02-17</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-2441" target="_blank" class="cve-title">Google Chromium CSS Use-After-Free Vulnerability (CVE-2026-2441) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Google Chromium CSS contains a use-after-free vulnerability that could allow a remote attacker to potentially exploit heap corruption via a crafted HTML page. This vulnerability could affect multiple web browsers that utilize Chromium, including, but not limited to, Google Chrome, Microsoft Edge, and Opera.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
                 </div>
             </div>
             
@@ -865,9 +865,9 @@
                 <h3>Live Service Status (Public Feeds)</h3>
                 
         <div class="list-item status-warning">
-            <span class="meta" style="color:#f59e0b">Windows Issue • Thu, 11 Jun 2026</span>
+            <span class="meta" style="color:#f59e0b">Windows Issue • Fri, 12 Jun 2026</span>
             <a href="https://learn.microsoft.com/en-us/windows/release-health/status-windows-server-2025" target="_blank" class="item-link">Windows Server 2025 ↗</a>
-            <div class="item-desc">SummaryOriginating updateStatusLast updated Updates installed via WUSA might fail if installed from a shared folderThis issue might occur when installing an update from a network folder containing multiple .msu files.OS Build 26100.4349 KB50608422025-06-10Resolved KB50941252026-06-11 15:27 PT Issue details August 2025Updates installed via WUSA....</div>
+            <div class="item-desc">SummaryOriginating updateStatusLast updated Updates installed via WUSA might fail if installed from a shared folderThis issue might occur when installing an update from a network folder containing multiple .msu files.OS Build 26100.4349 KB50608422025-06-10Resolved KB50941252026-06-11 16:15 PT Issue details August 2025Updates installed via WUSA....</div>
         </div>
         <div class="list-item status-warning">
             <span class="meta" style="color:#f59e0b">Windows Issue • Fri, 15 May 2026</span>
@@ -880,7 +880,7 @@
             <div class="item-desc">Known issues Microsoft Entra hybrid join Autopilot deployments time out with error code 0x80004005 Date added: February 9, 2026 During Microsoft Entra hybrid join Autopilot deployments, devices might experience timeout errors with error code 0x80004005 in the deployment process.  ...ry 16, 2026 When a device is configured with an Intune policy....</div>
         </div>
         <div class="list-item status-warning">
-            <span class="meta" style="color:#f59e0b">Windows Issue • Thu, 11 Jun 2026</span>
+            <span class="meta" style="color:#f59e0b">Windows Issue • Fri, 12 Jun 2026</span>
             <a href="https://learn.microsoft.com/en-us/windows/release-health/status-windows-server-2022" target="_blank" class="item-link">Windows Server 2022 ↗</a>
             <div class="item-desc">Windows Server 2022 Summarize this article for me In this article known issues and notifications Find information on known issues and the servicing status for Windows Server 2022. For immediate help with Windows update issues, click here if you are... What is new in Windows Server 2025Check its advanced features and innovations Get Windows Server....</div>
         </div>
