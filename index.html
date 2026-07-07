@@ -87,6 +87,14 @@
             <div class="section-label">LIFECYCLE TRACKER</div>
             
         <div class="eol-item st-expired">
+            <span class="eol-prod">Office / M365 2019</span>
+            <span class="eol-date">2025-10-14</span>
+        </div>
+        <div class="eol-item st-expired">
+            <span class="eol-prod">Office / M365 2016</span>
+            <span class="eol-date">2025-10-14</span>
+        </div>
+        <div class="eol-item st-expired">
             <span class="eol-prod">Windows Server 23h2-ac</span>
             <span class="eol-date">2025-10-24</span>
         </div>
@@ -97,6 +105,10 @@
         <div class="eol-item st-warning">
             <span class="eol-prod">SharePoint Server 2016</span>
             <span class="eol-date">2026-07-14</span>
+        </div>
+        <div class="eol-item st-warning">
+            <span class="eol-prod">Office / M365 2021</span>
+            <span class="eol-date">2026-10-13</span>
         </div>
         <div class="eol-item st-ok">
             <span class="eol-prod">Windows Desktop 11-25h2-w</span>
@@ -113,6 +125,14 @@
         <div class="eol-item st-ok">
             <span class="eol-prod">Windows Desktop 11-26h1-e</span>
             <span class="eol-date">2029-03-13</span>
+        </div>
+        <div class="eol-item st-ok">
+            <span class="eol-prod">Office / M365 2024</span>
+            <span class="eol-date">2029-10-09</span>
+        </div>
+        <div class="eol-item st-ok">
+            <span class="eol-prod">Office / M365 2024-ltsc</span>
+            <span class="eol-date">2029-10-09</span>
         </div>
         <div class="eol-item st-ok">
             <span class="eol-prod">Windows Server 2022</span>
@@ -138,6 +158,27 @@
             <div id="vulns" class="tab-content active">
                 <div class="grid">
                     
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-07-07</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-48908" target="_blank" class="cve-title">JoomShaper SP Page Builder Unrestricted Upload of File with Dangerous Type Vulnerability (CVE-2026-48908) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">JoomShaper SP Page Builder contains an unrestricted upload of file with dangerous type vulnerability that allows unauthenticated users to upload arbitrary files, ultimately resulting in the upload and execution of PHP code.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-07-07</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-55255" target="_blank" class="cve-title">Langflow Authorization Bypass Through User-Controlled Key Vulnerability (CVE-2026-55255) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Langflow contains an authorization bypass through user-controlled key vulnerability which allows an authenticated attacker to execute any flow belonging to another user by specifying the victim's flow ID in the request.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-07-07</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-56290" target="_blank" class="cve-title">Joomlack Page Builder Improper Access Control Vulnerability (CVE-2026-56290) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Joomlack Page Builder contains an improper access control vulnerability that could allow for remote code execution via unauthenticated arbitrary file upload.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
         <div class="card vendor-Microsoft" data-vendor="Microsoft">
             <span class="tag">Microsoft</span><span class="tag" style="float:right">2026-07-01</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-45659" target="_blank" class="cve-title">Microsoft SharePoint Server Deserialization of Untrusted Data Vulnerability (CVE-2026-45659) ↗</a>
@@ -817,27 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
             
         </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-03-05</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2023-43000" target="_blank" class="cve-title">Apple Multiple products Use-After-Free Vulnerability (CVE-2023-43000) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Apple macOS, iOS, iPadOS, and Safari 16.6 contain a use-after-free vulnerability due to the processing of maliciously crafted web content that may lead to memory corruption.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-03-05</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2021-30952" target="_blank" class="cve-title">Apple Multiple Products Integer Overflow or Wraparound Vulnerability (CVE-2021-30952) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Apple tvOS, macOS, Safari, iPadOS and watchOS contain an integer overflow or wraparound vulnerability due to the processing of maliciously crafted web content that may lead to arbitrary code execution.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-03-05</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2023-41974" target="_blank" class="cve-title">Apple iOS and iPadOS Use-After-Free Vulnerability (CVE-2023-41974) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Apple iOS and iPadOS contain a use-after-free vulnerability. An app may be able to execute arbitrary code with kernel privileges.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
                 </div>
             </div>
             
@@ -889,12 +909,8 @@
             <a href="https://thehackernews.com/2026/07/16-year-old-linux-kvm-flaw-lets-guest.html" target="_blank" class="item-link">16-Year-Old Linux KVM Flaw Lets Guest VMs Escape to Host on Intel and AMD x86 Systems ↗</a>
         </div>
         <div class="list-item">
-            <span class="meta">The Hacker News • Mon, 06 Jul 2026</span>
-            <a href="https://thehackernews.com/2026/07/threat-actors-probe-gitea-docker-flaw.html" target="_blank" class="item-link">Threat Actors Probe Gitea Docker Flaw CVE-2026-20896 13 Days After Disclosure ↗</a>
-        </div>
-        <div class="list-item">
             <span class="meta">Dark Reading • Mon, 06 Jul 2026</span>
-            <a href="https://www.darkreading.com/cyberattacks-data-breaches/busysnake-infostealer-critical-infrastructure-networks" target="_blank" class="item-link">'BusySnake' Infostealer Slithers into Critical Infrastructure Networks ↗</a>
+            <a href="https://www.darkreading.com/cyberattacks-data-breaches/busysnake-infostealer-critical-infrastructure-networks" target="_blank" class="item-link">'BusySnake' Infostealer Slithers Into Critical Infrastructure Networks ↗</a>
         </div>
         <div class="list-item">
             <span class="meta">Dark Reading • Mon, 06 Jul 2026</span>
