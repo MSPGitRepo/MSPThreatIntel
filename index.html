@@ -83,7 +83,7 @@
         <div class="sidebar">
             <h1>MSP Threat Intel</h1>
             <div class="section-label">VULNERABILITY FILTER</div>
-            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">18</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">9</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">1</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">2</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">1</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">2</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">67</span></button>
+            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">19</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">8</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">1</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">2</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">1</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">4</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">65</span></button>
             <div class="section-label">LIFECYCLE TRACKER</div>
             
         <div class="eol-item st-expired">
@@ -158,6 +158,27 @@
             <div id="vulns" class="tab-content active">
                 <div class="grid">
                     
+        <div class="card vendor-Microsoft" data-vendor="Microsoft">
+            <span class="tag">Microsoft</span><span class="tag" style="float:right">2026-07-16</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-58644" target="_blank" class="cve-title">Microsoft SharePoint Deserialization of Untrusted Data Vulnerability (CVE-2026-58644) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft SharePoint contains a deserialization of untrusted data vulnerability that allows an unauthorized attacker to execute code over a network.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2026-58644' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2026-58644')">Copy</button></div>
+        </div>
+        <div class="card vendor-Fortinet" data-vendor="Fortinet">
+            <span class="tag">Fortinet</span><span class="tag" style="float:right">2026-07-16</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-25089" target="_blank" class="cve-title">Fortinet FortiSandbox OS Command Injection Vulnerability (CVE-2026-25089) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Fortinet FortiSandbox, FortiSandbox Cloud, and FortiSandbox PaaS contain an OS command injection vulnerability that allows an unauthenticated attacker to execute unauthorized commands via specifically crafted HTTP requests.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
+        <div class="card vendor-Fortinet" data-vendor="Fortinet">
+            <span class="tag">Fortinet</span><span class="tag" style="float:right">2026-07-16</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-39808" target="_blank" class="cve-title">Fortinet FortiSandbox OS Command Injection Vulnerability (CVE-2026-39808) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Fortinet FortiSandbox contains an OS command injection vulnerability that could allow an unauthenticated attacker to execute unauthorized code or commands via crafted HTTP requests.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
         <div class="card vendor-Other" data-vendor="Other">
             <span class="tag">Other</span><span class="tag" style="float:right">2026-07-15</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-46817" target="_blank" class="cve-title">Oracle E-Business Suite Improper Privilege Management Vulnerability (CVE-2026-46817) ↗</a>
@@ -837,27 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
             
         </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-03-20</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-31277" target="_blank" class="cve-title">Apple Multiple Products Buffer Overflow Vulnerability (CVE-2025-31277) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Apple Safari, iOS, watchOS, visionOS, iPadOS, macOS, and tvOS contain a buffer overflow vulnerability that could allow the processing of maliciously crafted web content which may lead to memory corruption.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
-        <div class="card vendor-Cisco" data-vendor="Cisco">
-            <span class="tag">Cisco</span><span class="tag" style="float:right">2026-03-19</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20131" target="_blank" class="cve-title">Cisco Secure Firewall Management Center (FMC) Software and Cisco Security Cloud Control (SCC) Firewall Management Deserialization of Untrusted Data Vulnerability (CVE-2026-20131) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Cisco Secure Firewall Management Center (FMC) Software and Cisco Security Cloud Control (SCC) Firewall Management contain a deserialization of untrusted data vulnerability in the web-based management interface that could allow an unauthenticated, remote attacker to execute arbitrary Java code as root on an affected device.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-03-18</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-66376" target="_blank" class="cve-title">Synacor Zimbra Collaboration Suite (ZCS) Cross-Site Scripting Vulnerability (CVE-2025-66376) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Synacor Zimbra Collaboration Suite (ZCS) contains a cross-site scripting vulnerability in the Classic UI where attackers could abuse Cascading Style Sheets (CSS) @import directives in email HTML.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
                 </div>
             </div>
             
@@ -886,6 +886,10 @@
                 
         <div class="list-item">
             <span class="meta">The Hacker News • Thu, 16 Jul 2026</span>
+            <a href="https://thehackernews.com/2026/07/two-scattered-spider-hackers-get-55.html" target="_blank" class="item-link">Two Scattered Spider Hackers Get 5.5 Years Each for £29 Million TfL Hack ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">The Hacker News • Thu, 16 Jul 2026</span>
             <a href="https://thehackernews.com/2026/07/20-hijacked-government-websites.html" target="_blank" class="item-link">20+ Hijacked Government Websites Became an Attack Channel ↗</a>
         </div>
         <div class="list-item">
@@ -895,10 +899,6 @@
         <div class="list-item">
             <span class="meta">The Hacker News • Thu, 16 Jul 2026</span>
             <a href="https://thehackernews.com/2026/07/unpatched-shark-vacuum-flaw-could-let.html" target="_blank" class="item-link">Unpatched Shark Vacuum Flaw Could Let Attackers Control Other Vacuums Region-Wide ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">The Hacker News • Thu, 16 Jul 2026</span>
-            <a href="https://thehackernews.com/2026/07/openais-gpt-red-automates-prompt.html" target="_blank" class="item-link">OpenAI’s GPT-Red Automates Prompt Injection Testing to Harden GPT-5.6 Sol ↗</a>
         </div>
         <div class="list-item">
             <span class="meta">Dark Reading • Wed, 15 Jul 2026</span>
@@ -919,10 +919,6 @@
         <div class="list-item">
             <span class="meta">Dark Reading • Wed, 15 Jul 2026</span>
             <a href="https://www.darkreading.com/cyber-risk/nigeria-cybersecurity-efforts-cybercriminals-profits" target="_blank" class="item-link">Nigeria Deepens Cybersecurity Efforts as Cybercriminals See More Profits ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">Dark Reading • Tue, 14 Jul 2026</span>
-            <a href="https://www.darkreading.com/vulnerabilities-threats/records-broken-patch-tuesday-raises-triage-stakes" target="_blank" class="item-link">Records Are Made to Be Broken: Patch Tuesday Raises Triage Stakes ↗</a>
         </div>
             </div>
         </div>
