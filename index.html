@@ -83,7 +83,7 @@
         <div class="sidebar">
             <h1>MSP Threat Intel</h1>
             <div class="section-label">VULNERABILITY FILTER</div>
-            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">20</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">8</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">1</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">2</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">2</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">4</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">63</span></button>
+            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">20</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">8</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">1</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">2</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">2</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">5</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">62</span></button>
             <div class="section-label">LIFECYCLE TRACKER</div>
             
         <div class="eol-item st-expired">
@@ -158,6 +158,13 @@
             <div id="vulns" class="tab-content active">
                 <div class="grid">
                     
+        <div class="card vendor-Fortinet" data-vendor="Fortinet">
+            <span class="tag">Fortinet</span><span class="tag" style="float:right">2026-07-27</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-68686" target="_blank" class="cve-title">Fortinet FortiOS Exposure of Sensitive Information to an Unauthorized Actor Vulnerability (CVE-2025-68686) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Fortinet FortiOS contains an exposure of sensitive information to an unauthorized actor vulnerability. This may allow a remote unauthenticated attacker to bypass the patch developed for the symbolic link persistency mechanism observed in some post-exploit cases, via crafted HTTP requests. An attacker would need first to have compromised the product via another vulnerability, at filesystem level.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
         <div class="card vendor-Check" data-vendor="Check Point">
             <span class="tag">Check Point</span><span class="tag" style="float:right">2026-07-22</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-16232" target="_blank" class="cve-title">Check Point SmartConsole Improper Authentication Vulnerability (CVE-2026-16232) ↗</a>
@@ -851,13 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
             
         </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-03-27</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-53521" target="_blank" class="cve-title">F5 BIG-IP Stack-Based Buffer Overflow Vulnerability (CVE-2025-53521) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">F5 BIG-IP APM contains a stack-based buffer overflow vulnerability that could allow a threat actor to achieve remote code execution.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
                 </div>
             </div>
             
@@ -886,6 +886,14 @@
                 
         <div class="list-item">
             <span class="meta">The Hacker News • Mon, 27 Jul 2026</span>
+            <a href="https://thehackernews.com/2026/07/public-exploit-released-for-patched.html" target="_blank" class="item-link">Public Exploit Released for Patched vBulletin Pre-Auth Code Execution Flaw ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">The Hacker News • Mon, 27 Jul 2026</span>
+            <a href="https://thehackernews.com/2026/07/weekly-recap-rogue-ai-agents-check.html" target="_blank" class="item-link">⚡ Weekly Recap: Rogue AI Agents, Check Point Exploit, Slopsquatting, ClickFix Lures and More ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">The Hacker News • Mon, 27 Jul 2026</span>
             <a href="https://thehackernews.com/2026/07/n8n-sandbox-escape-lets-workflow.html" target="_blank" class="item-link">n8n Sandbox Escape Lets Workflow Editors Run OS Commands as the n8n Process ↗</a>
         </div>
         <div class="list-item">
@@ -895,10 +903,6 @@
         <div class="list-item">
             <span class="meta">The Hacker News • Sat, 25 Jul 2026</span>
             <a href="https://thehackernews.com/2026/07/researcher-publishes-gitlab-rce-poc.html" target="_blank" class="item-link">Researcher Publishes GitLab RCE PoC Letting Authenticated Users Run Commands as Git ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">The Hacker News • Sat, 25 Jul 2026</span>
-            <a href="https://thehackernews.com/2026/07/cl0p-affiliates-target-internet-exposed.html" target="_blank" class="item-link">Cl0p Affiliates Target Internet-Exposed PTC Windchill and FlexPLM with Unauthenticated RCE ↗</a>
         </div>
         <div class="list-item">
             <span class="meta">Dark Reading • Thu, 23 Jul 2026</span>
