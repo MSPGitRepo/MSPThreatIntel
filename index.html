@@ -83,69 +83,9 @@
         <div class="sidebar">
             <h1>MSP Threat Intel</h1>
             <div class="section-label">VULNERABILITY FILTER</div>
-            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">20</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">9</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">0</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">2</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">2</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">5</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">62</span></button>
+            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">20</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">9</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">0</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">2</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">2</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">4</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">63</span></button>
             <div class="section-label">LIFECYCLE TRACKER</div>
             
-        <div class="eol-item st-expired">
-            <span class="eol-prod">Office / M365 2019</span>
-            <span class="eol-date">2025-10-14</span>
-        </div>
-        <div class="eol-item st-expired">
-            <span class="eol-prod">Office / M365 2016</span>
-            <span class="eol-date">2025-10-14</span>
-        </div>
-        <div class="eol-item st-expired">
-            <span class="eol-prod">Windows Server 23h2-ac</span>
-            <span class="eol-date">2025-10-24</span>
-        </div>
-        <div class="eol-item st-expired">
-            <span class="eol-prod">SharePoint Server 2019</span>
-            <span class="eol-date">2026-07-14</span>
-        </div>
-        <div class="eol-item st-expired">
-            <span class="eol-prod">SharePoint Server 2016</span>
-            <span class="eol-date">2026-07-14</span>
-        </div>
-        <div class="eol-item st-warning">
-            <span class="eol-prod">Office / M365 2021</span>
-            <span class="eol-date">2026-10-13</span>
-        </div>
-        <div class="eol-item st-ok">
-            <span class="eol-prod">Windows Desktop 11-25h2-w</span>
-            <span class="eol-date">2027-10-12</span>
-        </div>
-        <div class="eol-item st-ok">
-            <span class="eol-prod">Windows Desktop 11-26h1-w</span>
-            <span class="eol-date">2028-03-14</span>
-        </div>
-        <div class="eol-item st-ok">
-            <span class="eol-prod">Windows Desktop 11-25h2-e</span>
-            <span class="eol-date">2028-10-10</span>
-        </div>
-        <div class="eol-item st-ok">
-            <span class="eol-prod">Windows Desktop 11-26h1-e</span>
-            <span class="eol-date">2029-03-13</span>
-        </div>
-        <div class="eol-item st-ok">
-            <span class="eol-prod">Office / M365 2024</span>
-            <span class="eol-date">2029-10-09</span>
-        </div>
-        <div class="eol-item st-ok">
-            <span class="eol-prod">Office / M365 2024-ltsc</span>
-            <span class="eol-date">2029-10-09</span>
-        </div>
-        <div class="eol-item st-ok">
-            <span class="eol-prod">Windows Server 2022</span>
-            <span class="eol-date">2031-10-14</span>
-        </div>
-        <div class="eol-item st-ok">
-            <span class="eol-prod">Windows Desktop 11-24h2-iot-lts</span>
-            <span class="eol-date">2034-10-10</span>
-        </div>
-        <div class="eol-item st-ok">
-            <span class="eol-prod">Windows Server 2025</span>
-            <span class="eol-date">2034-11-14</span>
-        </div>
         </div>
         
         <div class="main">
@@ -158,6 +98,27 @@
             <div id="vulns" class="tab-content active">
                 <div class="grid">
                     
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-08-04</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-18556" target="_blank" class="cve-title">N-able N-central Authentication Bypass Using an Alternate Path or Channel Vulnerability (CVE-2026-18556) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">N-able N-central contains an authentication bypass using an alternate path or channel that allows for authentication bypass.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-08-04</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-34486" target="_blank" class="cve-title">Apache Tomcat Missing Encryption of Sensitive Data Vulnerability (CVE-2026-34486) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Apache Tomcat contains a missing encryption of sensitive data vulnerability that allows the bypass of the EncryptInterceptor.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-08-04</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-9198" target="_blank" class="cve-title">IBM Langflow Code Injection Vulnerability (CVE-2026-9198) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Langflow contains a code injection vulnerability that allows unauthenticated attackers to achieve full remote code execution on default Langflow deployments.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
         <div class="card vendor-Other" data-vendor="Other">
             <span class="tag">Other</span><span class="tag" style="float:right">2026-08-03</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-18577" target="_blank" class="cve-title">N-able N-central Authentication Bypass Using an Alternate Path or Channel Vulnerability (CVE-2026-18577) ↗</a>
@@ -837,27 +798,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
             
         </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-04-13</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-34621" target="_blank" class="cve-title">Adobe Acrobat and Reader Prototype Pollution Vulnerability (CVE-2026-34621) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Adobe Acrobat and Reader contain a prototype pollution vulnerability that allows for arbitrary code execution.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-04-08</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-1340" target="_blank" class="cve-title">Ivanti Endpoint Manager Mobile (EPMM) Code Injection Vulnerability (CVE-2026-1340) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Ivanti Endpoint Manager Mobile (EPMM) contains a code injection vulnerability that could allow attackers to achieve unauthenticated remote code execution.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
-        <div class="card vendor-Fortinet" data-vendor="Fortinet">
-            <span class="tag">Fortinet</span><span class="tag" style="float:right">2026-04-06</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-35616" target="_blank" class="cve-title">Fortinet FortiClient EMS Improper Access Control Vulnerability (CVE-2026-35616) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Fortinet FortiClient EMS contains an improper access control vulnerability that may allow an unauthenticated attacker to execute unauthorized code or commands via crafted requests.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
                 </div>
             </div>
             
@@ -891,10 +831,6 @@
         <div class="list-item">
             <span class="meta">The Hacker News • Tue, 04 Aug 2026</span>
             <a href="https://thehackernews.com/2026/08/cisa-adds-exploited-n-able-n-central.html" target="_blank" class="item-link">CISA Adds Exploited N-able N-central Flaw to KEV After Customer Compromises ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">The Hacker News • Mon, 03 Aug 2026</span>
-            <a href="https://thehackernews.com/2026/08/inc-ransomware-emerges-as-dominant.html" target="_blank" class="item-link">INC Ransomware Emerges as Dominant Actor Exploiting SonicWall SMA 1000 Flaws ↗</a>
         </div>
         <div class="list-item">
             <span class="meta">Dark Reading • Mon, 03 Aug 2026</span>
