@@ -159,6 +159,13 @@
                 <div class="grid">
                     
         <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-08-07</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-8037" target="_blank" class="cve-title">Progress LoadMaster Command Injection Vulnerability (CVE-2026-8037) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Progress LoadMaster contains a command injection vulnerability that allows an un-authenticated attacker to execute arbitrary commands on the LoadMaster appliance by exploiting unsanitized input in multiple command endpoints.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
             <span class="tag">Other</span><span class="tag" style="float:right">2026-08-05</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-63077" target="_blank" class="cve-title">JetBrains TeamCity Deserialization of Untrusted Data Vulnerability (CVE-2026-63077) ↗</a>
             <p style="font-size:0.9rem; color:#475569;">JetBrains TeamCity contains a deserialization of untrusted data vulnerability that could allow unauthenticated remote code execution via the agent polling protocol.</p>
@@ -851,13 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
             <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2023-36424' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2023-36424')">Copy</button></div>
         </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-04-13</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2020-9715" target="_blank" class="cve-title">Adobe Acrobat Use-After-Free Vulnerability (CVE-2020-9715) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Adobe Acrobat contains a use-after-free vulnerability that allows for code execution</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
                 </div>
             </div>
             
@@ -872,7 +872,7 @@
         <div class="list-item status-warning">
             <span class="meta" style="color:#f59e0b">Windows Issue • Wed, 05 Aug 2026</span>
             <a href="https://learn.microsoft.com/en-us/office/dev/add-ins/resources/resources-office-add-in-known-issues" target="_blank" class="item-link">Office Add-ins known issues - Office Add-ins ↗</a>
-            <div class="item-desc">For more information about common error messages you might encounter, see Troubleshoot user errors with Office Add-ins or contact the add-in developer on the Details + support tab on the add-in's detail page in Microsoft Marketplace.  ...ffice Add-ins deployed as Optional or Available may be missing Some customers may experience issues where....</div>
+            <div class="item-desc">For more information about common error messages you might encounter, see Troubleshoot user errors with Office Add-ins or contact the add-in developer on the Details + support tab on the add-in's detail page in Microsoft Marketplace. ISSUE: Office Add-ins deployed as Optional or Available may be missing Some customers may experience issues where....</div>
         </div>
         <div class="list-item status-warning">
             <span class="meta" style="color:#f59e0b">Windows Issue • Mon, 22 Jun 2026</span>
@@ -890,6 +890,10 @@
                 <h3>Curated Security News</h3>
                 
         <div class="list-item">
+            <span class="meta">The Hacker News • Sat, 08 Aug 2026</span>
+            <a href="https://thehackernews.com/2026/08/nearly-800-malicious-npm-packages.html" target="_blank" class="item-link">Nearly 800 Malicious npm Packages Deliver Cross-Platform RAT and Infostealer ↗</a>
+        </div>
+        <div class="list-item">
             <span class="meta">The Hacker News • Fri, 07 Aug 2026</span>
             <a href="https://thehackernews.com/2026/08/new-wordpress-pre-auth-xss-could-lead.html" target="_blank" class="item-link">New WordPress Pre-Auth XSS Could Lead to PHP Code Execution - Patch ASAP ↗</a>
         </div>
@@ -902,16 +906,12 @@
             <a href="https://thehackernews.com/2026/08/ai-assisted-http-terminator-finds-novel.html" target="_blank" class="item-link">AI-Assisted HTTP Terminator Finds Novel HTTP Desync Techniques and Apache Zero-Day ↗</a>
         </div>
         <div class="list-item">
-            <span class="meta">The Hacker News • Thu, 06 Aug 2026</span>
-            <a href="https://thehackernews.com/2026/08/new-zapscape-kvm-flaw-could-let.html" target="_blank" class="item-link">New Zapscape KVM Flaw Could Let Privileged L1 Guest Code Escape to Linux Hosts ↗</a>
+            <span class="meta">Dark Reading • Fri, 07 Aug 2026</span>
+            <a href="https://www.darkreading.com/application-security/ai-generated-patches-fail-half-time" target="_blank" class="item-link">AI-Generated Patches Fail Half the Time ↗</a>
         </div>
         <div class="list-item">
             <span class="meta">Dark Reading • Thu, 06 Aug 2026</span>
             <a href="https://www.darkreading.com/cyberattacks-data-breaches/coordination-gap-attackers-outpacing-law-enforcement" target="_blank" class="item-link">The Coordination Gap: How Attackers Are Outpacing Law Enforcement ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">Dark Reading • Wed, 05 Aug 2026</span>
-            <a href="https://www.darkreading.com/vulnerabilities-threats/flaws-google-apk-python-agent-to-agent-attack" target="_blank" class="item-link">Flaws in Google APK for Python Unlock Agent-to-Agent Attack ↗</a>
         </div>
             </div>
         </div>
