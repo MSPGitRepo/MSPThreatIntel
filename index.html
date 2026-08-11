@@ -83,7 +83,7 @@
         <div class="sidebar">
             <h1>MSP Threat Intel</h1>
             <div class="section-label">VULNERABILITY FILTER</div>
-            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">20</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">9</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">0</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">2</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">2</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">3</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">64</span></button>
+            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">18</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">10</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">0</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">2</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">2</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">3</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">65</span></button>
             <div class="section-label">LIFECYCLE TRACKER</div>
             
         <div class="eol-item st-expired">
@@ -158,6 +158,27 @@
             <div id="vulns" class="tab-content active">
                 <div class="grid">
                     
+        <div class="card vendor-Cisco" data-vendor="Cisco">
+            <span class="tag">Cisco</span><span class="tag" style="float:right">2026-08-11</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20349" target="_blank" class="cve-title">Cisco Secure Firewall Adaptive Security Appliance (ASA) and Secure Firewall Threat Defense (FTD) Heap Inspection Vulnerability (CVE-2026-20349) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Cisco Secure Firewall Adaptive Security Appliance (ASA) and Secure Firewall Threat Defense (FTD) contain a heap inspection vulnerability that could allow an unauthenticated, remote attacker to cause the device to reload unexpectedly, resulting in a denial of service (DoS) condition.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
+        <div class="card vendor-Microsoft" data-vendor="Microsoft">
+            <span class="tag">Microsoft</span><span class="tag" style="float:right">2026-08-11</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-68820" target="_blank" class="cve-title">Microsoft Windows Ancillary Function Driver for WinSock Use-After-Free Vulnerability (CVE-2026-68820) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows Ancillary Function Driver for WinSock contains a use-after-free vulnerability that allows an authorized attacker to elevate privileges locally.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2026-68820' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2026-68820')">Copy</button></div>
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-08-11</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-72898" target="_blank" class="cve-title">Metabase SQL Injection Vulnerability (CVE-2026-72898) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Metabase contains a SQL Injection vulnerability that allows an unauthenticated remote attacker to inject arbitrary SQL into the Metabase application database, which can give them administrator access to the instance. From there, the attacker could change the application configuration, steal stored credentials for the connected databases, read any data accessible through those connections, and export data.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
         <div class="card vendor-Other" data-vendor="Other">
             <span class="tag">Other</span><span class="tag" style="float:right">2026-08-07</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-8037" target="_blank" class="cve-title">Progress LoadMaster Command Injection Vulnerability (CVE-2026-8037) ↗</a>
@@ -837,27 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
             <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2012-1854' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2012-1854')">Copy</button></div>
         </div>
-        <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <span class="tag">Microsoft</span><span class="tag" style="float:right">2026-04-13</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-60710" target="_blank" class="cve-title">Microsoft Windows Link Following Vulnerability (CVE-2025-60710) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows contains a link following vulnerability that allows for privilege escalation</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2025-60710' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2025-60710')">Copy</button></div>
-        </div>
-        <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <span class="tag">Microsoft</span><span class="tag" style="float:right">2026-04-13</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2023-21529" target="_blank" class="cve-title">Microsoft Exchange Server Deserialization of Untrusted Data Vulnerability (CVE-2023-21529) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Microsoft Exchange Server contains a deserialization of untrusted data that allows an authenticated attacker to achieve remote code execution.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2023-21529' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2023-21529')">Copy</button></div>
-        </div>
-        <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <span class="tag">Microsoft</span><span class="tag" style="float:right">2026-04-13</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2023-36424" target="_blank" class="cve-title">Microsoft Windows Out-of-Bounds Read Vulnerability (CVE-2023-36424) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows Common Log File System Driver contains an out-of-bounds read vulnerability that could allow a threat actor for privileges escalation</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2023-36424' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2023-36424')">Copy</button></div>
-        </div>
                 </div>
             </div>
             
@@ -870,6 +870,11 @@
             <div class="item-desc">macOS Platform single sign-on known issues and troubleshooting Summarize this article for me In this article This article outlines the current known issues and common questions with macOS Platform single sign-on (PSSO). It provides issue solutions and information on how to report an issue that isn't covered. This article also includes....</div>
         </div>
         <div class="list-item status-warning">
+            <span class="meta" style="color:#f59e0b">Windows Issue • Wed, 05 Aug 2026</span>
+            <a href="https://learn.microsoft.com/en-us/office/dev/add-ins/resources/resources-office-add-in-known-issues" target="_blank" class="item-link">Office Add-ins known issues - Office Add-ins ↗</a>
+            <div class="item-desc">For more information about common error messages you might encounter, see Troubleshoot user errors with Office Add-ins or contact the add-in developer on the Details + support tab on the add-in's detail page in Microsoft Marketplace.  ...ffice Add-ins deployed as Optional or Available may be missing Some customers may experience issues where....</div>
+        </div>
+        <div class="list-item status-warning">
             <span class="meta" style="color:#f59e0b">Windows Issue • Mon, 22 Jun 2026</span>
             <a href="https://learn.microsoft.com/en-us/autopilot/known-issues" target="_blank" class="item-link">Windows Autopilot known issues ↗</a>
             <div class="item-desc">The connector UI or setup logs contain an entry similar to the following example, often surfaced as a SeLogonAsServicePrivilegeMissing configuration error: System.Security.Principal.WindowsIdentity.KerbS4ULogon(String upn, SafeAccessTokenHandle& safeTokenHandle) This error occurs when the Log on as a service privilege (SeLogonAsServicePrivilege)....</div>
@@ -879,16 +884,19 @@
             <a href="https://learn.microsoft.com/en-us/troubleshoot/microsoftteams/teams-rooms-and-devices/teams-rooms-known-issues-windows" target="_blank" class="item-link">Known issues with Teams Rooms on Windows - Microsoft Teams ↗</a>
             <div class="item-desc">Known issues with Teams Rooms on Windows Summarize this article for me In this article Software issues Issue Description Workaround Teams Rooms app out of date The Teams Rooms console displays the system config out of date error. To fix this issue, use the Microsoft Teams Rooms recovery tool. If your organization configured policies to bloc.......</div>
         </div>
-        <div class="list-item status-warning">
-            <span class="meta" style="color:#f59e0b">Windows Issue • Wed, 05 Aug 2026</span>
-            <a href="https://learn.microsoft.com/en-us/windows/release-health/status-windows-server-2025" target="_blank" class="item-link">Windows Server 2025 ↗</a>
-            <div class="item-desc">Synchronization times are expected to return to normal as recovery progresses.N/A  Resolved 2026-07-20 13:22 PT Deleting a file from the Recycle Bin displays an internal filename in the dialogThis issue only occurs within the confirmation dialog after installing the June Windows security update.OS Build 26100.32995 KB50941252026-06-09Resolved....</div>
-        </div>
             </div>
 
             <div id="news" class="tab-content">
                 <h3>Curated Security News</h3>
                 
+        <div class="list-item">
+            <span class="meta">The Hacker News • Tue, 11 Aug 2026</span>
+            <a href="https://thehackernews.com/2026/08/researchers-disclose-ai-assisted.html" target="_blank" class="item-link">Researchers Disclose AI-Assisted SharePoint Exploit Chain Reaching Unauthenticated RCE ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">The Hacker News • Tue, 11 Aug 2026</span>
+            <a href="https://thehackernews.com/2026/08/deadlock-ransomware-uses-polygon-smart.html" target="_blank" class="item-link">DeadLock Ransomware Uses Polygon Smart Contracts to Make Extortion Infra Harder to Disrupt ↗</a>
+        </div>
         <div class="list-item">
             <span class="meta">The Hacker News • Tue, 11 Aug 2026</span>
             <a href="https://thehackernews.com/2026/08/openai-launches-gpt-56-cyber-with.html" target="_blank" class="item-link">OpenAI Launches GPT-5.6-Cyber with Reduced Safeguards for Exploit Development ↗</a>
@@ -900,10 +908,6 @@
         <div class="list-item">
             <span class="meta">The Hacker News • Tue, 11 Aug 2026</span>
             <a href="https://thehackernews.com/2026/08/gunra-ransomware-exploits-fortinet-and.html" target="_blank" class="item-link">Gunra Ransomware Exploits Fortinet and Schneider Electric Flaws to Breach Networks ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">The Hacker News • Tue, 11 Aug 2026</span>
-            <a href="https://thehackernews.com/2026/08/bdthemes-supply-chain-attack-poisons.html" target="_blank" class="item-link">BdThemes Supply Chain Attack Poisons JSON to Create Rogue WordPress Admins ↗</a>
         </div>
         <div class="list-item">
             <span class="meta">Dark Reading • Mon, 10 Aug 2026</span>
