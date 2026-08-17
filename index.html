@@ -83,7 +83,7 @@
         <div class="sidebar">
             <h1>MSP Threat Intel</h1>
             <div class="section-label">VULNERABILITY FILTER</div>
-            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">18</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">10</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">0</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">2</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">2</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">3</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">65</span></button>
+            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">17</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">10</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">0</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">2</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">2</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">3</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">66</span></button>
             <div class="section-label">LIFECYCLE TRACKER</div>
             
         <div class="eol-item st-expired">
@@ -158,6 +158,13 @@
             <div id="vulns" class="tab-content active">
                 <div class="grid">
                     
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-08-18</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-62593" target="_blank" class="cve-title">Ray-Project Ray Code Injection Vulnerability (CVE-2025-62593) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Ray-Project Ray contains a code injection vulnerability that could allow remote code execution. Developers using Ray as a development tool may be exposed to this vulnerability exploitable through Firefox and Safari.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
         <div class="card vendor-Cisco" data-vendor="Cisco">
             <span class="tag">Cisco</span><span class="tag" style="float:right">2026-08-11</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20349" target="_blank" class="cve-title">Cisco Secure Firewall Adaptive Security Appliance (ASA) and Secure Firewall Threat Defense (FTD) Heap Inspection Vulnerability (CVE-2026-20349) ↗</a>
@@ -851,13 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
             <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2026-32201' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2026-32201')">Copy</button></div>
         </div>
-        <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <span class="tag">Microsoft</span><span class="tag" style="float:right">2026-04-13</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2012-1854" target="_blank" class="cve-title">Microsoft Visual Basic for Applications Insecure Library Loading Vulnerability (CVE-2012-1854) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Microsoft Visual Basic for Applications (VBA) contains an insecure library loading vulnerability that could allow for remote code execution.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2012-1854' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2012-1854')">Copy</button></div>
-        </div>
                 </div>
             </div>
             
@@ -891,6 +891,14 @@
                 
         <div class="list-item">
             <span class="meta">The Hacker News • Mon, 17 Aug 2026</span>
+            <a href="https://thehackernews.com/2026/08/weekly-recap-vmware-exploits-windows-0.html" target="_blank" class="item-link">⚡ Weekly Recap: VMware Exploits, Windows 0-Day, MCP Attacks, Browser Hijacks and More ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">The Hacker News • Mon, 17 Aug 2026</span>
+            <a href="https://thehackernews.com/2026/08/unisoc-volte-video-call-exploit-chain.html" target="_blank" class="item-link">Unisoc VoLTE Video Call Exploit Chain Can Give Attackers Full Android Kernel Access ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">The Hacker News • Mon, 17 Aug 2026</span>
             <a href="https://thehackernews.com/2026/08/evooo1bot-linux-botnet-exploits-known.html" target="_blank" class="item-link">Evooo1Bot Linux Botnet Exploits Known Flaws to Turn Edge Devices Into SOCKS5 Proxies ↗</a>
         </div>
         <div class="list-item">
@@ -914,12 +922,8 @@
             <a href="https://thehackernews.com/2026/08/mustang-panda-adds-signed-windows.html" target="_blank" class="item-link">Mustang Panda Adds Signed Windows Rootkit to CoolClient Backdoor for Stealth ↗</a>
         </div>
         <div class="list-item">
-            <span class="meta">The Hacker News • Fri, 14 Aug 2026</span>
-            <a href="https://thehackernews.com/2026/08/chrome-devtools-technique-enables.html" target="_blank" class="item-link">Chrome DevTools Technique Enables Authenticated Session Hijacking in Live Windows Browsers ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">The Hacker News • Fri, 14 Aug 2026</span>
-            <a href="https://thehackernews.com/2026/08/apple-warns-users-in-110-countries-they.html" target="_blank" class="item-link">Apple Warns Users in 110 Countries They May Be Targets of Mercenary Spyware ↗</a>
+            <span class="meta">Dark Reading • Mon, 17 Aug 2026</span>
+            <a href="https://www.darkreading.com/cyber-risk/linux-botnet-evooo1bot-mirai-capabilities-beyond-ddos" target="_blank" class="item-link">Linux Botnet Evooo1Bot Expands Mirai Capabilities Well Beyond DDoS ↗</a>
         </div>
         <div class="list-item">
             <span class="meta">Dark Reading • Fri, 14 Aug 2026</span>
