@@ -83,7 +83,7 @@
         <div class="sidebar">
             <h1>MSP Threat Intel</h1>
             <div class="section-label">VULNERABILITY FILTER</div>
-            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">17</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">10</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">0</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">2</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">2</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">3</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">66</span></button>
+            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">17</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">9</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">0</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">2</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">2</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">3</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">67</span></button>
             <div class="section-label">LIFECYCLE TRACKER</div>
             
         <div class="eol-item st-expired">
@@ -158,6 +158,20 @@
             <div id="vulns" class="tab-content active">
                 <div class="grid">
                     
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-08-20</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-72530" target="_blank" class="cve-title">TrueConf Server Code Injection Vulnerability (CVE-2026-72530) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">TrueConf Server contains a code injection vulnerability that could allow an unauthorized remote attacker with network access via port 4307/TCP to use a specially crafted script to break out of the isolated environment and execute arbitrary code on the host system.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-08-20</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-72529" target="_blank" class="cve-title">TrueConf Server Missing Authentication for Critical Function Vulnerability (CVE-2026-72529) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">TrueConf Server contains a missing authentication for critical function vulnerability which could allow a remote unauthorized attacker with network access via port 4307/TCP to execute an arbitrary script.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
         <div class="card vendor-Other" data-vendor="Other">
             <span class="tag">Other</span><span class="tag" style="float:right">2026-08-19</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-64849" target="_blank" class="cve-title">MLflow Server-Side Request Forgery Vulnerability (CVE-2026-64849) ↗</a>
@@ -844,20 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
             
         </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-04-20</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-48700" target="_blank" class="cve-title">Synacor Zimbra Collaboration Suite (ZCS) Cross-site Scripting Vulnerability (CVE-2025-48700) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Synacor Zimbra Collaboration Suite (ZCS) contains a cross-site scripting vulnerability that could allow attackers to execute arbitrary JavaScript within the user's session, potentially leading to unauthorized access to sensitive information.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
-        <div class="card vendor-Cisco" data-vendor="Cisco">
-            <span class="tag">Cisco</span><span class="tag" style="float:right">2026-04-20</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20128" target="_blank" class="cve-title">Cisco Catalyst SD-WAN Manager Storing Passwords in a Recoverable Format Vulnerability (CVE-2026-20128) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Cisco Catalyst SD-WAN Manager contains a storing passwords in a recoverable format vulnerability that allows an authenticated, local attacker to gain DCA user privileges by accessing a credential file for the DCA user on the filesystem as a low-privileged user.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Please adhere to CISA’s guidelines to assess exposure and mitigate risks associated with Cisco SD-WAN devices as outlines in CISA’s Emergency Directive 26-03 (URL listed below in Notes) and CISA’s “Hunt & Hardening Guidance for Cisco SD-WAN Devices (URL listed below in Notes). Adhere to the applicable BOD 22-01 guidance for cloud services or discontinue use of the product if mitigations are not available.</div>
-            
-        </div>
                 </div>
             </div>
             
@@ -867,7 +867,7 @@
         <div class="list-item status-warning">
             <span class="meta" style="color:#f59e0b">Windows Issue • Thu, 20 Aug 2026</span>
             <a href="https://learn.microsoft.com/en-us/windows/release-health/status-windows-11-25h2" target="_blank" class="item-link">Windows 11, version 25H2 ↗</a>
-            <div class="item-desc">SummaryOriginating updateStatusLast updated Microsoft has received reports of certain games becoming unresponsiveWe are presently investigating to determine if this is an issue caused by MicrosoftOS Build 26100.9168 KB51210032026-08-11Investigating2026-08-19 17:53 PT Issue details August 2026Microsoft has received reports of certain games becoming....</div>
+            <div class="item-desc">SummaryOriginating updateStatusLast updated Microsoft has received reports of certain games becoming unresponsiveWe are presently investigating to determine if this is an issue caused by MicrosoftOS Build 26100.9168 KB51210032026-08-11Investigating2026-08-19 18:10 PT Issue details August 2026Microsoft has received reports of certain games becoming....</div>
         </div>
         <div class="list-item status-warning">
             <span class="meta" style="color:#f59e0b">Windows Issue • Mon, 29 Jun 2026</span>
@@ -891,6 +891,14 @@
                 
         <div class="list-item">
             <span class="meta">The Hacker News • Thu, 20 Aug 2026</span>
+            <a href="https://thehackernews.com/2026/08/threatsday-gogs-100-rce-n8n-workflow-to.html" target="_blank" class="item-link">ThreatsDay: Gogs 10.0 RCE, n8n Workflow-to-RCE, $10M Reward, GLM-5.3 AI Exploit and More ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">The Hacker News • Thu, 20 Aug 2026</span>
+            <a href="https://thehackernews.com/2026/08/ai-generated-exploit-scripts-target.html" target="_blank" class="item-link">AI-Generated Exploit Scripts Target Siemens S7 PLCs in U.S. Critical Infrastructure ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">The Hacker News • Thu, 20 Aug 2026</span>
             <a href="https://thehackernews.com/2026/08/isolated-vm-flaw-lets-sandboxed.html" target="_blank" class="item-link">Isolated-vm Flaw Lets Sandboxed JavaScript Escape to Host for Potential RCE ↗</a>
         </div>
         <div class="list-item">
@@ -906,20 +914,16 @@
             <a href="https://thehackernews.com/2026/08/cdn-tsunami-attack-abuses-http3.html" target="_blank" class="item-link">CDN Tsunami Attack Abuses HTTP/3 Translation for Up to 350x DoS Amplification ↗</a>
         </div>
         <div class="list-item">
-            <span class="meta">The Hacker News • Thu, 20 Aug 2026</span>
-            <a href="https://thehackernews.com/2026/08/nasa-ait-gui-flaws-could-let.html" target="_blank" class="item-link">NASA AIT-GUI Flaws Could Let Unauthenticated Attackers Issue Spacecraft Commands ↗</a>
+            <span class="meta">Dark Reading • Thu, 20 Aug 2026</span>
+            <a href="https://www.darkreading.com/vulnerabilities-threats/n-able-bug-password-vault-master-keys" target="_blank" class="item-link">N-able Bug Exposes Password Vault Master Keys ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">Dark Reading • Thu, 20 Aug 2026</span>
+            <a href="https://www.darkreading.com/cybersecurity-operations/money-and-mindset-the-two-biggest-roadblocks-to-cyber-policing" target="_blank" class="item-link">Money and Mindset: The Two Biggest Roadblocks to Cyber Policing ↗</a>
         </div>
         <div class="list-item">
             <span class="meta">Dark Reading • Thu, 20 Aug 2026</span>
             <a href="https://www.darkreading.com/cyberattacks-data-breaches/grandoreiro-resurfaces-mexico-campaign" target="_blank" class="item-link">'Grandoreiro' Malware Resurfaces With Mexico Campaign ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">Dark Reading • Tue, 18 Aug 2026</span>
-            <a href="https://www.darkreading.com/application-security/critical-gitlab-zero-click-flaw-mitigation-challenges" target="_blank" class="item-link">Critical GitLab Zero-Click Flaw Poses Mitigation Challenges ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">Dark Reading • Tue, 18 Aug 2026</span>
-            <a href="https://www.darkreading.com/cyber-risk/cisos-break-their-silence-in-declassified-docuseries" target="_blank" class="item-link">CISOs Break Their Silence in 'Declassified' Docuseries ↗</a>
         </div>
             </div>
         </div>
