@@ -83,7 +83,7 @@
         <div class="sidebar">
             <h1>MSP Threat Intel</h1>
             <div class="section-label">VULNERABILITY FILTER</div>
-            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">11</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">6</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">1</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">1</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">2</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">3</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">76</span></button>
+            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">11</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">7</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">2</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">1</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">2</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">4</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">73</span></button>
             <div class="section-label">LIFECYCLE TRACKER</div>
             
         <div class="eol-item st-expired">
@@ -158,6 +158,34 @@
             <div id="vulns" class="tab-content active">
                 <div class="grid">
                     
+        <div class="card vendor-Citrix" data-vendor="Citrix">
+            <span class="tag">Citrix</span><span class="tag" style="float:right">2026-09-09</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-19490" target="_blank" class="cve-title">Citrix NetScaler Authentication Bypass Using an Alternate Path or Channel Vulnerability (CVE-2026-19490) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Citrix NetScaler ADC and NetScaler Gateway contain an authentication-bypass vulnerability involving an alternate path or channel. When the NetScaler appliance is configured as an AAA virtual server or as a Gateway (SSL VPN, ICA Proxy, CVPN, or RDP Proxy), an unauthenticated remote threat actor may be able to bypass authentication.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
+        <div class="card vendor-Fortinet" data-vendor="Fortinet">
+            <span class="tag">Fortinet</span><span class="tag" style="float:right">2026-09-09</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-25249" target="_blank" class="cve-title">Fortinet Multiple Products Heap-based Buffer Overflow Vulnerability (CVE-2025-25249) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Fortinet FortiOS, FortiSwitchManager, and FortiSASE contain a heap-based buffer overflow vulnerability that allows an attacker to execute unauthorized code or commands via specially crafted packets.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-09-09</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-87491" target="_blank" class="cve-title">Google Chromium V8 Out of Bounds Write Vulnerability (CVE-2026-87491) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Google Chromium V8 contains an out of bounds write vulnerability that allows a remote attacker to execute arbitrary code inside the sandbox via a crafted HTML page. This vulnerability could affect multiple web browsers that utilize Chromium, including, but not limited to, Google Chrome, Microsoft Edge, and Opera.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
+        <div class="card vendor-Cisco" data-vendor="Cisco">
+            <span class="tag">Cisco</span><span class="tag" style="float:right">2026-09-09</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20079" target="_blank" class="cve-title">Cisco Firewall Management Center Authentication Bypass Using an Alternate Path or Channel Vulnerability (CVE-2026-20079) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Cisco Secure Firewall Management Center (FMC) Software and Cisco Security Cloud Control (SCC) Firewall Management contain an authentication Bypass using an alternate path or channel vulnerability that could allow an unauthenticated, remote attacker to bypass authentication and execute script files on an affected device to obtain root access to the underlying operating system.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
         <div class="card vendor-Other" data-vendor="Other">
             <span class="tag">Other</span><span class="tag" style="float:right">2026-09-08</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-75650" target="_blank" class="cve-title">Adobe Commerce and Magento Improper Neutralization of Special Elements Used in a Template Engine Vulnerability (CVE-2026-75650) ↗</a>
@@ -830,34 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
             
         </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-05-26</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-48172" target="_blank" class="cve-title">LiteSpeed cPanel Plugin Privilege Escalation Vulnerability (CVE-2026-48172) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">LiteSpeed cPanel Plugin contains privilege escalation vulnerability that is exposed via the user-end cPanel plugin, which can be abused by any cPanel user account to execute arbitrary scripts with root privileges.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-05-22</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-9082" target="_blank" class="cve-title">Drupal Core SQL Injection Vulnerability (CVE-2026-9082) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Drupal Core contains a SQL injection vulnerability that could allow for privilege escalation and remote code execution via specially crafted requests sent with the database abstraction API.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-05-21</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-34291" target="_blank" class="cve-title">Langflow Origin Validation Error Vulnerability (CVE-2025-34291) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Langflow contains an origin validation error vulnerability in which an overly permissive CORS configuration combined with a refresh token cookie configured as SameSite=None allows a malicious webpage to perform cross-origin requests that include credentials and successfully call the refresh endpoint. This could allow the attacker to execute arbitrary code and achieve full system compromise via obtained tokens that permit access to authenticated endpoints.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-05-21</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-34926" target="_blank" class="cve-title">Trend Micro Apex One (On-Premise) Directory Traversal Vulnerability (CVE-2026-34926) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Trend Micro Apex One (on-premise) contains a directory traversal vulnerability that could allow a pre-authenticated local attacker to modify a key table on the server to inject malicious code to deploy to agents on affected installations.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
                 </div>
             </div>
             
@@ -872,18 +872,31 @@
         <div class="list-item status-warning">
             <span class="meta" style="color:#f59e0b">Windows Issue • Tue, 08 Sep 2026</span>
             <a href="https://learn.microsoft.com/en-us/autopilot/known-issues" target="_blank" class="item-link">Windows Autopilot known issues ↗</a>
-            <div class="item-desc">The event log contains an error similar to the following example: MDM PolicyManager: Merge string, Area: (UserRights), Policy: (DenyLocalLogOn), Result:(0x800706FD) The trust relationship between this workstation and the primary domain failed. In off-premises scenarios that use a bring-your-own (BYO) VPN, the VPN connection isn't available during....</div>
+            <div class="item-desc">The event log contains an error similar to the following example: MDM PolicyManager: Merge string, Area: (UserRights), Policy: (DenyLocalLogOn), Result:(0x800706FD) The trust relationship between this workstation and the primary domain failed.  ...arios that use a bring-your-own (BYO) VPN, the VPN connection isn't available during the technician....</div>
         </div>
         <div class="list-item status-warning">
             <span class="meta" style="color:#f59e0b">Windows Issue • Wed, 19 Aug 2026</span>
             <a href="https://learn.microsoft.com/en-us/troubleshoot/microsoftteams/teams-rooms-and-devices/teams-rooms-known-issues-android" target="_blank" class="item-link">Known issues with Teams on Android devices - Microsoft Teams ↗</a>
             <div class="item-desc">Known issues with Teams Android devices Summarize this article for me In this article Issues affecting multiple device types Issue Description Workaround Signed out of Teams on Android devices Teams Rooms on Android, Teams Phones, Teams panels, and Teams displays are signed out of Teams automatically due to a policy block on the device....</div>
         </div>
+        <div class="list-item status-warning">
+            <span class="meta" style="color:#f59e0b">Windows Issue • Wed, 19 Aug 2026</span>
+            <a href="https://learn.microsoft.com/en-us/troubleshoot/microsoftteams/teams-rooms-and-devices/teams-rooms-known-issues-windows" target="_blank" class="item-link">Known issues with Teams Rooms on Windows - Microsoft Teams ↗</a>
+            <div class="item-desc">Known issues with Teams Rooms on Windows Summarize this article for me In this article Software issues Issue Description Workaround Teams Rooms app out of date The Teams Rooms console displays the system config out of date error. To fix this issue, use the Microsoft Teams Rooms recovery tool. Want to try using Ask Learn to clarify or guide .......</div>
+        </div>
             </div>
 
             <div id="news" class="tab-content">
                 <h3>Curated Security News</h3>
                 
+        <div class="list-item">
+            <span class="meta">The Hacker News • Wed, 09 Sep 2026</span>
+            <a href="https://thehackernews.com/2026/09/us-disrupts-xinbi-guarantee-scam.html" target="_blank" class="item-link">U.S. Disrupts Xinbi Guarantee Scam Marketplace, Freezes $52.8 Million in Crypto ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">The Hacker News • Wed, 09 Sep 2026</span>
+            <a href="https://thehackernews.com/2026/09/four-spy-groups-used-same-chrome-and.html" target="_blank" class="item-link">Four Spy Groups Used the Same Chrome and Windows Exploit Kit Within a Week ↗</a>
+        </div>
         <div class="list-item">
             <span class="meta">The Hacker News • Wed, 09 Sep 2026</span>
             <a href="https://thehackernews.com/2026/09/webinar-learn-how-to-answer-are-we.html" target="_blank" class="item-link">Webinar: Learn How to Answer “Are We Exposed?” Faster After a New CVE   ↗</a>
@@ -905,12 +918,8 @@
             <a href="https://thehackernews.com/2026/09/new-cpanel-flaw-lets-hosting-account.html" target="_blank" class="item-link">New cPanel Flaw Lets a Hosting Account With Mail Privileges Run Code as Root ↗</a>
         </div>
         <div class="list-item">
-            <span class="meta">The Hacker News • Wed, 09 Sep 2026</span>
-            <a href="https://thehackernews.com/2026/09/researcher-drops-new-microsoft-defender.html" target="_blank" class="item-link">Researcher Drops New Microsoft Defender PoC Showing ShieldBreak Patch Can Be Bypassed ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">The Hacker News • Wed, 09 Sep 2026</span>
-            <a href="https://thehackernews.com/2026/09/sap-patches-cvss-100-kernel-flaw.html" target="_blank" class="item-link">SAP Patches CVSS 10.0 Kernel Flaw Enabling Unauthenticated Remote Code Execution ↗</a>
+            <span class="meta">Dark Reading • Wed, 09 Sep 2026</span>
+            <a href="https://www.darkreading.com/application-security/mythos-vulnerability-firehose-hits-human-bottleneck" target="_blank" class="item-link">Mythos Vulnerability Firehose Hits a Human Bottleneck ↗</a>
         </div>
         <div class="list-item">
             <span class="meta">Dark Reading • Tue, 08 Sep 2026</span>
