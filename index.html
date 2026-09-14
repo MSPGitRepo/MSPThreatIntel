@@ -83,7 +83,7 @@
         <div class="sidebar">
             <h1>MSP Threat Intel</h1>
             <div class="section-label">VULNERABILITY FILTER</div>
-            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">11</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">7</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">2</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">0</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">2</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">4</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">74</span></button>
+            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">11</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">8</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">2</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">0</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">2</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">4</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">73</span></button>
             <div class="section-label">LIFECYCLE TRACKER</div>
             
         <div class="eol-item st-expired">
@@ -158,6 +158,13 @@
             <div id="vulns" class="tab-content active">
                 <div class="grid">
                     
+        <div class="card vendor-Cisco" data-vendor="Cisco">
+            <span class="tag">Cisco</span><span class="tag" style="float:right">2026-09-14</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-76461" target="_blank" class="cve-title">Cisco Secure Email Gateway SQL Injection Vulnerability (CVE-2026-76461) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Cisco AsyncOS software for Cisco Secure Email Gateway (SEG) contains a SQL injection vulnerability that could allow an unauthenticated, remote attacker to execute arbitrary commands with root privileges on the underlying operating system.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
         <div class="card vendor-Other" data-vendor="Other">
             <span class="tag">Other</span><span class="tag" style="float:right">2026-09-11</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-84869" target="_blank" class="cve-title">ConnectWise ScreenConnect Improper Privilege Management and Missing Authorization Vulnerability (CVE-2026-84869) ↗</a>
@@ -851,13 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
             
         </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-06-02</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2022-0492" target="_blank" class="cve-title">Linux Kernel Improper Authentication Vulnerability (CVE-2022-0492) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Linux Kernel contains an improper authentication vulnerability which could allow for privilege escalation via the cgroups v1 release_agent feature.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
                 </div>
             </div>
             
@@ -872,18 +872,25 @@
         <div class="list-item status-warning">
             <span class="meta" style="color:#f59e0b">Windows Issue • Tue, 08 Sep 2026</span>
             <a href="https://learn.microsoft.com/en-us/autopilot/known-issues" target="_blank" class="item-link">Windows Autopilot known issues ↗</a>
-            <div class="item-desc">The event log contains an error similar to the following example: MDM PolicyManager: Merge string, Area: (UserRights), Policy: (DenyLocalLogOn), Result:(0x800706FD) The trust relationship between this workstation and the primary domain failed. In off-premises scenarios that use a bring-your-own (BYO) VPN, the VPN connection isn't available during....</div>
-        </div>
-        <div class="list-item status-warning">
-            <span class="meta" style="color:#f59e0b">Windows Issue • Wed, 19 Aug 2026</span>
-            <a href="https://learn.microsoft.com/en-us/troubleshoot/microsoftteams/teams-rooms-and-devices/teams-rooms-known-issues-android" target="_blank" class="item-link">Known issues with Teams on Android devices - Microsoft Teams ↗</a>
-            <div class="item-desc">Known issues with Teams Android devices Summarize this article for me In this article Issues affecting multiple device types Issue Description Workaround Signed out of Teams on Android devices Teams Rooms on Android, Teams Phones, Teams panels, and Teams displays are signed out of Teams automatically due to a policy block on the device....</div>
+            <div class="item-desc">The event log contains an error similar to the following example: MDM PolicyManager: Merge string, Area: (UserRights), Policy: (DenyLocalLogOn), Result:(0x800706FD) The trust relationship between this workstation and the primary domain failed.  ...arios that use a bring-your-own (BYO) VPN, the VPN connection isn't available during the technician....</div>
         </div>
             </div>
 
             <div id="news" class="tab-content">
                 <h3>Curated Security News</h3>
                 
+        <div class="list-item">
+            <span class="meta">The Hacker News • Mon, 14 Sep 2026</span>
+            <a href="https://thehackernews.com/2026/09/3bb-attacker-used-meshcentral-backdoor.html" target="_blank" class="item-link">3BB Attacker Used MeshCentral Backdoor for Root Access, Targeted Subscriber Credentials ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">The Hacker News • Mon, 14 Sep 2026</span>
+            <a href="https://thehackernews.com/2026/09/telegram-desktop-flaw-lets-hidden.html" target="_blank" class="item-link">Telegram Desktop Flaw Lets Hidden JavaScript Exfiltrate Messages From HTML Exports ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">The Hacker News • Mon, 14 Sep 2026</span>
+            <a href="https://thehackernews.com/2026/09/red-heron-exploits-gitea-rce-to.html" target="_blank" class="item-link">Red Heron Exploits Gitea RCE to Compromise 13 Organizations Across Six Countries ↗</a>
+        </div>
         <div class="list-item">
             <span class="meta">The Hacker News • Mon, 14 Sep 2026</span>
             <a href="https://thehackernews.com/2026/09/weekly-recap-rogue-ai-agents-wechat.html" target="_blank" class="item-link">⚡ Weekly Recap: Rogue AI Agents, WeChat Worm, PaperCut Attacks, AI Espionage, and Rootkits ↗</a>
@@ -897,12 +904,8 @@
             <a href="https://thehackernews.com/2026/09/cisa-adds-5-actively-exploited.html" target="_blank" class="item-link">CISA Adds 5 Actively Exploited Artifactory, ScreenConnect, and RouterOS Flaws to KEV ↗</a>
         </div>
         <div class="list-item">
-            <span class="meta">The Hacker News • Sat, 12 Sep 2026</span>
-            <a href="https://thehackernews.com/2026/09/openai-agents-linked-to-rubygems.html" target="_blank" class="item-link">OpenAI Agents Linked to RubyGems Campaign That Gained RCE on RubyDoc Servers ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">The Hacker News • Fri, 11 Sep 2026</span>
-            <a href="https://thehackernews.com/2026/09/gitlab-cvss-10-file-read-flaw-draws-in.html" target="_blank" class="item-link">GitLab CVSS 10 File-Read Flaw Draws In-the-Wild Probes After Disclosure ↗</a>
+            <span class="meta">Dark Reading • Mon, 14 Sep 2026</span>
+            <a href="https://www.darkreading.com/cyberattacks-data-breaches/maximum-severity-gitlab-flaw-supply-chains-risk" target="_blank" class="item-link">Maximum Severity GitLab Flaw Puts Supply Chains at Risk ↗</a>
         </div>
         <div class="list-item">
             <span class="meta">Dark Reading • Fri, 11 Sep 2026</span>
@@ -911,14 +914,6 @@
         <div class="list-item">
             <span class="meta">Dark Reading • Fri, 11 Sep 2026</span>
             <a href="https://www.darkreading.com/mobile-security/indonesia-android-banking-app-cloning-campaign" target="_blank" class="item-link">Indonesia Hit by Android Banking App-Cloning Campaign ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">Dark Reading • Thu, 10 Sep 2026</span>
-            <a href="https://www.darkreading.com/threat-intelligence/voice-callers-exploit-byod-microsoft-365-corporate-data" target="_blank" class="item-link">Voice Callers Exploit BYOD to Reach Microsoft 365, Corporate Data ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">Dark Reading • Thu, 10 Sep 2026</span>
-            <a href="https://www.darkreading.com/vulnerabilities-threats/nightmare-eclipse-strikes-again-shieldcrash-windows-exploit" target="_blank" class="item-link">Nightmare-Eclipse Strikes Again With 'ShieldCrash' Windows Exploit ↗</a>
         </div>
             </div>
         </div>
