@@ -83,7 +83,7 @@
         <div class="sidebar">
             <h1>MSP Threat Intel</h1>
             <div class="section-label">VULNERABILITY FILTER</div>
-            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">11</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">8</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">2</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">0</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">2</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">4</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">73</span></button>
+            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">11</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">9</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">2</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">0</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">2</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">4</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">72</span></button>
             <div class="section-label">LIFECYCLE TRACKER</div>
             
         <div class="eol-item st-expired">
@@ -162,6 +162,13 @@
             <span class="tag">Other</span><span class="tag" style="float:right">2026-09-16</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-58704" target="_blank" class="cve-title">Google Pixel Improper Authorization Vulnerability (CVE-2026-58704) ↗</a>
             <p style="font-size:0.9rem; color:#475569;">Google Pixel devices contain an improper authorization vulnerability in the cellular modem. A logic error may allow an attacker to bypass permission checks and escalate privileges.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
+        <div class="card vendor-Cisco" data-vendor="Cisco">
+            <span class="tag">Cisco</span><span class="tag" style="float:right">2026-09-16</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-76460" target="_blank" class="cve-title">Cisco Identity Services Engine Incorrect Use of Privileged APIs Vulnerability (CVE-2026-76460) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Cisco Identity Services Engine (ISE) and Cisco ISE Passive Identity Connector (ISE-PIC) contain an incorrect use of privileged APIs vulnerability that could allow an unauthenticated, remote attacker to gain unauthorized access to the affected device by bypassing the web-based management interface.</p>
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
             
         </div>
@@ -851,13 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
             
         </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-06-05</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-28318" target="_blank" class="cve-title">SolarWinds Serv-U Uncontrolled Resource Consumption Vulnerability (CVE-2026-28318) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">SolarWinds Serv-U contains an uncontrolled resource consumption vulnerability that allows specially crafted POST requests using the Content-Encoding: deflate header to crash the Serv-U service without authentication.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
                 </div>
             </div>
             
@@ -872,18 +872,26 @@
         <div class="list-item status-warning">
             <span class="meta" style="color:#f59e0b">Windows Issue • Tue, 08 Sep 2026</span>
             <a href="https://learn.microsoft.com/en-us/autopilot/known-issues" target="_blank" class="item-link">Windows Autopilot known issues ↗</a>
-            <div class="item-desc">The event log contains an error similar to the following example: MDM PolicyManager: Merge string, Area: (UserRights), Policy: (DenyLocalLogOn), Result:(0x800706FD) The trust relationship between this workstation and the primary domain failed.  ...arios that use a bring-your-own (BYO) VPN, the VPN connection isn't available during the technician....</div>
+            <div class="item-desc">The event log contains an error similar to the following example: MDM PolicyManager: Merge string, Area: (UserRights), Policy: (DenyLocalLogOn), Result:(0x800706FD) The trust relationship between this workstation and the primary domain failed. In off-premises scenarios that use a bring-your-own (BYO) VPN, the VPN connection isn't available during....</div>
         </div>
         <div class="list-item status-warning">
             <span class="meta" style="color:#f59e0b">Windows Issue • Wed, 16 Sep 2026</span>
             <a href="https://learn.microsoft.com/en-us/office/dev/add-ins/resources/resources-office-add-in-known-issues" target="_blank" class="item-link">Office Add-ins known issues - Office Add-ins ↗</a>
-            <div class="item-desc">For more information about common error messages you might encounter, see Troubleshoot user errors with Office Add-ins or contact the add-in developer on the Details + support tab on the add-in's detail page in Microsoft Marketplace.  ...d-ins deployed as Optional or Available may be missing Some customers may experience issues where centrally....</div>
+            <div class="item-desc">For more information about common error messages you might encounter, see Troubleshoot user errors with Office Add-ins or contact the add-in developer on the Details + support tab on the add-in's detail page in Microsoft Marketplace. ISSUE: Office Add-ins deployed as Optional or Available may be missing Some customers may experience issues where....</div>
         </div>
             </div>
 
             <div id="news" class="tab-content">
                 <h3>Curated Security News</h3>
                 
+        <div class="list-item">
+            <span class="meta">The Hacker News • Wed, 16 Sep 2026</span>
+            <a href="https://thehackernews.com/2026/09/attackers-exploit-issabel-framework.html" target="_blank" class="item-link">Attackers Exploit Issabel Framework Flaw Enabling Unauthenticated OS Command Execution ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">The Hacker News • Wed, 16 Sep 2026</span>
+            <a href="https://thehackernews.com/2026/09/three-threat-groups-target-russian.html" target="_blank" class="item-link">Three Threat Groups Target Russian Enterprises With Backdoors, Ransomware, and Wipers ↗</a>
+        </div>
         <div class="list-item">
             <span class="meta">The Hacker News • Wed, 16 Sep 2026</span>
             <a href="https://thehackernews.com/2026/09/attacker-hijacks-ai-coding-assistant.html" target="_blank" class="item-link">Attacker Hijacks AI Coding Assistant Session, Spreads Shai-Hulud Across About 100 Repositories ↗</a>
@@ -905,10 +913,6 @@
             <a href="https://thehackernews.com/2026/09/attackers-exploit-woocommerce-wholesale.html" target="_blank" class="item-link">Attackers Exploit WooCommerce Wholesale Lead Capture Flaw to Plant PHP Web Shells ↗</a>
         </div>
         <div class="list-item">
-            <span class="meta">The Hacker News • Wed, 16 Sep 2026</span>
-            <a href="https://thehackernews.com/2026/09/active-exploitation-attempts-target.html" target="_blank" class="item-link">Active Exploitation Attempts Target WSO2 API Manager JWT Bypass With Forged Admin Tokens ↗</a>
-        </div>
-        <div class="list-item">
             <span class="meta">Dark Reading • Wed, 16 Sep 2026</span>
             <a href="https://www.darkreading.com/cyberattacks-data-breaches/cyber-south-korean-media-automotive" target="_blank" class="item-link">Cyber Op Targets South Korean Media &amp; Automotive Sectors ↗</a>
         </div>
@@ -923,10 +927,6 @@
         <div class="list-item">
             <span class="meta">Dark Reading • Mon, 14 Sep 2026</span>
             <a href="https://www.darkreading.com/cyberattacks-data-breaches/maximum-severity-gitlab-flaw-supply-chains-risk" target="_blank" class="item-link">Maximum Severity GitLab Flaw Puts Supply Chains at Risk ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">Dark Reading • Fri, 11 Sep 2026</span>
-            <a href="https://www.darkreading.com/endpoint-security/spidersilk-hunts-external-threats-ai-scanning" target="_blank" class="item-link">SpiderSilk Hunts External Threats With AI-Based Scanner ↗</a>
         </div>
             </div>
         </div>
