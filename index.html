@@ -83,7 +83,7 @@
         <div class="sidebar">
             <h1>MSP Threat Intel</h1>
             <div class="section-label">VULNERABILITY FILTER</div>
-            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">11</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">9</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">2</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">0</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">1</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">4</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">73</span></button>
+            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">11</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">8</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">2</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">0</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">1</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">4</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">74</span></button>
             <div class="section-label">LIFECYCLE TRACKER</div>
             
         <div class="eol-item st-expired">
@@ -158,6 +158,20 @@
             <div id="vulns" class="tab-content active">
                 <div class="grid">
                     
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-09-18</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-39964" target="_blank" class="cve-title">Linux Kernel Race Condition Vulnerability (CVE-2025-39964) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Linux Kernel contains a race condition vulnerability which allows concurrent writes to the same AF_ALG socket causing data to be unpredictably interleaved and creating inconsistencies in the socket's internal state.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-09-18</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-53266" target="_blank" class="cve-title">Linux Kernel Out-of-Bounds Write Vulnerability (CVE-2026-53266) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Linux Kernel contains an out-of-bounds write vulnerability in the ebtables SNAT target which allows an ARP sender hardware address rewrite to write directly into a nonlinear socket-buffer fragment backed by a splice-imported file page. The impacted product(s) could be end-of-life (EoL) and/or end-of-service (EoS). Users are advised to discontinue use and/or transition to a supported version.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
         <div class="card vendor-Other" data-vendor="Other">
             <span class="tag">Other</span><span class="tag" style="float:right">2026-09-16</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-58704" target="_blank" class="cve-title">Google Pixel Improper Authorization Vulnerability (CVE-2026-58704) ↗</a>
@@ -844,20 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
             
         </div>
-        <div class="card vendor-Cisco" data-vendor="Cisco">
-            <span class="tag">Cisco</span><span class="tag" style="float:right">2026-06-09</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20245" target="_blank" class="cve-title">Cisco Catalyst SD-WAN Manager Improper Encoding or Escaping of Output Vulnerability (CVE-2026-20245) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Cisco Catalyst SD-WAN Manager formerly SD-WAN vManage contains an improper encoding or escaping of output vulnerability. This vulnerability could allow an authenticated, local attacker to execute arbitrary commands as root by supplying a crafted file to the affected system.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-06-08</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-42271" target="_blank" class="cve-title">BerriAI LiteLLM Command Injection Vulnerability (CVE-2026-42271) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">BerriAI LiteLLM contains a command injection vulnerability that could allow any authenticated user, including holders of low-privilege internal-user keys, to run arbitrary commands on the host.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.</div>
-            
-        </div>
                 </div>
             </div>
             
@@ -885,6 +885,18 @@
                 <h3>Curated Security News</h3>
                 
         <div class="list-item">
+            <span class="meta">The Hacker News • Fri, 18 Sep 2026</span>
+            <a href="https://thehackernews.com/2026/09/microsoft-patches-cvss-100-azure-ai.html" target="_blank" class="item-link">Microsoft Patches CVSS 10.0 Azure AI Foundry Flaw Enabling Unauthorized Privilege Escalation ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">The Hacker News • Fri, 18 Sep 2026</span>
+            <a href="https://thehackernews.com/2026/09/plugin4shell-lets-repository-owners.html" target="_blank" class="item-link">Plugin4Shell Lets Repository Owners Swap Pinned Plugin Code Across Four AI Coding Agents ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">The Hacker News • Fri, 18 Sep 2026</span>
+            <a href="https://thehackernews.com/2026/09/weaselbiscuit-stealer-spreads-via-13.html" target="_blank" class="item-link">WeaselBiscuit Stealer Spreads via 13 npm Packages to Harvest Chrome Extension Storage ↗</a>
+        </div>
+        <div class="list-item">
             <span class="meta">The Hacker News • Thu, 17 Sep 2026</span>
             <a href="https://thehackernews.com/2026/09/critical-check-point-management-server.html" target="_blank" class="item-link">Critical Check Point Management Flaw Lets Unauthenticated Attackers Run Code as Root ↗</a>
         </div>
@@ -899,22 +911,6 @@
         <div class="list-item">
             <span class="meta">The Hacker News • Thu, 17 Sep 2026</span>
             <a href="https://thehackernews.com/2026/09/iran-linked-handala-hack-tied-to.html" target="_blank" class="item-link">Iran-Linked Handala Hack Tied to HEAVYGRAM Telegram Backdoor That Can Steal Passwords ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">The Hacker News • Thu, 17 Sep 2026</span>
-            <a href="https://thehackernews.com/2026/09/critical-unbound-dnssec-validator-flaw.html" target="_blank" class="item-link">Critical Unbound DNSSEC Validator Flaw Could Allow RCE via a Malicious DNS Zone ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">The Hacker News • Thu, 17 Sep 2026</span>
-            <a href="https://thehackernews.com/2026/09/can-you-prove-new-cve-is-exploitable.html" target="_blank" class="item-link">Can You Prove a New CVE Is Exploitable Before Attackers Do? Learn How in This Webinar ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">The Hacker News • Thu, 17 Sep 2026</span>
-            <a href="https://thehackernews.com/2026/09/cisos-expert-guide-to-agentic.html" target="_blank" class="item-link">CISO's Expert Guide to Agentic Pentesting for Websites ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">The Hacker News • Thu, 17 Sep 2026</span>
-            <a href="https://thehackernews.com/2026/09/china-aligned-famoussparrow-deploys.html" target="_blank" class="item-link">China-Aligned FamousSparrow Deploys SparroWocky Backdoor Across Latin America ↗</a>
         </div>
         <div class="list-item">
             <span class="meta">Dark Reading • Thu, 17 Sep 2026</span>
