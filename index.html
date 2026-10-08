@@ -83,7 +83,7 @@
         <div class="sidebar">
             <h1>MSP Threat Intel</h1>
             <div class="section-label">VULNERABILITY FILTER</div>
-            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">11</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">7</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">5</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">0</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">3</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">5</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">69</span></button>
+            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">11</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">6</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">5</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">0</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">3</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">5</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">70</span></button>
             <div class="section-label">LIFECYCLE TRACKER</div>
             
         <div class="eol-item st-expired">
@@ -158,6 +158,41 @@
             <div id="vulns" class="tab-content active">
                 <div class="grid">
                     
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-10-08</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2015-5477" target="_blank" class="cve-title"> ISC BIND Data Processing Errors Vulnerability (CVE-2015-5477) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">ISC BIND contains a data processing errors vulnerability that could allow remote attackers to cause a denial of service via TKEY queries.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-10-08</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2016-3081" target="_blank" class="cve-title">Apache Struts Command Injection Vulnerability (CVE-2016-3081) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Apache Struts contains a command injection vulnerability that could allow remote attackers to execute arbitrary code via method:prefix when Dynamic Method Invocation is enabled.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-10-08</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2023-22894" target="_blank" class="cve-title">Strapi Cleartext Storage of Sensitive Information Vulnerability (CVE-2023-22894) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Strapi contains a cleartext storage of sensitive information vulnerability that could allow attackers with access to the admin panel to discover sensitive user details via the query filter. The impacted product(s) could be end-of-life (EoL) and/or end-of-service (EoS). Users are advised to discontinue use and/or transition to a supported version. This vulnerability can be chained with CVE-2023-22621 to achieve remote code execution. </p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-10-08</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2021-3199" target="_blank" class="cve-title">ONLYOFFICE Docs Server Path Traversal Vulnerability (CVE-2021-3199) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">ONLYOFFICE Docs contains a path traversal vulnerability that can occur when JWT is used, via a /.. sequence in an image upload parameter and could allow for remote code execution.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-10-08</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2015-3306" target="_blank" class="cve-title">ProFTPD Improper Access Control Vulnerability (CVE-2015-3306) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">ProFTPD contains an improper access control vulnerability that could allow remote attackers to read and write to arbitrary files via the site cpfr and site cpto commands.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
         <div class="card vendor-Citrix" data-vendor="Citrix">
             <span class="tag">Citrix</span><span class="tag" style="float:right">2026-10-04</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-88779" target="_blank" class="cve-title">Citrix NetScaler Improper Restriction of Operations within the Bounds of a Memory Buffer Vulnerability (CVE-2026-88779) ↗</a>
@@ -823,71 +858,31 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
             
         </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-07-14</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-15410" target="_blank" class="cve-title">SonicWall SMA1000 Appliances Code Injection Vulnerability (CVE-2026-15410) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">SonicWall SMA1000 Appliances contain a code injection vulnerability which in specific conditions could potentially enable a remote authenticated attacker as administrator to execute arbitrary OS commands.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
-            
-        </div>
-        <div class="card vendor-Cisco" data-vendor="Cisco">
-            <span class="tag">Cisco</span><span class="tag" style="float:right">2026-07-13</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2008-4128" target="_blank" class="cve-title">Cisco IOS Cross-Site Request Forgery Vulnerability (CVE-2008-4128) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Cisco IOS 12.4 contains multiple cross-site forgery vulnerabilities that allows remote attackers to execute arbitrary commands via (1) a certain "show privilege" command to the /level/15/exec/- URI, and (2) a certain "alias exec" command to the /level/15/exec/-/configure/http URI.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-07-10</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-56291" target="_blank" class="cve-title">Balbooa Forms Unrestricted Upload of File with Dangerous Type Vulnerability (CVE-2026-56291) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Balbooa Forms contains an unrestricted upload of file with dangerous type vulnerability that allows an unauthenticated arbitrary file upload which could allow uploading of executable files leading to full RCE.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-07-10</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-48939" target="_blank" class="cve-title">iCagenda Unrestricted Upload of File with Dangerous Type Vulnerability (CVE-2026-48939) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">iCagenda contains an unrestricted upload of file with dangerous type vulnerability that allows the upload of arbitrary files in the file attachment feature, ultimately resulting in PHP code upload and execution.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-07-07</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-48908" target="_blank" class="cve-title">JoomShaper SP Page Builder Unrestricted Upload of File with Dangerous Type Vulnerability (CVE-2026-48908) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">JoomShaper SP Page Builder contains an unrestricted upload of file with dangerous type vulnerability that allows unauthenticated users to upload arbitrary files, ultimately resulting in the upload and execution of PHP code.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
-            
-        </div>
                 </div>
             </div>
             
             <div id="status" class="tab-content">
                 <h3>Live Service Status (Public Feeds)</h3>
                 
-        <div class="list-item status-critical">
-            <span class="meta" style="color:#ef4444">Azure Outage • Thu, 08 Oct 2026</span>
-            <a href="https://azure.status.microsoft/en-gb/status/" target="_blank" class="item-link">Active -Azure Data Factory – Pipeline/Activity Failures and Timeouts – UK South ↗</a>
-            <div class="item-desc">We are aware of an issue affecting Azure Data Factory in UK South, where a subset of customers may experience failures, delays, or timeouts with pipeline and activity runs, integration runtime management, or authoring operations. Our engineers are actively working to determine the cause and impact. As a workaround, customers are advised to cancel and retry affected runs that fail, time out, or remain in progress longer than expected.</div>
-        </div>
         <div class="list-item status-warning">
             <span class="meta" style="color:#f59e0b">Windows Issue • Mon, 29 Jun 2026</span>
             <a href="https://learn.microsoft.com/en-us/entra/identity/devices/troubleshoot-macos-platform-single-sign-on-extension" target="_blank" class="item-link">macOS Platform single sign-on known issues and troubleshooting - Microsoft Entra ID ↗</a>
             <div class="item-desc">macOS Platform single sign-on known issues and troubleshooting Summarize this article for me In this article This article outlines the current known issues and common questions with macOS Platform single sign-on (PSSO). It provides issue solutions and information on how to report an issue that isn't covered. This article also includes....</div>
         </div>
         <div class="list-item status-warning">
-            <span class="meta" style="color:#f59e0b">Windows Issue • Wed, 07 Oct 2026</span>
+            <span class="meta" style="color:#f59e0b">Windows Issue • Thu, 08 Oct 2026</span>
             <a href="https://learn.microsoft.com/en-us/windows/release-health/status-windows-server-2022" target="_blank" class="item-link">Windows Server 2022 ↗</a>
             <div class="item-desc">SummaryOriginating updateStatusLast updated Incorrect notifications that "Microsoft Defender Antivirus is turned off"Microsoft Defender Antivirus remains active and functioning correctly despite notifications following the latest update.N/A  Resolved 2026-09-30 16:42 PT USB audio devices might fail to start or produce no soundSome USB Audio Class....</div>
         </div>
         <div class="list-item status-warning">
-            <span class="meta" style="color:#f59e0b">Windows Issue • Wed, 07 Oct 2026</span>
+            <span class="meta" style="color:#f59e0b">Windows Issue • Thu, 08 Oct 2026</span>
             <a href="https://learn.microsoft.com/en-us/windows/release-health/status-windows-server-2025" target="_blank" class="item-link">Windows Server 2025 ↗</a>
             <div class="item-desc">SummaryOriginating updateStatusLast updated Incorrect notifications that "Microsoft Defender Antivirus is turned off"Microsoft Defender Antivirus remains active and functioning correctly despite notifications following the latest update.N/A  Resolved 2026-09-30 16:42 PT USB audio devices might fail to start or produce no soundSome USB Audio Class....</div>
         </div>
         <div class="list-item status-warning">
             <span class="meta" style="color:#f59e0b">Windows Issue • Tue, 08 Sep 2026</span>
             <a href="https://learn.microsoft.com/en-us/autopilot/known-issues" target="_blank" class="item-link">Windows Autopilot known issues ↗</a>
-            <div class="item-desc">The event log contains an error similar to the following example: MDM PolicyManager: Merge string, Area: (UserRights), Policy: (DenyLocalLogOn), Result:(0x800706FD) The trust relationship between this workstation and the primary domain failed.  ...arios that use a bring-your-own (BYO) VPN, the VPN connection isn't available during the technician....</div>
+            <div class="item-desc">The event log contains an error similar to the following example: MDM PolicyManager: Merge string, Area: (UserRights), Policy: (DenyLocalLogOn), Result:(0x800706FD) The trust relationship between this workstation and the primary domain failed. In off-premises scenarios that use a bring-your-own (BYO) VPN, the VPN connection isn't available during....</div>
         </div>
             </div>
 
@@ -899,28 +894,12 @@
             <a href="https://thehackernews.com/2026/10/16-malicious-firefox-extensions-pose-as.html" target="_blank" class="item-link">16 Malicious Firefox Extensions Pose as Rabby and OKX Wallets to Steal Recovery Phrases ↗</a>
         </div>
         <div class="list-item">
-            <span class="meta">The Hacker News • Wed, 07 Oct 2026</span>
-            <a href="https://thehackernews.com/2026/10/sonicwall-patches-cvss-100-pre.html" target="_blank" class="item-link">SonicWall Patches CVSS 10.0 Pre-Authentication SSRF Flaw in SMA1000 Appliances ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">The Hacker News • Wed, 07 Oct 2026</span>
-            <a href="https://thehackernews.com/2026/10/unpatched-critical-lmcache-flaw-lets.html" target="_blank" class="item-link">Unpatched Critical LMCache Flaw Lets Unauthenticated Attackers Run Code Remotely ↗</a>
-        </div>
-        <div class="list-item">
             <span class="meta">Dark Reading • Tue, 06 Oct 2026</span>
             <a href="https://www.darkreading.com/iot/exposed-healthcare-systems-quantum-ready" target="_blank" class="item-link">Critical Healthcare Systems Aren't Quantum-Ready ↗</a>
         </div>
         <div class="list-item">
             <span class="meta">Dark Reading • Tue, 06 Oct 2026</span>
             <a href="https://www.darkreading.com/application-security/google-pagebreak-ai-agent-500-flaws-web-apps" target="_blank" class="item-link">Google's PageBreak AI Agent Finds 500 Flaws in Its Web Apps ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">Dark Reading • Tue, 06 Oct 2026</span>
-            <a href="https://www.darkreading.com/application-security/bigdiskbuster-microsoft-defender-running-blocking-updates" target="_blank" class="item-link">'BigDiskBuster' Leaves Microsoft Defender Running While Blocking Updates ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">Dark Reading • Mon, 05 Oct 2026</span>
-            <a href="https://www.darkreading.com/iot/clingstun-vulnerable-iot-devices-proxy-nodes" target="_blank" class="item-link">ClingSTUN Turns Vulnerable IoT Devices Into Proxy Nodes ↗</a>
         </div>
             </div>
         </div>
