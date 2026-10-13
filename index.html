@@ -165,6 +165,13 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
             
         </div>
+        <div class="card vendor-Microsoft" data-vendor="Microsoft">
+            <span class="tag">Microsoft</span><span class="tag" style="float:right">2026-10-13</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-96951" target="_blank" class="cve-title">Microsoft Windows Command Injection Vulnerability (CVE-2026-96951) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Microsoft Windows Shell contains a command injection vulnerability that allows an unauthorized attacker to bypass a security feature over a network.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2026-96951' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2026-96951')">Copy</button></div>
+        </div>
         <div class="card vendor-Other" data-vendor="Other">
             <span class="tag">Other</span><span class="tag" style="float:right">2026-10-08</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2015-5477" target="_blank" class="cve-title"> ISC BIND Data Processing Errors Vulnerability (CVE-2015-5477) ↗</a>
@@ -851,13 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
             <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2026-56155' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2026-56155')">Copy</button></div>
         </div>
-        <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <span class="tag">Microsoft</span><span class="tag" style="float:right">2026-07-14</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-56164" target="_blank" class="cve-title">Microsoft SharePoint Server Missing Authentication for Critical Function Vulnerability (CVE-2026-56164) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Microsoft SharePoint contains a missing authentication for critical function vulnerability that allows an unauthorized attacker to elevate privileges over a network.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
-            <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2026-56164' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2026-56164')">Copy</button></div>
-        </div>
                 </div>
             </div>
             
@@ -870,19 +870,19 @@
             <div class="item-desc">macOS Platform single sign-on known issues and troubleshooting Summarize this article for me In this article This article outlines the current known issues and common questions with macOS Platform single sign-on (PSSO). It provides issue solutions and information on how to report an issue that isn't covered. This article also includes....</div>
         </div>
         <div class="list-item status-warning">
-            <span class="meta" style="color:#f59e0b">Windows Issue • Fri, 09 Oct 2026</span>
+            <span class="meta" style="color:#f59e0b">Windows Issue • Tue, 13 Oct 2026</span>
             <a href="https://learn.microsoft.com/en-us/windows/release-health/status-windows-server-2022" target="_blank" class="item-link">Windows Server 2022 ↗</a>
-            <div class="item-desc">SummaryOriginating updateStatusLast updated Incorrect notifications that "Microsoft Defender Antivirus is turned off"Microsoft Defender Antivirus remains active and functioning correctly despite notifications following the latest update.N/A  Resolved 2026-09-30 16:42 PT USB audio devices might fail to start or produce no soundSome USB Audio Class....</div>
+            <div class="item-desc">SummaryOriginating updateStatusLast updated USB audio devices might fail to start or produce no soundSome USB Audio Class 1.0 devices display Code 10 or fail in multichannel audio modes after installing the Sept. 8 updateOS Build 20348.5622 KB51228822026-09-08Resolved KB51292372026-10-13 11:02 PT Incorrect notifications that "Microsoft Defender....</div>
         </div>
         <div class="list-item status-warning">
-            <span class="meta" style="color:#f59e0b">Windows Issue • Fri, 09 Oct 2026</span>
+            <span class="meta" style="color:#f59e0b">Windows Issue • Tue, 13 Oct 2026</span>
             <a href="https://learn.microsoft.com/en-us/windows/release-health/status-windows-server-2025" target="_blank" class="item-link">Windows Server 2025 ↗</a>
             <div class="item-desc">SummaryOriginating updateStatusLast updated Incorrect notifications that "Microsoft Defender Antivirus is turned off"Microsoft Defender Antivirus remains active and functioning correctly despite notifications following the latest update.N/A  Resolved 2026-09-30 16:42 PT USB audio devices might fail to start or produce no soundSome USB Audio Class....</div>
         </div>
         <div class="list-item status-warning">
             <span class="meta" style="color:#f59e0b">Windows Issue • Tue, 08 Sep 2026</span>
             <a href="https://learn.microsoft.com/en-us/autopilot/known-issues" target="_blank" class="item-link">Windows Autopilot known issues ↗</a>
-            <div class="item-desc">The event log contains an error similar to the following example: MDM PolicyManager: Merge string, Area: (UserRights), Policy: (DenyLocalLogOn), Result:(0x800706FD) The trust relationship between this workstation and the primary domain failed. In off-premises scenarios that use a bring-your-own (BYO) VPN, the VPN connection isn't available during....</div>
+            <div class="item-desc">The event log contains an error similar to the following example: MDM PolicyManager: Merge string, Area: (UserRights), Policy: (DenyLocalLogOn), Result:(0x800706FD) The trust relationship between this workstation and the primary domain failed.  ...arios that use a bring-your-own (BYO) VPN, the VPN connection isn't available during the technician....</div>
         </div>
             </div>
 
@@ -891,15 +891,19 @@
                 
         <div class="list-item">
             <span class="meta">The Hacker News • Tue, 13 Oct 2026</span>
+            <a href="https://thehackernews.com/2026/10/docker-fixes-critical-two-year-old-hub.html" target="_blank" class="item-link">Docker Fixes Critical Two-Year-Old Hub Flaw That Let One User Push Images as Another ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">The Hacker News • Tue, 13 Oct 2026</span>
+            <a href="https://thehackernews.com/2026/10/attacker-chains-three-ivanti-connect.html" target="_blank" class="item-link">Attacker Chains Three Ivanti Connect Secure Zero-Days for Root Access, Only Two Patched So Far ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">The Hacker News • Tue, 13 Oct 2026</span>
+            <a href="https://thehackernews.com/2026/10/sap-discloses-critical-cvss-10-flaw-in.html" target="_blank" class="item-link">SAP Discloses Critical CVSS 10 Flaw in Cloud SDK for Python Allowing OAuth2 Credential Theft ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">The Hacker News • Tue, 13 Oct 2026</span>
             <a href="https://thehackernews.com/2026/10/webinar-how-to-stop-ai-driven-privilege.html" target="_blank" class="item-link">[Webinar] How to Stop AI-Driven Privilege Escalation With Runtime Identity Controls ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">The Hacker News • Tue, 13 Oct 2026</span>
-            <a href="https://thehackernews.com/2026/10/two-critical-marklogic-flaws-could-give.html" target="_blank" class="item-link">Two Critical MarkLogic Flaws Could Give Delegated Managers Persistent Admin Control ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">The Hacker News • Tue, 13 Oct 2026</span>
-            <a href="https://thehackernews.com/2026/10/gitlab-patches-cvss-100-flaw-that-could.html" target="_blank" class="item-link">GitLab Patches CVSS 10.0 Flaw That Could Let Unauthenticated Users Run Server Code ↗</a>
         </div>
         <div class="list-item">
             <span class="meta">Dark Reading • Mon, 12 Oct 2026</span>
