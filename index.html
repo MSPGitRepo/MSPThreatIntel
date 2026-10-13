@@ -159,6 +159,13 @@
                 <div class="grid">
                     
         <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-10-13</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-104935" target="_blank" class="cve-title">Ivanti Connect Secure Authentication Bypass by Spoofing Vulnerability (CVE-2026-104935) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Ivanti Connect Secure contains an authentication bypass by spoofing vulnerability that allows a remote unauthenticated attacker to execute arbitrary commands.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
             <span class="tag">Other</span><span class="tag" style="float:right">2026-10-08</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2015-5477" target="_blank" class="cve-title"> ISC BIND Data Processing Errors Vulnerability (CVE-2015-5477) ↗</a>
             <p style="font-size:0.9rem; color:#475569;">ISC BIND contains a data processing errors vulnerability that could allow remote attackers to cause a denial of service via TKEY queries.</p>
@@ -851,13 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
             <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2026-56164' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2026-56164')">Copy</button></div>
         </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-07-14</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-15409" target="_blank" class="cve-title">SonicWall SMA1000 Appliances Server-Side Request Forgery Vulnerability (CVE-2026-15409) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">SonicWall SMA1000 Appliances contain a server-side request forgery vulnerability that could allow a remote unauthenticated attacker to potentially cause the appliance to make requests to unintended location.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
-            
-        </div>
                 </div>
             </div>
             
@@ -882,7 +882,7 @@
         <div class="list-item status-warning">
             <span class="meta" style="color:#f59e0b">Windows Issue • Tue, 08 Sep 2026</span>
             <a href="https://learn.microsoft.com/en-us/autopilot/known-issues" target="_blank" class="item-link">Windows Autopilot known issues ↗</a>
-            <div class="item-desc">The event log contains an error similar to the following example: MDM PolicyManager: Merge string, Area: (UserRights), Policy: (DenyLocalLogOn), Result:(0x800706FD) The trust relationship between this workstation and the primary domain failed.  ...arios that use a bring-your-own (BYO) VPN, the VPN connection isn't available during the technician....</div>
+            <div class="item-desc">The event log contains an error similar to the following example: MDM PolicyManager: Merge string, Area: (UserRights), Policy: (DenyLocalLogOn), Result:(0x800706FD) The trust relationship between this workstation and the primary domain failed. In off-premises scenarios that use a bring-your-own (BYO) VPN, the VPN connection isn't available during....</div>
         </div>
             </div>
 
@@ -890,28 +890,16 @@
                 <h3>Curated Security News</h3>
                 
         <div class="list-item">
-            <span class="meta">The Hacker News • Mon, 12 Oct 2026</span>
-            <a href="https://thehackernews.com/2026/10/critical-sonicwall-sma-1000-flaw.html" target="_blank" class="item-link">Critical SonicWall SMA 1000 Flaw Targeted in 135 Exploitation Attempts After Patch ↗</a>
+            <span class="meta">The Hacker News • Tue, 13 Oct 2026</span>
+            <a href="https://thehackernews.com/2026/10/webinar-how-to-stop-ai-driven-privilege.html" target="_blank" class="item-link">[Webinar] How to Stop AI-Driven Privilege Escalation With Runtime Identity Controls ↗</a>
         </div>
         <div class="list-item">
-            <span class="meta">The Hacker News • Mon, 12 Oct 2026</span>
-            <a href="https://thehackernews.com/2026/10/attackers-exploit-cvss-100-bricksforge.html" target="_blank" class="item-link">Attackers Exploit CVSS 10.0 Bricksforge WordPress Flaw Enabling Unauthenticated RCE ↗</a>
+            <span class="meta">The Hacker News • Tue, 13 Oct 2026</span>
+            <a href="https://thehackernews.com/2026/10/two-critical-marklogic-flaws-could-give.html" target="_blank" class="item-link">Two Critical MarkLogic Flaws Could Give Delegated Managers Persistent Admin Control ↗</a>
         </div>
         <div class="list-item">
-            <span class="meta">The Hacker News • Mon, 12 Oct 2026</span>
-            <a href="https://thehackernews.com/2026/10/cyberxero-uses-claude-code-in-campaign.html" target="_blank" class="item-link">CyberXero Uses Claude Code in Campaign That Stole Over 628,000 Ukrainian Records ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">The Hacker News • Sun, 11 Oct 2026</span>
-            <a href="https://thehackernews.com/2026/10/p7-darksword-ios-exploit-kit-adds.html" target="_blank" class="item-link">P7 DarkSword iOS Exploit Kit Adds Crypto Wallet Data Theft and Remote Commands ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">The Hacker News • Sat, 10 Oct 2026</span>
-            <a href="https://thehackernews.com/2026/10/anthropic-cuts-live-internet-access-for.html" target="_blank" class="item-link">Anthropic Cuts Live Internet Access for Internal AI Tests After Claude Exploits Injection Flaws ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">The Hacker News • Sat, 10 Oct 2026</span>
-            <a href="https://thehackernews.com/2026/10/credential-stealing-github-actions.html" target="_blank" class="item-link">Credential-Stealing GitHub Actions Workflows Planted in Tens of Thousands of Repositories ↗</a>
+            <span class="meta">The Hacker News • Tue, 13 Oct 2026</span>
+            <a href="https://thehackernews.com/2026/10/gitlab-patches-cvss-100-flaw-that-could.html" target="_blank" class="item-link">GitLab Patches CVSS 10.0 Flaw That Could Let Unauthenticated Users Run Server Code ↗</a>
         </div>
         <div class="list-item">
             <span class="meta">Dark Reading • Mon, 12 Oct 2026</span>
