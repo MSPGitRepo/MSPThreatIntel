@@ -83,7 +83,7 @@
         <div class="sidebar">
             <h1>MSP Threat Intel</h1>
             <div class="section-label">VULNERABILITY FILTER</div>
-            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">10</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">7</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">5</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">1</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">3</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">3</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">71</span></button>
+            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">9</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">7</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">5</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">1</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">3</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">4</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">71</span></button>
             <div class="section-label">LIFECYCLE TRACKER</div>
             
         <div class="eol-item st-expired">
@@ -158,6 +158,20 @@
             <div id="vulns" class="tab-content active">
                 <div class="grid">
                     
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-10-16</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-102764" target="_blank" class="cve-title">BeyondTrust Remote Support Authentication Bypass by Spoofing Vulnerability (CVE-2026-102764) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">BeyondTrust Remote Support contains an authentication bypass by spoofing vulnerability that could allow a remote attacker to perform file operations on the appliance.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
+        <div class="card vendor-Fortinet" data-vendor="Fortinet">
+            <span class="tag">Fortinet</span><span class="tag" style="float:right">2026-10-16</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-61624" target="_blank" class="cve-title">Fortinet Multiple Products Path Traversal Vulnerability (CVE-2025-61624) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">FortiOS, FortiPAM, FortiProxy, and FortiSwitchManager contain a path traversal vulnerability that may allow an authenticated attacker with admin profile and at least read-write permissions to write or delete arbitrary files via specific CLI commands.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
         <div class="card vendor-Other" data-vendor="Other">
             <span class="tag">Other</span><span class="tag" style="float:right">2026-10-15</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-21589" target="_blank" class="cve-title">Atlassian Multiple Products Files or Directories Accessible to External Parties Vulnerability (CVE-2026-21589) ↗</a>
@@ -844,20 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
             
         </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-07-21</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2021-27137" target="_blank" class="cve-title">DD-WRT Stack-Based Buffer Overflow Vulnerability (CVE-2021-27137) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">DD-WRT contains a stack-based buffer overflow vulnerability that could allow an unauthenticated attacker to overflow an internal buffer used by UPnP and trigger a code execution vulnerability.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
-            
-        </div>
-        <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <span class="tag">Microsoft</span><span class="tag" style="float:right">2026-07-16</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-58644" target="_blank" class="cve-title">Microsoft SharePoint Deserialization of Untrusted Data Vulnerability (CVE-2026-58644) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Microsoft SharePoint contains a deserialization of untrusted data vulnerability that allows an unauthorized attacker to execute code over a network.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
-            <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2026-58644' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2026-58644')">Copy</button></div>
-        </div>
                 </div>
             </div>
             
@@ -870,25 +870,33 @@
             <div class="item-desc">macOS Platform single sign-on known issues and troubleshooting Summarize this article for me In this article This article outlines the current known issues and common questions with macOS Platform single sign-on (PSSO). It provides issue solutions and information on how to report an issue that isn't covered. This article also includes....</div>
         </div>
         <div class="list-item status-warning">
-            <span class="meta" style="color:#f59e0b">Windows Issue • Thu, 15 Oct 2026</span>
+            <span class="meta" style="color:#f59e0b">Windows Issue • Fri, 16 Oct 2026</span>
             <a href="https://learn.microsoft.com/en-us/windows/release-health/status-windows-server-2022" target="_blank" class="item-link">Windows Server 2022 ↗</a>
             <div class="item-desc">SummaryOriginating updateStatusLast updated USB audio devices might fail to start or produce no soundSome USB Audio Class 1.0 devices display Code 10 or fail in multichannel audio modes after installing the Sept. 8 updateOS Build 20348.5622 KB51228822026-09-08Resolved KB51292372026-10-13 11:02 PT Incorrect notifications that "Microsoft Defender....</div>
         </div>
         <div class="list-item status-warning">
-            <span class="meta" style="color:#f59e0b">Windows Issue • Thu, 15 Oct 2026</span>
+            <span class="meta" style="color:#f59e0b">Windows Issue • Fri, 16 Oct 2026</span>
             <a href="https://learn.microsoft.com/en-us/windows/release-health/status-windows-server-2025" target="_blank" class="item-link">Windows Server 2025 ↗</a>
             <div class="item-desc">SummaryOriginating updateStatusLast updated Incorrect notifications that "Microsoft Defender Antivirus is turned off"Microsoft Defender Antivirus remains active and functioning correctly despite notifications following the latest update.N/A  Resolved 2026-09-30 16:42 PT USB audio devices might fail to start or produce no soundSome USB Audio Class....</div>
         </div>
         <div class="list-item status-warning">
             <span class="meta" style="color:#f59e0b">Windows Issue • Tue, 08 Sep 2026</span>
             <a href="https://learn.microsoft.com/en-us/autopilot/known-issues" target="_blank" class="item-link">Windows Autopilot known issues ↗</a>
-            <div class="item-desc">The event log contains an error similar to the following example: MDM PolicyManager: Merge string, Area: (UserRights), Policy: (DenyLocalLogOn), Result:(0x800706FD) The trust relationship between this workstation and the primary domain failed. In off-premises scenarios that use a bring-your-own (BYO) VPN, the VPN connection isn't available during....</div>
+            <div class="item-desc">The event log contains an error similar to the following example: MDM PolicyManager: Merge string, Area: (UserRights), Policy: (DenyLocalLogOn), Result:(0x800706FD) The trust relationship between this workstation and the primary domain failed.  ...arios that use a bring-your-own (BYO) VPN, the VPN connection isn't available during the technician....</div>
         </div>
             </div>
 
             <div id="news" class="tab-content">
                 <h3>Curated Security News</h3>
                 
+        <div class="list-item">
+            <span class="meta">The Hacker News • Fri, 16 Oct 2026</span>
+            <a href="https://thehackernews.com/2026/10/researchers-demonstrate-openbsd-root.html" target="_blank" class="item-link">Researchers Demonstrate OpenBSD Root Exploit Chaining 37-Year-Old Shared-Memory Bug ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">The Hacker News • Fri, 16 Oct 2026</span>
+            <a href="https://thehackernews.com/2026/10/attackers-tampered-with-aomei.html" target="_blank" class="item-link">Attackers Tampered with AOMEI Backupper's Update Servers for Minutes to Deliver a Backdoor ↗</a>
+        </div>
         <div class="list-item">
             <span class="meta">The Hacker News • Fri, 16 Oct 2026</span>
             <a href="https://thehackernews.com/2026/10/china-linked-hackers-exploited.html" target="_blank" class="item-link">China-Linked Hackers Exploited BeyondTrust Zero-Day to Take Over Remote Support Servers ↗</a>
@@ -904,10 +912,6 @@
         <div class="list-item">
             <span class="meta">The Hacker News • Fri, 16 Oct 2026</span>
             <a href="https://thehackernews.com/2026/10/threatsday-adobe-rce-dns-wallet-theft.html" target="_blank" class="item-link">ThreatsDay: Adobe RCE, DNS Wallet Theft, NVIDIA Container Escape, Self-Healing Backdoor + 23 More ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">The Hacker News • Thu, 15 Oct 2026</span>
-            <a href="https://thehackernews.com/2026/10/silent-lynx-exploits-winrar-flaw-to.html" target="_blank" class="item-link">Silent Lynx Exploits WinRAR Flaw to Deploy Reverse Shell in CIS Government Attacks ↗</a>
         </div>
         <div class="list-item">
             <span class="meta">Dark Reading • Fri, 16 Oct 2026</span>
