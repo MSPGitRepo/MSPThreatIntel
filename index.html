@@ -83,7 +83,7 @@
         <div class="sidebar">
             <h1>MSP Threat Intel</h1>
             <div class="section-label">VULNERABILITY FILTER</div>
-            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">7</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">7</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">5</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">1</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">2</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">3</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">75</span></button>
+            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">7</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">6</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">5</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">1</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">2</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">3</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">76</span></button>
             <div class="section-label">LIFECYCLE TRACKER</div>
             
         <div class="eol-item st-expired">
@@ -158,6 +158,20 @@
             <div id="vulns" class="tab-content active">
                 <div class="grid">
                     
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-10-30</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-118527" target="_blank" class="cve-title">Ivanti Connect Secure Generation of Predictable Numbers or Identifiers Vulnerability (CVE-2026-118527) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Ivanti Connect Secure contains a generation of predictable numbers or identifiers vulnerability that allows a remote authenticated attacker to upload files with attacker-controlled content to a known location on disk. This vulnerability can be chained with CVE-2026-104935 and CVE-2026-111357.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-10-30</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-111357" target="_blank" class="cve-title">Ivanti Connect Secure Missing Authentication for Critical Function Vulnerability (CVE-2026-111357) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Ivanti Connect Secure contains a missing authentication for critical function vulnerability that could allow a local authenticated attacker to escalate their privileges. This vulnerability can be chained with CVE-2026-104935 and CVE-2026-118527.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
         <div class="card vendor-Other" data-vendor="Other">
             <span class="tag">Other</span><span class="tag" style="float:right">2026-10-29</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-97229" target="_blank" class="cve-title">GitLab Community Edition and Enterprise Edition Integer Overflow or Wraparound Vulnerability (CVE-2026-97229) ↗</a>
@@ -844,20 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
             
         </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-08-17</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-62593" target="_blank" class="cve-title">Ray-Project Ray Code Injection Vulnerability (CVE-2025-62593) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Ray-Project Ray contains a code injection vulnerability that could allow remote code execution. Developers using Ray as a development tool may be exposed to this vulnerability exploitable through Firefox and Safari.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
-            
-        </div>
-        <div class="card vendor-Cisco" data-vendor="Cisco">
-            <span class="tag">Cisco</span><span class="tag" style="float:right">2026-08-11</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20349" target="_blank" class="cve-title">Cisco Secure Firewall Adaptive Security Appliance (ASA) and Secure Firewall Threat Defense (FTD) Heap Inspection Vulnerability (CVE-2026-20349) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Cisco Secure Firewall Adaptive Security Appliance (ASA) and Secure Firewall Threat Defense (FTD) contain a heap inspection vulnerability that could allow an unauthenticated, remote attacker to cause the device to reload unexpectedly, resulting in a denial of service (DoS) condition.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
-            
-        </div>
                 </div>
             </div>
             
@@ -883,6 +883,11 @@
             <span class="meta" style="color:#f59e0b">Windows Issue • Tue, 08 Sep 2026</span>
             <a href="https://learn.microsoft.com/en-us/autopilot/known-issues" target="_blank" class="item-link">Windows Autopilot known issues ↗</a>
             <div class="item-desc">The event log contains an error similar to the following example: MDM PolicyManager: Merge string, Area: (UserRights), Policy: (DenyLocalLogOn), Result:(0x800706FD) The trust relationship between this workstation and the primary domain failed.  ...arios that use a bring-your-own (BYO) VPN, the VPN connection isn't available during the technician....</div>
+        </div>
+        <div class="list-item status-warning">
+            <span class="meta" style="color:#f59e0b">Windows Issue • Wed, 18 Feb 2026</span>
+            <a href="https://learn.microsoft.com/en-us/troubleshoot/windows-client/group-policy/use-group-policy-to-deploy-known-issue-rollback" target="_blank" class="item-link">Use Group Policy to deploy a Known Issue Rollback - Windows Client ↗</a>
+            <div class="item-desc">How to use Group Policy ... Microsoft announces the KIR in the Windows Health Dashboard, and adds the information to the following locations: The Known Issues section of the applicable Windows Update KB article The Known Issues list on the Windows Health Release Dashboard at https://aka.ms/windowsreleasehealth for the affected versions of Windows....</div>
         </div>
             </div>
 
@@ -914,8 +919,8 @@
             <a href="https://thehackernews.com/2026/10/cisa-adds-actively-exploited-gitlab-rce.html" target="_blank" class="item-link">CISA Adds Actively Exploited GitLab RCE and Cisco Firewall DoS Flaws to KEV ↗</a>
         </div>
         <div class="list-item">
-            <span class="meta">The Hacker News • Fri, 30 Oct 2026</span>
-            <a href="https://thehackernews.com/2026/10/threatsday-critical-firewall-flaws.html" target="_blank" class="item-link">ThreatsDay: Critical Firewall Flaws, Banking Trojans Rented, Weaponized PDF, Token Theft + 26 More Stories ↗</a>
+            <span class="meta">Dark Reading • Fri, 30 Oct 2026</span>
+            <a href="https://www.darkreading.com/cybersecurity-operations/behind-the-scenes-how-operation-blackout-went-down" target="_blank" class="item-link">Behind the Scenes of How Operation Blackout Went Down ↗</a>
         </div>
         <div class="list-item">
             <span class="meta">Dark Reading • Fri, 30 Oct 2026</span>
