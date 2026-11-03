@@ -159,6 +159,13 @@
                 <div class="grid">
                     
         <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-11-03</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-119977" target="_blank" class="cve-title">WordPress WordPress Core Time-of-check Time-of-use (TOCTOU) Race Condition Vulnerability (CVE-2026-119977) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">WordPress WordPress Core contains a time-of-check time-of-use (TOCTOU) race condition vulnerability that could allow unauthenticated attackers to execute code on the server during the upgrade window. This is due to predictable, web-accessible staging paths used during full-package core upgrades.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
             <span class="tag">Other</span><span class="tag" style="float:right">2026-10-30</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-118527" target="_blank" class="cve-title">Ivanti Connect Secure Generation of Predictable Numbers or Identifiers Vulnerability (CVE-2026-118527) ↗</a>
             <p style="font-size:0.9rem; color:#475569;">Ivanti Connect Secure contains a generation of predictable numbers or identifiers vulnerability that allows a remote authenticated attacker to upload files with attacker-controlled content to a known location on disk. This vulnerability can be chained with CVE-2026-104935 and CVE-2026-111357.</p>
@@ -851,13 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
             <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2026-55040' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2026-55040')">Copy</button></div>
         </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-08-18</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-65400" target="_blank" class="cve-title">Apple macOS Improper Authentication Vulnerability (CVE-2026-65400) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Apple macOS contains an improper authentication vulnerability that could allow an attacker on the network to authenticate to Screen Sharing without valid credentials.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
-            
-        </div>
                 </div>
             </div>
             
@@ -882,13 +882,25 @@
         <div class="list-item status-warning">
             <span class="meta" style="color:#f59e0b">Windows Issue • Tue, 08 Sep 2026</span>
             <a href="https://learn.microsoft.com/en-us/autopilot/known-issues" target="_blank" class="item-link">Windows Autopilot known issues ↗</a>
-            <div class="item-desc">The event log contains an error similar to the following example: MDM PolicyManager: Merge string, Area: (UserRights), Policy: (DenyLocalLogOn), Result:(0x800706FD) The trust relationship between this workstation and the primary domain failed.  ...arios that use a bring-your-own (BYO) VPN, the VPN connection isn't available during the technician....</div>
+            <div class="item-desc">The event log contains an error similar to the following example: MDM PolicyManager: Merge string, Area: (UserRights), Policy: (DenyLocalLogOn), Result:(0x800706FD) The trust relationship between this workstation and the primary domain failed. In off-premises scenarios that use a bring-your-own (BYO) VPN, the VPN connection isn't available during....</div>
         </div>
             </div>
 
             <div id="news" class="tab-content">
                 <h3>Curated Security News</h3>
                 
+        <div class="list-item">
+            <span class="meta">The Hacker News • Tue, 03 Nov 2026</span>
+            <a href="https://thehackernews.com/2026/11/barracuda-flaws-could-be-chained-to.html" target="_blank" class="item-link">Barracuda Flaws Could Be Chained to Bypass Authorization and Gain Root Access ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">The Hacker News • Tue, 03 Nov 2026</span>
+            <a href="https://thehackernews.com/2026/11/google-warns-llmjacking-attacks-are.html" target="_blank" class="item-link">Google Warns LLMjacking Attacks Are Costing Some Enterprises Up to $1 Million in Cloud Charges ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">The Hacker News • Tue, 03 Nov 2026</span>
+            <a href="https://thehackernews.com/2026/11/cpguard-update-channel-hijacked-to.html" target="_blank" class="item-link">cPGuard Update Channel Hijacked to Backdoor Linux Servers and Collect Password Hashes ↗</a>
+        </div>
         <div class="list-item">
             <span class="meta">The Hacker News • Tue, 03 Nov 2026</span>
             <a href="https://thehackernews.com/2026/11/red-hat-patches-98-rated-linux-tcp-rce.html" target="_blank" class="item-link">Red Hat Patches 9.8-Rated Linux TCP RCE Flaw While Ubuntu Releases Fixes for Testing ↗</a>
@@ -906,32 +918,12 @@
             <a href="https://thehackernews.com/2026/11/hackers-exploit-btcpay-server-flaw-to.html" target="_blank" class="item-link">Hackers Exploit BTCPay Server Flaw to Steal Bitcoin and Litecoin From Hot Wallets ↗</a>
         </div>
         <div class="list-item">
-            <span class="meta">The Hacker News • Tue, 03 Nov 2026</span>
-            <a href="https://thehackernews.com/2026/11/synology-nas-devices-targeted-in.html" target="_blank" class="item-link">Synology NAS Devices Targeted in Ransomware Attacks Exploiting Patched DSM Flaw ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">The Hacker News • Tue, 03 Nov 2026</span>
-            <a href="https://thehackernews.com/2026/11/attackers-exploit-critical-siemens.html" target="_blank" class="item-link">Attackers Exploit Critical Siemens IoT2050 Flaw to Plant Remote Command Backdoors ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">The Hacker News • Tue, 03 Nov 2026</span>
-            <a href="https://thehackernews.com/2026/11/attackers-target-unpatched.html" target="_blank" class="item-link">Attackers Target Unpatched CryptoPayment Gateway Flaw That Can Expose Wallet Credentials ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">The Hacker News • Mon, 02 Nov 2026</span>
-            <a href="https://thehackernews.com/2026/11/weekly-recap-critical-cves-linux-ddos.html" target="_blank" class="item-link">⚡ Weekly Recap: Critical CVEs, Linux DDoS Botnet, Device-Code Phishing, Android Spyware and More ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">The Hacker News • Mon, 02 Nov 2026</span>
-            <a href="https://thehackernews.com/2026/11/google-disrupts-13-million-device.html" target="_blank" class="item-link">Google Disrupts 1.3 Million-Device Android Botnet, Says TV Box Maker Sold Criminal Access ↗</a>
+            <span class="meta">Dark Reading • Tue, 03 Nov 2026</span>
+            <a href="https://www.darkreading.com/cloud-security/llmjacking-thriving-cybercriminal-enterprise" target="_blank" class="item-link">LLMjacking Emerges as Thriving Cybercriminal Enterprise ↗</a>
         </div>
         <div class="list-item">
             <span class="meta">Dark Reading • Fri, 30 Oct 2026</span>
             <a href="https://www.darkreading.com/cybersecurity-operations/behind-the-scenes-how-operation-blackout-went-down" target="_blank" class="item-link">Behind the Scenes of How Operation Blackout Went Down ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">Dark Reading • Fri, 30 Oct 2026</span>
-            <a href="https://www.darkreading.com/application-security/undead-software-projects-raise-security-risks" target="_blank" class="item-link">Undead Software Projects Continue to Raise Security Risks ↗</a>
         </div>
             </div>
         </div>
