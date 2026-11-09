@@ -83,7 +83,7 @@
         <div class="sidebar">
             <h1>MSP Threat Intel</h1>
             <div class="section-label">VULNERABILITY FILTER</div>
-            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">6</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">6</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">5</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">1</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">2</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">3</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">77</span></button>
+            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">5</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">6</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">5</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">1</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">2</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">3</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">78</span></button>
             <div class="section-label">LIFECYCLE TRACKER</div>
             
         <div class="eol-item st-expired">
@@ -158,6 +158,34 @@
             <div id="vulns" class="tab-content active">
                 <div class="grid">
                     
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-11-09</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-102895" target="_blank" class="cve-title">GPUStack Improper Authentication Vulnerability (CVE-2026-102895) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">GPUStack contains an improper authentication vulnerability which could allow unauthenticated administrative access, including user and model changes, persistent administrator API-key creation, disclosure of worker and cloud-provider secrets, and code execution through POST /v2/inference-backends/from-yaml.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-11-09</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-123158" target="_blank" class="cve-title">OpenBSD OpenSSH Unexpected Status Code or Return Value Vulnerability (CVE-2026-123158) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">OpenBSD OpenSSH on Linux contains an unexpected status code or return value vulnerability that could allow for authentication bypass.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-11-09</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-116779" target="_blank" class="cve-title">SignalWire FreeSwitch Code Injection Vulnerability (CVE-2026-116779) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">SignalWire FreeSwitch contains a code injection vulnerability that permits configuration and credential disclosure, arbitrary call control, and command execution.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-11-09</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-123218" target="_blank" class="cve-title">IBM Aspera Faspex Incorrect Authorization Vulnerability (CVE-2026-123218) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">IBM Aspera Faspex contains an incorrect authorization vulnerability that could allow an authenticated user to craft a specific message to bypass authorization, causing privilege escalations.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
         <div class="card vendor-Other" data-vendor="Other">
             <span class="tag">Other</span><span class="tag" style="float:right">2026-11-06</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-19868" target="_blank" class="cve-title">SonicWall SonicOS SSLVPN Use of Single-factor Authentication Vulnerability (CVE-2026-19868) ↗</a>
@@ -830,34 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
             
         </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-08-20</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-72530" target="_blank" class="cve-title">TrueConf Server Code Injection Vulnerability (CVE-2026-72530) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">TrueConf Server contains a code injection vulnerability that could allow an unauthorized remote attacker with network access via port 4307/TCP to use a specially crafted script to break out of the isolated environment and execute arbitrary code on the host system.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-08-20</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-72529" target="_blank" class="cve-title">TrueConf Server Missing Authentication for Critical Function Vulnerability (CVE-2026-72529) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">TrueConf Server contains a missing authentication for critical function vulnerability which could allow a remote unauthorized attacker with network access via port 4307/TCP to execute an arbitrary script.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-08-19</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-64849" target="_blank" class="cve-title">MLflow Server-Side Request Forgery Vulnerability (CVE-2026-64849) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">MLflow contains a server-side request forgery vulnerability that can allow attackers to reach internal or cloud metadata services and receive response_status and response_body.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
-            
-        </div>
-        <div class="card vendor-Microsoft" data-vendor="Microsoft">
-            <span class="tag">Microsoft</span><span class="tag" style="float:right">2026-08-18</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-33824" target="_blank" class="cve-title">Microsoft Internet Key Exchange (IKE) Service Extensions Double Free Vulnerability (CVE-2026-33824) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Microsoft Internet Key Exchange (IKE) Service Extensions contains a double free vulnerability that could enable remote code execution.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
-            <div class="kql-box"><div class="kql-code">KQL: DeviceTvmSoftwareVulnerabilities | where CveId == 'CVE-2026-33824' | summarize count() by DeviceName</div><button class="copy-btn" onclick="copyKql('CVE-2026-33824')">Copy</button></div>
-        </div>
                 </div>
             </div>
             
@@ -882,13 +882,29 @@
         <div class="list-item status-warning">
             <span class="meta" style="color:#f59e0b">Windows Issue • Tue, 08 Sep 2026</span>
             <a href="https://learn.microsoft.com/en-us/autopilot/known-issues" target="_blank" class="item-link">Windows Autopilot known issues ↗</a>
-            <div class="item-desc">The event log contains an error similar to the following example: MDM PolicyManager: Merge string, Area: (UserRights), Policy: (DenyLocalLogOn), Result:(0x800706FD) The trust relationship between this workstation and the primary domain failed.  ...arios that use a bring-your-own (BYO) VPN, the VPN connection isn't available during the technician....</div>
+            <div class="item-desc">The event log contains an error similar to the following example: MDM PolicyManager: Merge string, Area: (UserRights), Policy: (DenyLocalLogOn), Result:(0x800706FD) The trust relationship between this workstation and the primary domain failed. In off-premises scenarios that use a bring-your-own (BYO) VPN, the VPN connection isn't available during....</div>
         </div>
             </div>
 
             <div id="news" class="tab-content">
                 <h3>Curated Security News</h3>
                 
+        <div class="list-item">
+            <span class="meta">The Hacker News • Mon, 09 Nov 2026</span>
+            <a href="https://thehackernews.com/2026/11/hackers-exploit-quboles-trusted-aws.html" target="_blank" class="item-link">Hackers Exploit Qubole's Trusted AWS Access to Breach Customer Accounts and Steal Data ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">The Hacker News • Mon, 09 Nov 2026</span>
+            <a href="https://thehackernews.com/2026/11/hackers-compromise-etherspheres-bee-js.html" target="_blank" class="item-link">Hackers Compromise Ethersphere's bee-js and Swarm Desktop to Deliver Wallet-Stealing Malware ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">The Hacker News • Mon, 09 Nov 2026</span>
+            <a href="https://thehackernews.com/2026/11/bitter-hackers-deploy-new-paprat.html" target="_blank" class="item-link">Bitter Hackers Deploy New PapRAT Backdoor in Cyberespionage Campaign Targeting South Asia ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">The Hacker News • Mon, 09 Nov 2026</span>
+            <a href="https://thehackernews.com/2026/11/weekly-recap-sshole-exploited-apt-root.html" target="_blank" class="item-link">⚡ Weekly Recap: SSHole Exploited, APT Root RCE, Robot Takeovers, 15K Hacked Sites, and More ↗</a>
+        </div>
         <div class="list-item">
             <span class="meta">The Hacker News • Mon, 09 Nov 2026</span>
             <a href="https://thehackernews.com/2026/11/web3auth-flaw-exploited-to-steal-keplr.html" target="_blank" class="item-link">Web3Auth Flaw Exploited to Steal Keplr Crypto, Provider Empties Other Wallets for Safety ↗</a>
@@ -906,28 +922,20 @@
             <a href="https://thehackernews.com/2026/11/us-agencies-warn-refrigeration.html" target="_blank" class="item-link">U.S. Agencies Warn Refrigeration Controller Attacks Could Cause Fires and Inventory Losses ↗</a>
         </div>
         <div class="list-item">
-            <span class="meta">The Hacker News • Mon, 09 Nov 2026</span>
-            <a href="https://thehackernews.com/2026/11/cisa-flags-sonicwall-sonicos-mfa-bypass.html" target="_blank" class="item-link">CISA Flags SonicWall SonicOS MFA Bypass Flaw Amid Reports of Possible Exploitation ↗</a>
+            <span class="meta">Dark Reading • Mon, 09 Nov 2026</span>
+            <a href="https://www.darkreading.com/cyberattacks-data-breaches/cisa-announces-enhanced-reporting-form-cyber-incidents" target="_blank" class="item-link">CISA Announces Enhanced Reporting Form for Cyber Incidents ↗</a>
         </div>
         <div class="list-item">
-            <span class="meta">The Hacker News • Fri, 06 Nov 2026</span>
-            <a href="https://thehackernews.com/2026/11/installing-fix-for-exploited-wordpress.html" target="_blank" class="item-link">Installing the Fix for an Exploited WordPress Flaw Can Expose Some Sites One Last Time ↗</a>
+            <span class="meta">Dark Reading • Mon, 09 Nov 2026</span>
+            <a href="https://www.darkreading.com/application-security/microsoft-rce-bug-windows-paint-confusion" target="_blank" class="item-link">Microsoft Fixes RCE Bug in Windows Paint After Weeks of Confusion ↗</a>
         </div>
         <div class="list-item">
-            <span class="meta">The Hacker News • Fri, 06 Nov 2026</span>
-            <a href="https://thehackernews.com/2026/11/hackers-exploited-openssh-sshole-flaw.html" target="_blank" class="item-link">Hackers Target OpenSSH SSHole Flaw Within Hours of Disclosure, Gain Root on Honeypot ↗</a>
+            <span class="meta">Dark Reading • Mon, 09 Nov 2026</span>
+            <a href="https://www.darkreading.com/endpoint-security/attackers-claude-office-party-flaw-malicious-code-linux" target="_blank" class="item-link">Attackers Crash Claude's 'Office Party' Flaw to Run Malicious Code on Linux ↗</a>
         </div>
         <div class="list-item">
             <span class="meta">Dark Reading • Fri, 06 Nov 2026</span>
             <a href="https://www.darkreading.com/cybersecurity-operations/uk-warns-critical-infrastructure-grave-risk" target="_blank" class="item-link">UK Warns Its Critical Infrastructure Faces Grave Risk ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">Dark Reading • Thu, 05 Nov 2026</span>
-            <a href="https://www.darkreading.com/cybersecurity-operations/securitydatapipeline-com-launches-as-a-new-educational-resource-for-the-ai-era" target="_blank" class="item-link">SecurityDataPipeline.com Launches as a New Educational Resource for the AI Era ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">Dark Reading • Wed, 04 Nov 2026</span>
-            <a href="https://www.darkreading.com/application-security/critical-rails-bug-derail-vulnerable-servers" target="_blank" class="item-link">Critical Rails Bug Threatens to Derail Vulnerable Servers ↗</a>
         </div>
             </div>
         </div>
