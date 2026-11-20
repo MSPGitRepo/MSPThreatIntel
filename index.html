@@ -83,7 +83,7 @@
         <div class="sidebar">
             <h1>MSP Threat Intel</h1>
             <div class="section-label">VULNERABILITY FILTER</div>
-            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">5</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">7</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">4</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">1</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">3</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">3</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">77</span></button>
+            <button id="btn-All" class="filter-btn active" onclick="filter('All')">All Vendors <span class="count-badge">100</span></button><button id="btn-Microsoft" class="filter-btn" onclick="filter('Microsoft')">Microsoft <span class="count-badge">5</span></button><button id="btn-Cisco" class="filter-btn" onclick="filter('Cisco')">Cisco <span class="count-badge">8</span></button><button id="btn-Citrix" class="filter-btn" onclick="filter('Citrix')">Citrix <span class="count-badge">4</span></button><button id="btn-Palo Alto" class="filter-btn" onclick="filter('Palo Alto')">Palo Alto <span class="count-badge">1</span></button><button id="btn-Check Point" class="filter-btn" onclick="filter('Check Point')">Check Point <span class="count-badge">3</span></button><button id="btn-Fortinet" class="filter-btn" onclick="filter('Fortinet')">Fortinet <span class="count-badge">3</span></button><button id="btn-Aruba" class="filter-btn" onclick="filter('Aruba')">Aruba <span class="count-badge">0</span></button><button id="btn-Other" class="filter-btn" onclick="filter('Other')">Other / Misc <span class="count-badge">76</span></button>
             <div class="section-label">LIFECYCLE TRACKER</div>
             
         <div class="eol-item st-expired">
@@ -158,6 +158,34 @@
             <div id="vulns" class="tab-content active">
                 <div class="grid">
                     
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-11-20</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-129448" target="_blank" class="cve-title">Apache Roller Deserialization of Untrusted Data Vulnerability (CVE-2026-129448) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Apache Roller contains a deserialization of untrusted data vulnerability that allows an unauthenticated remote attacker to execute arbitrary code via the XML-RPC endpoint, which accepts and deserializes vendor extension types before authentication. This CVE covers the same underlying vulnerability as CVE-2026-82384 but applies to a broader range of affected versions.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-11-20</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-123890" target="_blank" class="cve-title">VMWare vCenter Authentication Bypass Using an Alternate Path or Channel Vulnerability (CVE-2026-123890) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Broadcom VMware vCenter contains an authentication bypass using an alternate path or channel vulnerability in the VMware Directory Service that allows an unauthenticated attacker with network access to vCenter to bypass authentication and gain unauthorized access to the system.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines</div>
+            
+        </div>
+        <div class="card vendor-Other" data-vendor="Other">
+            <span class="tag">Other</span><span class="tag" style="float:right">2026-11-20</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-42884" target="_blank" class="cve-title">SAP NetWeaver Improper Neutralization of Special Elements in Data Query Logic Vulnerability (CVE-2025-42884) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">SAP NetWeaver Enterprise Portal contains an improper neutralization of special elements in data query logic vulnerability that allows an unauthenticated attacker to disclose or modify server information via injected JNDI environment properties or a URL used during JNDI lookup operations.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
+        <div class="card vendor-Cisco" data-vendor="Cisco">
+            <span class="tag">Cisco</span><span class="tag" style="float:right">2026-11-20</span>
+            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-76466" target="_blank" class="cve-title">Cisco Expressway Series Use of Hard-coded Credentials Vulnerability (CVE-2026-76466) ↗</a>
+            <p style="font-size:0.9rem; color:#475569;">Cisco Expressway Series contains a use of hard-coded credentials vulnerability that allows an unauthenticated, remote attacker with persistent cookies and network access to execute commands as root on a clustered device via the database service.</p>
+            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
+            
+        </div>
         <div class="card vendor-Other" data-vendor="Other">
             <span class="tag">Other</span><span class="tag" style="float:right">2026-11-18</span>
             <a href="https://nvd.nist.gov/vuln/detail/CVE-2024-10441" target="_blank" class="cve-title">Synology DiskStation Manager (DSM) Improper Encoding or Escaping of Output Vulnerability (CVE-2024-10441) ↗</a>
@@ -830,34 +858,6 @@
             <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
             
         </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-09-02</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-9586" target="_blank" class="cve-title">Sangoma Switchvox SQL Injection Vulnerability (CVE-2026-9586) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">Sangoma Switchvox contains a SQL injection vulnerability which allows an unauthenticated remote attacker to execute arbitrary SQL statements against the backend PostgreSQL database using a single crafted request, including database operations and remote code execution.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-09-02</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-83548" target="_blank" class="cve-title">SonicWall SMA1000 Appliances Server-Side Request Forgery Vulnerability (CVE-2026-83548) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">SonicWall SMA1000 Appliances contains a server-side request forgery vulnerability that could allow a remote unauthenticated attacker to gain unauthorized access to sensitive functionality and perform unauthorized operations.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-09-02</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-83549" target="_blank" class="cve-title">SonicWall SMA1000 Appliances OS Command Injection Vulnerability (CVE-2026-83549) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">SonicWall SMA1000 Appliances contains an OS command injection vulnerability that could enable a remote authenticated attacker as administrator to execute arbitrary OS commands, resulting in remote code execution.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
-            
-        </div>
-        <div class="card vendor-Other" data-vendor="Other">
-            <span class="tag">Other</span><span class="tag" style="float:right">2026-08-31</span>
-            <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-82078" target="_blank" class="cve-title">PaperCut NG/MF Unsafe Reflection Vulnerability (CVE-2026-82078) ↗</a>
-            <p style="font-size:0.9rem; color:#475569;">PaperCut NG/MF contains an unsafe reflection vulnerability that allows an attacker to manipulate system configuration parameters and execute arbitrary Java bytecode residing on the application classpath under the security context of the PaperCut server process. This vulnerability can be chained with CVE-2026-81578.</p>
-            <div style="font-size:0.8rem; background:#eff6ff; padding:8px; border-radius:4px; color:#1e40af;"><strong>ACTION:</strong> Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.</div>
-            
-        </div>
                 </div>
             </div>
             
@@ -880,7 +880,7 @@
             <div class="item-desc">macOS Platform single sign-on known issues and troubleshooting Summarize this article for me In this article This article outlines the current known issues and common questions with macOS Platform single sign-on (PSSO). It provides issue solutions and information on how to report an issue that isn't covered. This article also includes....</div>
         </div>
         <div class="list-item status-warning">
-            <span class="meta" style="color:#f59e0b">Windows Issue • Sat, 14 Nov 2026</span>
+            <span class="meta" style="color:#f59e0b">Windows Issue • Fri, 20 Nov 2026</span>
             <a href="https://learn.microsoft.com/en-us/microsoftteams/devices/known-issues" target="_blank" class="item-link">Teams Device Known Issues - Microsoft Teams ↗</a>
             <div class="item-desc">Teams Device Known Issues Summarize this article for me In this article Issues affecting multiple device types Issue Description Workaround Android 15 devices show unmonitored in Pro Management Portal Teams Android devices running Android 15 may offer limited management controls. Update... Suggest a fix. Current known issues for Teams Rooms on....</div>
         </div>
@@ -894,6 +894,14 @@
             <div id="news" class="tab-content">
                 <h3>Curated Security News</h3>
                 
+        <div class="list-item">
+            <span class="meta">The Hacker News • Fri, 20 Nov 2026</span>
+            <a href="https://thehackernews.com/2026/11/whatsapp-patches-3-security-flaws.html" target="_blank" class="item-link">WhatsApp Patches 3 Security Flaws, Including Android Bug Suspected of Use in Scams ↗</a>
+        </div>
+        <div class="list-item">
+            <span class="meta">The Hacker News • Fri, 20 Nov 2026</span>
+            <a href="https://thehackernews.com/2026/11/new-linux-kvm-flaw-cve-2026-99312-lets.html" target="_blank" class="item-link">Linux KVM Flaw CVE-2026-99312 Lets Guest VMs Access Host Memory on AMD Hosts ↗</a>
+        </div>
         <div class="list-item">
             <span class="meta">The Hacker News • Fri, 20 Nov 2026</span>
             <a href="https://thehackernews.com/2026/11/sonicwall-warns-gen-6-firewalls-wont.html" target="_blank" class="item-link">SonicWall Warns Gen 6 Firewalls Won't Get Security Patches, Even for Critical Flaws ↗</a>
@@ -911,20 +919,8 @@
             <a href="https://thehackernews.com/2026/11/new-unpatched-windows-0-day-fastunlock.html" target="_blank" class="item-link">New Unpatched Windows 0-Day FastUnlock Lets Someone Holding a Locked PC Run Programs on It ↗</a>
         </div>
         <div class="list-item">
-            <span class="meta">The Hacker News • Thu, 19 Nov 2026</span>
-            <a href="https://thehackernews.com/2026/11/phpaftershell-explained-how-hackers.html" target="_blank" class="item-link">phpAfterShell Explained: How Hackers Could Turn a PHP Session Flaw Into Code Execution ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">The Hacker News • Thu, 19 Nov 2026</span>
-            <a href="https://thehackernews.com/2026/11/php-fixes-7-critical-flaws-including.html" target="_blank" class="item-link">PHP Fixes 7 Critical Flaws, Including Bugs That Could Allow Remote Code Execution ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">The Hacker News • Thu, 19 Nov 2026</span>
-            <a href="https://thehackernews.com/2026/11/critical-vmware-vcenter-flaw-cvss-98.html" target="_blank" class="item-link">Critical VMware vCenter Zero-Day Flaw Lets Network Attackers Bypass Authentication ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">The Hacker News • Thu, 19 Nov 2026</span>
-            <a href="https://thehackernews.com/2026/11/drupal-patches-critical-installer-flaw.html" target="_blank" class="item-link">Drupal Patches Critical Installer Flaw That Could Give Unauthenticated Attackers Control of Sites ↗</a>
+            <span class="meta">Dark Reading • Fri, 20 Nov 2026</span>
+            <a href="https://www.darkreading.com/cyberattacks-data-breaches/china-armory-castle-vmware-vcenter-zero-day" target="_blank" class="item-link">China's 'Armory Castle' Lays Siege to VMware vCenter Zero-Day ↗</a>
         </div>
         <div class="list-item">
             <span class="meta">Dark Reading • Thu, 19 Nov 2026</span>
@@ -932,15 +928,11 @@
         </div>
         <div class="list-item">
             <span class="meta">Dark Reading • Thu, 19 Nov 2026</span>
-            <a href="https://www.darkreading.com/application-security/critical-php-flaws-code-execution-panic-php2shell" target="_blank" class="item-link">Critical PHP Flaws Allow Code Execution, But Don't Panic 'PHP2Shell'-Style ↗</a>
+            <a href="https://www.darkreading.com/application-security/critical-php-flaws-code-execution-panic-php2shell" target="_blank" class="item-link">Critical PHP Flaws Allow Code Execution, but Don't Panic 'PHP2Shell'-Style ↗</a>
         </div>
         <div class="list-item">
             <span class="meta">Dark Reading • Thu, 19 Nov 2026</span>
             <a href="https://www.darkreading.com/vulnerabilities-threats/navigating-vulnerability-hysteria-ai-era" target="_blank" class="item-link">Navigating Vulnerability Hysteria in the AI Era ↗</a>
-        </div>
-        <div class="list-item">
-            <span class="meta">Dark Reading • Wed, 18 Nov 2026</span>
-            <a href="https://www.darkreading.com/vulnerabilities-threats/java4shell-flaw-threatens-global-java-application-ecosystem" target="_blank" class="item-link">Java4Shell Flaw Threatens Global Enterprises, Java Application Ecosystem ↗</a>
         </div>
             </div>
         </div>
